@@ -1,0 +1,6 @@
+{
+  "require": {
+    "stripe/stripe-php": "3.*"
+  }
+
+}
