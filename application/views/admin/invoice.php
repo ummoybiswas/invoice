@@ -415,9 +415,9 @@ function partial_payment()
 {
 	var total=document.getElementById('total').innerHTML;
 	var p=document.getElementById('percentage_partial_value').value;
-	var partial_value=((p*total)/100);
+	var partial_value=((p*total)/100).toFixed(2);
 	
-	document.getElementById('partial_payment_value').value=partial_value+'.00';
+	document.getElementById('partial_payment_value').value=partial_value;
 }
 
 
