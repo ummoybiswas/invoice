@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2015 at 01:03 PM
+-- Generation Time: Jan 11, 2016 at 11:06 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -27,23 +27,26 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `bills` (
-`bill_id` int(10) NOT NULL,
-  `client_id` int(10) NOT NULL,
-  `status` varchar(15) NOT NULL,
-  `date` date NOT NULL,
-  `due_date` date NOT NULL,
-  `total_bill` double(10,2) NOT NULL,
-  `due` double(10,2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `bill_id` varchar(255) NOT NULL,
+  `client_email` varchar(30) NOT NULL,
+  `bill_reference` varchar(30) NOT NULL,
+  `bill_date` date NOT NULL,
+  `bill_due_date` date NOT NULL,
+  `bill_total_amount` double NOT NULL,
+  `bill_due_amount` double NOT NULL,
+  `bill_to_paid` double NOT NULL,
+  `bill_allow_partial` bit(1) NOT NULL DEFAULT b'0',
+  `bill_allow_discount` bit(1) NOT NULL DEFAULT b'0',
+  `bill_status` bit(1) NOT NULL DEFAULT b'0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`bill_id`, `client_id`, `status`, `date`, `due_date`, `total_bill`, `due`) VALUES
-(1, 1, '0', '2015-10-01', '2015-12-01', 300.00, 300.00),
-(6, 6, '0', '2015-12-24', '2015-12-24', 600.00, 300.00),
-(7, 6, '0', '2015-12-23', '2015-12-23', 1600.00, 300.00);
+INSERT INTO `bills` (`bill_id`, `client_email`, `bill_reference`, `bill_date`, `bill_due_date`, `bill_total_amount`, `bill_due_amount`, `bill_to_paid`, `bill_allow_partial`, `bill_allow_discount`, `bill_status`) VALUES
+('INV-1000', 'ummoy.biswas@live.com', 'ref#123', '2016-01-11', '2016-01-11', 10, 10, 10, b'0', b'0', b'0'),
+('INV-1001', 'aman.rabby@gmail.com', 'ref#124', '2016-01-10', '2016-01-25', 5, 5, 5, b'0', b'0', b'0');
 
 -- --------------------------------------------------------
 
@@ -53,18 +56,27 @@ INSERT INTO `bills` (`bill_id`, `client_id`, `status`, `date`, `due_date`, `tota
 
 CREATE TABLE IF NOT EXISTS `bill_service` (
 `id` int(10) NOT NULL,
-  `bill_id` int(10) NOT NULL,
-  `service_id` int(10) NOT NULL,
-  `quantity` int(3) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `bill_id` varchar(255) NOT NULL,
+  `user_email` varchar(30) NOT NULL,
+  `particulars` text NOT NULL,
+  `additional_particulars` varchar(255) DEFAULT NULL,
+  `services` varchar(30) NOT NULL,
+  `bill_cycle` varchar(10) NOT NULL,
+  `reg_date` date NOT NULL,
+  `next_due` date NOT NULL,
+  `quantity` double NOT NULL DEFAULT '1',
+  `price` double NOT NULL,
+  `status` bit(1) NOT NULL DEFAULT b'0'
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bill_service`
 --
 
-INSERT INTO `bill_service` (`id`, `bill_id`, `service_id`, `quantity`) VALUES
-(1, 1, 2, 1),
-(2, 1, 3, 1);
+INSERT INTO `bill_service` (`id`, `bill_id`, `user_email`, `particulars`, `additional_particulars`, `services`, `bill_cycle`, `reg_date`, `next_due`, `quantity`, `price`, `status`) VALUES
+(1, 'INV-1000', 'ummoy.biswas@live.com', 'Domain Registration - hgewhewh.com - 1 Year/s (11/01/2016 - 10/01/2017)\r\n+ DNS Management', NULL, 'Domain', '1', '2016-01-11', '2017-01-10', 1, 10, b'0'),
+(2, 'INV-1001', 'aman.rabby@gmail.com', 'Domain Registration - hgewhewh.com - 1 Year/s (11/01/2016 - 10/01/2017)\r\n+ DNS Management', NULL, 'Domain', '1', '2016-01-11', '2017-01-10', 1, 10, b'0'),
+(3, 'INV-1001', 'aman.rabby@gmail.com', 'B-Advanced - hgewhewh.com (2016-01-11 - 2016-02-10)', NULL, 'Hosting', '0', '2016-01-11', '2016-02-10', 1, 30, b'0');
 
 -- --------------------------------------------------------
 
@@ -91,6 +103,32 @@ CREATE TABLE IF NOT EXISTS `client` (
 INSERT INTO `client` (`client_id`, `first_name`, `last_name`, `email`, `address`, `state`, `city`, `country`, `post_code`) VALUES
 (1, 'Ummoy', 'Biswas', 'ummoy.biswas@live.com', 'Mohakhali Dohs', 'Dhaka', 'Dhaka', 'Bangladesh', '1203'),
 (6, 'Aman', 'Ullah', 'aman.rabby@gmail.com', 'Mohakhali Dohs', 'Dhaka', 'Dhaka', 'Bangladesh', '1203');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount`
+--
+
+CREATE TABLE IF NOT EXISTS `discount` (
+`id` int(11) NOT NULL,
+  `bil_id` varchar(255) NOT NULL,
+  `user_email` int(11) NOT NULL,
+  `discount_amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `partial`
+--
+
+CREATE TABLE IF NOT EXISTS `partial` (
+`id` int(10) NOT NULL,
+  `bil_id` varchar(255) NOT NULL,
+  `user_email` varchar(30) NOT NULL,
+  `partial_amount` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -157,6 +195,21 @@ INSERT INTO `service` (`service_id`, `product_id`, `service_name`, `amount`, `se
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaction`
+--
+
+CREATE TABLE IF NOT EXISTS `transaction` (
+  `transaction_id` varchar(255) NOT NULL,
+  `bill_id` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
+  `debit` double NOT NULL,
+  `credit` double NOT NULL,
+  `balance` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -196,7 +249,19 @@ ALTER TABLE `bill_service`
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
- ADD PRIMARY KEY (`client_id`);
+ ADD PRIMARY KEY (`client_id`), ADD UNIQUE KEY `email` (`email`), ADD UNIQUE KEY `email_2` (`email`);
+
+--
+-- Indexes for table `discount`
+--
+ALTER TABLE `discount`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `partial`
+--
+ALTER TABLE `partial`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `product`
@@ -221,20 +286,25 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `bills`
---
-ALTER TABLE `bills`
-MODIFY `bill_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
 -- AUTO_INCREMENT for table `bill_service`
 --
 ALTER TABLE `bill_service`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
 MODIFY `client_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `discount`
+--
+ALTER TABLE `discount`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `partial`
+--
+ALTER TABLE `partial`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `product`
 --
