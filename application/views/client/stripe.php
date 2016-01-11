@@ -14,8 +14,8 @@
     data-key="pk_live_DdTUjGTT8gTtBITCDC13OcEC" // your publishable keys
     data-image="<?php echo base_url();?>assets/img/logo.png" // your company Logo
     data-name="GeeksnTechnology.com"
-    data-description="Download Script ($1.00)"
-    data-amount="100">
+    data-description="Download Script ($100.00)"
+    data-amount="10000">
   </script>
 </form>
 

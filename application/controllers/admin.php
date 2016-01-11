@@ -47,11 +47,12 @@ class Admin extends CI_Controller {
 		  \Stripe\Stripe::setApiKey("sk_live_TUg7TuDFTWUysfr32yiqL2Cv"); //Replace with your Secret Key
 		 
 			  $charge = \Stripe\Charge::create(array(
-			  "amount" => 100,
+			  "amount" => 10000,
 			  "currency" => "usd",
 			  "card" => $_POST['stripeToken'],
 			  "description" => "Charge for Facebook Login code."
 			));
+			print_r($charge);
 			//send the file, this line will be reached if no error was thrown above
 			echo "<h1>Your payment has been completed. We will send you the Facebook Login code in a minute.</h1>";
 			//you can send the file to this email:
