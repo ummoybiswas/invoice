@@ -90,114 +90,214 @@
 				 <hr>
 
 
+<!-- my Invoice body -->
+
+	<div class="row">
+		<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="descrip" style="float:left;width:300px;">
+						<input  id="invoice_description" style="" type="text" placeholder="Description" class="form-control" >
+			 		</div>
+			 		<div class="price" style="float:left;">
+			 			<input  id="invoice_quantity" style="width: 144px;margin-right: 32px" onchange="changesubtotal(0)" type="number" value="1" placeholder="Quantity" class="form-control" >
+			 		</div>
+			 		<div class="price" style="float:left;">
+			 			<input  id="invoice_price" style="width: 144px;margin-left:-30px;" onchange="changesubtotal(0)" value="0" type="number" placeholder="Price" class="form-control" >
+			 		</div>
+			 		<select name="" class="form-control" id="service_name" style="float:left;width:119px;height: 32px;margin-right: 7px;" onchange="service_check()">
+			 			<option value="">Services</option>
+			 			<option value="Hosting">Hosting</option>
+			 			<option value="Domain">Domain</option>
+			 			<option value="Development">Development</option>
+			 		</select>
+			 		<select name="" class="form-control" id="bill_cycle" style="float:left;width:119px;height: 32px;display:none">
+			 			<option value="">Cycle</option>
+			 			<option value="Monthly">Monthly</option>
+			 			<option value="Yearly">Yearly</option>
+			 		</select>		 		
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="add_des">
+						<textarea class="form-control" style=" resize: none" id="invoice_additional"placeholder="Additional Description (optional)" rows="2" ></textarea>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1">
+			<div class="pri_cunt">
+				<p class="amount" style="color:#286090;font-weight: bold;margin-top: 26px">$<span id="amount">0.00</span></p>
+			</div>
+		</div>
+
+	</div>
+
+<!-- my Invoice body -->
+
+
 <!---------- INVOICE BODY-->
 
-
-				 <div class="row" style="border: 2px solid #ddd; border-left: 3px solid #029ACC;">
-				 	<div class="col-md-12" style="">
-						<div class="col-md-6">
-							<input  id="invoice_description" style="border-bottom: none; border:none" type="text" placeholder="Description" class="form-control" id="description">
-				 		</div>
-				 		<div class="col-md-2">
-				 			<input  id="invoice_quantity" style="border: none;" onchange="changesubtotal(0)" type="number" value="1" placeholder="Quantity" class="form-control" id="quantity">
-				 		</div>
-				 		<div class="col-md-2">
-				 			<input  id="invoice_price" style="border: none;margin-left:-30px;" onchange="changesubtotal(0)" value="0" type="number" placeholder="Price" class="form-control" id="quantity">
-				 		</div>
-				 	</div>
-					<div class="col-md-12" style="">
-						<div class="col-md-10">
-							<textarea class="form-control" style="border: none;" id="invoice_additional"placeholder="Additional Description (optional)" rows="3" style="resize:none" id="invoice_body"></textarea>
-							
-						</div>
-						<div class="col-md-2">
-							<p class="amount" style="text-align:center;color:#286090;font-weight: bold;margin-top:-20px; padding-left:28px;">$<span id="amount">0.00</span></p>			
-						</div>					
-					</div>
-				 </div>
 <br>
 
 <!---------- NEW DESCRIOPTION Section-->
-					<div class="row" id='description_1' style="display:none;margin-top:10px;margin-bottom:10px;border: 2px solid #ddd; border-left: 3px solid #029ACC;">
-				 	<div class="col-md-12" style="">
-						<div class="col-md-6">
-							<input style="border-bottom: none; border:none" id="invoice_description_1" type="text" placeholder="Description" class="form-control" id="description">
-				 		</div>
-				 		<div class="col-md-2">
-				 			<input style="border: none;" id="invoice_quantity_1" onchange="changesubtotal(1)" type="number" value="1" placeholder="Quantity" class="form-control" id="quantity">
-				 		</div>
-				 		<div class="col-md-2">
-				 			<input style="border: none;margin-left:-30px;" onchange="changesubtotal(1)" id="invoice_price_1" value="0" type="number" placeholder="Price" class="form-control" id="quantity">
-				 		</div>
-						<div class="col-md-2">
-				 			<button type="button" class="btn btn-danger" value='1' onclick="del_section(this.value)"><span class="	glyphicon glyphicon-remove-circle"></span> Delete Row</button>
-				 		</div>
-				 	</div>
-					<div class="col-md-12" style="">
-						<div class="col-md-10">
-							<textarea class="form-control" style="border: none;" id="invoice_additional_1" placeholder="Additional Description (optional)" rows="3" style="resize:none" id="invoice_body"></textarea>
-							
-						</div>
-						<div class="col-md-2">
-							<p class="amount" style="text-align:center;color:#286090;font-weight: bold;margin-top:-20px; padding-left:28px;">$<span id="amount_1">0.00</span></p>			
-						</div>					
-					</div>
+					<div class="row" id='description_1' style="display:none;margin-top:10px;margin-bottom:10px; ">
+				 	<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="descrip" style="float:left;width:300px;">
+						<input  id="invoice_description_1" style="" type="text" placeholder="Description" class="form-control">
+			 		</div>
+			 		<div class="price" style="float:left;">
+			 			<input  id="invoice_quantity_1" style="width: 144px;margin-right: 32px" onchange="changesubtotal(1)" type="number" value="1" placeholder="Quantity" class="form-control" >
+			 		</div>
+			 		<div class="price" style="float:left;">
+			 			<input  id="invoice_price_1" style="width: 144px;margin-left:-30px;" onchange="changesubtotal(1)" value="0" type="number" placeholder="Price" class="form-control" >
+			 		</div>
+			 		<select name="" class="form-control" id="service_name_1" style="float:left;width:119px;height: 32px;margin-right: 7px;" onchange="service_check_1()">
+			 			<option value="">Services</option>
+			 			<option value="Hosting">Hosting</option>
+			 			<option value="Domain">Domain</option>
+			 			<option value="Development">Development</option>
+			 		</select>
+			 		<select name="" class="form-control" id="bill_cycle_1" style="float:left;width:119px;height: 32px;display:none">
+			 			<option value="">Cycle</option>
+			 			<option value="Monthly">Monthly</option>
+			 			<option value="Yearly">Yearly</option>
+			 		</select>			 		
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="add_des">
+						<textarea class="form-control" style=" resize: none" id="invoice_additional_1" placeholder="Additional Description (optional)" rows="2" ></textarea>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1">
+			<div class="pri_cunt">
+				<p class="amount" style="color:#286090;font-weight: bold;margin-top: 26px">$<span id="amount_1">0.00</span></p>
+			</div>
+		</div>
+		<div class="col-md-1" >
+			<div class="pri_cunt" >
+				<button  type="button"value='1' style="margin-top:70%;background:none;border:none" onclick="del_section(this.value)">
+				
+				  <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: left;  border:1px solid #44b8fb;height: 30px;width: 30px;border-radius: 70px; text-align: center;padding-top:7px;color: red"></span>
+				</button>
+			</div>
+		</div>
 				 </div>
+		
 				
 				
+			<div class="row" id='description_2' style="display:none;margin-top:10px;margin-bottom:10px;">
+				 	<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="descrip" style="float:left;width:300px;">
+						<input  id="invoice_description_2" style="" type="text" placeholder="Description" class="form-control" >
+			 		</div>
+			 		<div class="price" style="float:left;">
+			 			<input  id="invoice_quantity_2" style="width: 144px;margin-right: 32px" onchange="changesubtotal(2)" type="number" value="1" placeholder="Quantity" class="form-control" >
+			 		</div>
+			 		<div class="price" style="float:left;">
+			 			<input  id="invoice_price_2" style="width: 144px;margin-left:-30px;" onchange="changesubtotal(2)" value="0" type="number" placeholder="Price" class="form-control" >
+			 		</div>
+			 		<select name="" class="form-control" id="service_name_2" style="float:left;width:119px;height: 32px;margin-right: 7px;" onchange="service_check_2()">
+			 			<option value="">Services</option>
+			 			<option value="Hosting">Hosting</option>
+			 			<option value="Domain">Domain</option>
+			 			<option value="Development">Development</option>
+			 		</select>
+			 		<select name="" class="form-control" id="bill_cycle_2" style="float:left;width:119px;height: 32px;display:none">
+			 			<option value="">Cycle</option>
+			 			<option value="Monthly">Monthly</option>
+			 			<option value="Yearly">Yearly</option>
+			 		</select>		 		
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="add_des">
+						<textarea class="form-control" style=" resize: none" id="invoice_additional_2"placeholder="Additional Description (optional)" rows="2" ></textarea>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1">
+			<div class="pri_cunt">
+				<p class="amount" style="color:#286090;font-weight: bold;margin-top: 26px">$<span id="amount_2">0.00</span></p>
+			</div>
+		</div>
+		<div class="col-md-1">
+			<div class="pri_cunt">
+				<button  type="button"value='2' style="margin-top:70%;background:none;border:none" onclick="del_section(this.value)">
 				
-				
-			<div class="row" id='description_2' style="display:none;margin-top:10px;margin-bottom:10px;border: 2px solid #ddd; border-left: 3px solid #029ACC;">
-				 	<div class="col-md-12" style="">
-						<div class="col-md-6">
-							<input style="border-bottom: none; border:none" id="invoice_description_2" type="text" placeholder="Description" class="form-control" id="description">
-				 		</div>
-				 		<div class="col-md-2">
-				 			<input style="border: none;" id="invoice_quantity_2" onchange="changesubtotal(2)" type="number" value="1" placeholder="Quantity" class="form-control" id="quantity">
-				 		</div>
-				 		<div class="col-md-2">
-				 			<input style="border: none;margin-left:-30px;" id="invoice_price_2" onchange="changesubtotal(2)" value="0" type="number" placeholder="Price" class="form-control" id="quantity">
-				 		</div>
-						<div class="col-md-2">
-				 			<button type="button" class="btn btn-danger" value='2' onclick="del_section(this.value)"><span class="	glyphicon glyphicon-remove-circle"></span> Delete Row</button>
-				 		</div>
-				 	</div>
-					<div class="col-md-12" style="">
-						<div class="col-md-10">
-							<textarea class="form-control" style="border: none;" id="invoice_additional_2" placeholder="Additional Description (optional)" rows="3" style="resize:none" id="invoice_body"></textarea>
-							
-						</div>
-						<div class="col-md-2">
-							<p class="amount" style="text-align:center;color:#286090;font-weight: bold;margin-top:-20px; padding-left:28px;">$<span id="amount_2">0.00</span></p>			
-						</div>					
-					</div>
+				  <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: left;  border:1px solid #44b8fb;height: 30px;width: 30px;border-radius: 70px; text-align: center;padding-top:7px;color: red"></span>
+				</button>
+			</div>
+		</div>
 				 </div>
 
 
-				<div class="row" id='description_3' style="display:none;margin-top:10px;margin-bottom:10px;border: 2px solid #ddd; border-left: 3px solid #029ACC;">
-				 	<div class="col-md-12" style="">
-						<div class="col-md-6">
-							<input style="border-bottom: none; border:none" id="invoice_description_3" type="text" placeholder="Description" class="form-control" id="description">
-				 		</div>
-				 		<div class="col-md-2">
-				 			<input style="border: none;" id="invoice_quantity_3" onchange="changesubtotal(3)" type="number" value="1" placeholder="Quantity" class="form-control" id="quantity">
-				 		</div>
-				 		<div class="col-md-2">
-				 			<input style="border: none;margin-left:-30px;" id="invoice_price_3" onchange="changesubtotal(3)" value="0" type="number" placeholder="Price" class="form-control" id="quantity">
-				 		</div>
-						<div class="col-md-2">
-				 			<button type="button" class="btn btn-danger" value='3' onclick="del_section(this.value)"><span class="	glyphicon glyphicon-remove-circle"></span> Delete Row</button>
-				 		</div>
-				 	</div>
-					<div class="col-md-12" style="">
-						<div class="col-md-10">
-							<textarea class="form-control" style="border: none;" id="invoice_additional_3" placeholder="Additional Description (optional)" rows="3" style="resize:none" id="invoice_body"></textarea>
-							
-						</div>
-						<div class="col-md-2">
-							<p class="amount" style="text-align:center;color:#286090;font-weight: bold;margin-top:-20px; padding-left:28px;">$<span id="amount_3">0.00</span></p>			
-						</div>					
-					</div>
+
+
+
+
+
+				<div class="row" id='description_3' style="display:none;margin-top:10px;margin-bottom:10px;">
+						
+
+
+				<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="descrip" style="float:left;width:300px;">
+						<input  id="invoice_description_3" style="" type="text" placeholder="Description" class="form-control" >
+			 		</div>
+			 		<div class="price" style="float:left;">
+			 			<input  id="invoice_quantity_3" style="width: 144px;margin-right: 32px" onchange="changesubtotal(3)" type="number" value="1" placeholder="Quantity" class="form-control" >
+			 		</div>
+			 		<div class="price" style="float:left;">
+			 			<input  id="invoice_price_3" style="width: 144px;margin-left:-30px;" onchange="changesubtotal(3)" value="0" type="number" placeholder="Price" class="form-control" >
+			 		</div>
+			 		<select name="" class="form-control" id="service_name_3" style="float:left;width:119px;height: 32px;margin-right: 7px;" onchange="service_check_3()">
+			 			<option value="">Services</option>
+			 			<option value="Hosting">Hosting</option>
+			 			<option value="Domain">Domain</option>
+			 			<option value="Development">Development</option>
+			 		</select>
+			 		<select name="" class="form-control" id="bill_cycle_3" style="float:left;width:119px;height: 32px;display:none">
+			 			<option value="">Cycle</option>
+			 			<option value="Monthly">Monthly</option>
+			 			<option value="Yearly">Yearly</option>
+			 		</select>			 		
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="add_des">
+						<textarea class="form-control" style=" resize: none" id="invoice_additional_3"placeholder="Additional Description (optional)" rows="2" ></textarea>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1">
+			<div class="pri_cunt">
+				<p class="amount" style="color:#286090;font-weight: bold;margin-top: 26px">$<span id="amount_3">0.00</span></p>
+			</div>
+		</div>
+		<div class="col-md-1">
+			<div class="pri_cunt">
+				<button  type="button"value='3' style="margin-top:70%;background:none;border:none" onclick="del_section(this.value)">
+				
+				  <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: left;  border:1px solid #44b8fb;height: 30px;width: 30px;border-radius: 70px; text-align: center;padding-top:7px;color: red"></span>
+				</button>
+			</div>
+		</div>
 				 </div>
 
 <!---------- NEW DESCRIOPTION Section END-->
@@ -231,15 +331,25 @@
 						      <tr class="info">
 						        <td></td>
 						        <td>Total</td>
-						        <td>$<span id="total">0.00</span></td>
+						        <td>$<span  id="total" style="font-weight: bold;
+font-size: 15px;">0.00</span></td>
 						      </tr>
 						    </tbody>
 						  </table>
 						<div class="checkbox">
-						    <label><input type="checkbox">Allow Partial Payment</label>
+						    <label><input type="checkbox" onclick="check()" id="allow_payment">Allow Partial Payment</label>
 						</div> 
+
+
+						<div id="allow_payment_box" style="display:none">
+						    <input id="percentage_partial_value" onchange="partial_payment()" style="width:50%;" type="number"  placeholder="Percentage(%) of total Money" class="form-control" >
+						    <br>
+						    <b>Current Payment: $</b><span  style="font-size:20px;color:#2876B6;"><input type="text" style="border:none;" id="partial_payment_value"></span><br>
+						</div> 
+						
 					</div> 
 				  </div>
+				  <br>
 				 <div class="row">
 				 	<div class="col-md-6">
 		  			    <div class="form-group">
@@ -300,6 +410,97 @@
 	
 </script>
 <script>
+
+function partial_payment()
+{
+	var total=document.getElementById('total').innerHTML;
+	var p=document.getElementById('percentage_partial_value').value;
+	var partial_value=((p*total)/100);
+	
+	document.getElementById('partial_payment_value').value=partial_value+'.00';
+}
+
+
+function check() 
+{
+	if(document.getElementById("allow_payment").checked == true)
+	{
+		document.getElementById('allow_payment_box').style.display = 'block';
+	}
+	else{
+		document.getElementById('allow_payment_box').style.display = 'none';
+	}
+    
+}
+
+
+
+function service_check()
+{
+	var e = document.getElementById("service_name");
+   var service_value = e.options[e.selectedIndex].value;
+
+
+   if(service_value=='Hosting' || service_value=='Domain')
+   	{
+   		document.getElementById('bill_cycle').style.display = 'block';
+   	}
+
+  
+   	else
+   	{
+   		document.getElementById('bill_cycle').style.display = 'none';
+   	}
+}
+
+
+function service_check_1()
+{
+
+   var f = document.getElementById("service_name_1");
+   var service_value_1 = f.options[f.selectedIndex].value;
+
+	if(service_value_1=='Hosting' || service_value_1=='Domain')
+   	{
+   		document.getElementById('bill_cycle_1').style.display = 'block';
+   	}
+   	else
+   	{
+   		document.getElementById('bill_cycle_1').style.display = 'none';
+   	}
+}
+
+function service_check_2()
+{
+
+   var f = document.getElementById("service_name_2");
+   var service_value_2 = f.options[f.selectedIndex].value;
+
+	if(service_value_2=='Hosting' || service_value_2=='Domain')
+   	{
+   		document.getElementById('bill_cycle_2').style.display = 'block';
+   	}
+   	else
+   	{
+   		document.getElementById('bill_cycle_2').style.display = 'none';
+   	}
+}
+function service_check_3()
+{
+
+   var f = document.getElementById("service_name_3");
+   var service_value_3 = f.options[f.selectedIndex].value;
+
+	if(service_value_3=='Hosting' || service_value_3=='Domain')
+   	{
+   		document.getElementById('bill_cycle_3').style.display = 'block';
+   	}
+   	else
+   	{
+   		document.getElementById('bill_cycle_3').style.display = 'none';
+   	}
+}
+
 var i=1;
 var arr=[];
 	function add_section()
@@ -392,6 +593,7 @@ function changesubtotal(id)
 	{
 		$('#dis_count').html('0.00');
 	}
+	partial_payment();
 	
 }
 function changetotal()
@@ -419,6 +621,7 @@ function changetotal()
 		$('#total').html(sum.toFixed(2));
 		
 	}
+
 }
 function checkFormData()
 {
