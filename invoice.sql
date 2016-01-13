@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2016 at 11:06 AM
+-- Generation Time: Jan 13, 2016 at 10:50 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -86,23 +86,27 @@ INSERT INTO `bill_service` (`id`, `bill_id`, `user_email`, `particulars`, `addit
 
 CREATE TABLE IF NOT EXISTS `client` (
 `client_id` int(10) NOT NULL,
+  `user_name` varchar(30) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
+  `company_name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `address` text NOT NULL,
+  `address2` varchar(200) NOT NULL,
   `state` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
   `country` varchar(30) NOT NULL,
-  `post_code` varchar(30) NOT NULL
+  `post_code` varchar(30) NOT NULL,
+  `phone_no` varchar(15) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`client_id`, `first_name`, `last_name`, `email`, `address`, `state`, `city`, `country`, `post_code`) VALUES
-(1, 'Ummoy', 'Biswas', 'ummoy.biswas@live.com', 'Mohakhali Dohs', 'Dhaka', 'Dhaka', 'Bangladesh', '1203'),
-(6, 'Aman', 'Ullah', 'aman.rabby@gmail.com', 'Mohakhali Dohs', 'Dhaka', 'Dhaka', 'Bangladesh', '1203');
+INSERT INTO `client` (`client_id`, `user_name`, `first_name`, `last_name`, `company_name`, `email`, `address`, `address2`, `state`, `city`, `country`, `post_code`, `phone_no`) VALUES
+(1, 'ummoy', 'Ummoy', 'Biswas', '', 'ummoy.biswas@live.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', ''),
+(6, 'aman', 'Aman', 'Ullah', '', 'aman.rabby@gmail.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '');
 
 -- --------------------------------------------------------
 
@@ -249,7 +253,7 @@ ALTER TABLE `bill_service`
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
- ADD PRIMARY KEY (`client_id`), ADD UNIQUE KEY `email` (`email`), ADD UNIQUE KEY `email_2` (`email`);
+ ADD PRIMARY KEY (`client_id`), ADD UNIQUE KEY `email` (`email`), ADD UNIQUE KEY `email_2` (`email`), ADD UNIQUE KEY `user_name` (`user_name`);
 
 --
 -- Indexes for table `discount`

@@ -47,53 +47,64 @@
                                     <!-- start form for validation -->
                                     <form novalidate="" id="demo-form" data-parsley-validate="">
                                         <label for="first_name">First Name :</label>
-                                        <input data-parsley-id="0979" id="first_name" readonly="readonly" class="form-control" name="fullname" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+                                        <input  id="first_name" readonly="readonly" class="form-control" name="first_name" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
 										
 										 <label for="last_name">Last Name :</label>
-                                        <input data-parsley-id="0979" id="last_name" readonly="readonly" class="form-control" name="fullname" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+                                        <input  id="last_name" readonly="readonly" class="form-control" name="last_name" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
                                         
 										
-										 <label for="fullname">Company Name :</label>
-                                        <input data-parsley-id="0979" id="fullname" readonly="readonly" class="form-control" name="fullname" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+										 <label for="company_name">Company Name :</label>
+                                        <input  id="company_name" readonly="readonly" class="form-control" name="company_name" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
 										
-										<label for="email">Email  :</label>
-                                        <input data-parsley-id="5214" id="email" class="form-control" name="email" data-parsley-trigger="change" required="" type="email"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
+										<label for="email">Email Address :</label>
+                                        <input  id="email" readonly="readonly" class="form-control" name="email" data-parsley-trigger="change" required="" type="email"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
 
-                                        <label>Gender *:</label>
-                                        <p>
-                                            M:
-                                            <div style="position: relative;" class="iradio_flat-green checked"><input style="position: absolute; opacity: 0;" data-parsley-id="6858" data-parsley-multiple="gender" class="flat" name="gender" id="genderM" value="M" checked="" required="" type="radio"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div> F:
-                                            <div style="position: relative;" class="iradio_flat-green"><input style="position: absolute; opacity: 0;" data-parsley-id="6858" data-parsley-multiple="gender" class="flat" name="gender" id="genderF" value="F" type="radio"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
-                                        </p>
+                                       
+										<label for="payment">Payment Method:</label>
+										<select  id="payment" class="form-control" required="">
+											<option value="">Choose..</option>
+											<option value="bkash">Bank or Bkash (BD Only)</option>
+											<option value="paypal">Paypal</option>
+											<option value="debit">Debit or Credit</option>
+										</select><ul id="parsley-id-0375" class="parsley-errors-list"></ul>
 
-                                        <label>Hobbies (2 minimum):</label>
-                                        <p style="padding: 5px;">
-                                            <div style="position: relative;" class="icheckbox_flat-green"><input style="position: absolute; opacity: 0;" data-parsley-id="5879" data-parsley-multiple="hobbies" name="hobbies[]" id="hobby1" value="ski" data-parsley-mincheck="2" required="" class="flat" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div> Skiing
-                                            <br>
+										<label for="default">Default Billing Contact:</label>
+										<select  id="default" class="form-control" required="">
+											<option value="default">Use Default Contact</option>
+										</select><ul id="parsley-id-0375" class="parsley-errors-list"></ul>
+								
 
-                                            <div style="position: relative;" class="icheckbox_flat-green"><input style="position: absolute; opacity: 0;" data-parsley-id="5879" data-parsley-multiple="hobbies" name="hobbies[]" id="hobby2" value="run" class="flat" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div> Running
-                                            <br>
+                                    </p>
+                                    <!-- end form for validations -->
+									</div>
+									
+									<div class="col-md-6">
+                                    <!-- start form for validation -->
+                                   
+                                        <label for="address">Address :</label>
+                                        <input  id="address" readonly="readonly" class="form-control" name="address" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+										
+										 <label for="address2">Address 2 :</label>
+                                        <input  id="address2" readonly="readonly" class="form-control" name="address2" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+                                        
+										
+										 <label for="city">City :</label>
+                                        <input  id="city" readonly="readonly" class="form-control" name="city" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+										
+										<label for="state">State/Region :</label>
+                                        <input  id="state" readonly="readonly" class="form-control" name="state" data-parsley-trigger="change" required="" type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
 
-                                            <div style="position: relative;" class="icheckbox_flat-green"><input style="position: absolute; opacity: 0;" data-parsley-id="5879" data-parsley-multiple="hobbies" name="hobbies[]" id="hobby3" value="eat" class="flat" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div> Eating
-                                            <br>
+                                       <label for="zip">Zip Code :</label>
+                                        <input  id="zip" readonly="readonly" class="form-control" name="zip" data-parsley-trigger="change" required="" type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
+										
+										<label for="country">Country :</label>
+                                        <input  id="country" readonly="readonly" class="form-control" name="country" data-parsley-trigger="change" required="" type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
 
-                                            <div style="position: relative;" class="icheckbox_flat-green"><input style="position: absolute; opacity: 0;" data-parsley-id="5879" data-parsley-multiple="hobbies" name="hobbies[]" id="hobby4" value="sleep" class="flat" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div> Sleeping
-                                            <br>
-                                            </p><ul id="parsley-id-multiple-hobbies" class="parsley-errors-list"></ul><p>
+										<label for="phone">Phone No :</label>
+                                        <input  id="phone" readonly="readonly" class="form-control" name="phone" data-parsley-trigger="change" required="" type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
 
-                                                <label for="heard">Heard us by *:</label>
-                                                <select data-parsley-id="0375" id="heard" class="form-control" required="">
-                                                    <option value="">Choose..</option>
-                                                    <option value="press">Press</option>
-                                                    <option value="net">Internet</option>
-                                                    <option value="mouth">Word of mouth</option>
-                                                </select><ul id="parsley-id-0375" class="parsley-errors-list"></ul>
-
-                                                <label for="message">Message (20 chars min, 100 max) :</label>
-                                                <textarea data-parsley-id="7962" id="message" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea><ul id="parsley-id-7962" class="parsley-errors-list"></ul>
-
-                                                <br>
-                                                <span class="btn btn-primary">validate form</span>
+										<br>
+										<span class="btn btn-primary">validate form</span>
 
                                     </p></form>
                                     <!-- end form for validations -->
