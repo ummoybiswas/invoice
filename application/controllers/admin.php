@@ -25,10 +25,11 @@ class Admin extends CI_Controller {
 
 	public function create_invoice()
 	{
-		//$data['bills']=$this->bill_model->recent_bills_all();
-		$this->load->view('admin/invoice');
-		//echo "<pre>";
-		//print_r($data['bills']);
+		$this->load->model('invoice_gen_model');
+		$data["invoice_no"]=$this->invoice_gen_model->recent_invoice();
+		$this->parser->parse('admin/invoice',$data);
+		//print_r($data["invoice_no"]);
+
 	}
 
 

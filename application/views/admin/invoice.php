@@ -58,7 +58,7 @@
 
 						<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1">Invoice Number</span>
-						  <input type="text" class="form-control"  placeholder="Invoice Number" id="invoice_number" aria-describedby="basic-addon1">
+						  <input type="text" class="form-control"  placeholder="Invoice Number" id="invoice_number" aria-describedby="basic-addon1" value="INV-<?php echo $invoice_no[0]['invoice_no']; ?>">
 						</div>
 					</div>
 					<br>
