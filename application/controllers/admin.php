@@ -11,9 +11,7 @@ class Admin extends CI_Controller {
 			$this->session->set_userdata('error', 'You need to login first!!!');
 			redirect('welcome','refresh');
 		}
-		
-		$this->load->model('bill_model');
-    }
+	}
 	
 	public function dashboard()
 	{
@@ -31,7 +29,104 @@ class Admin extends CI_Controller {
 		//print_r($data["invoice_no"]);
 
 	}
+    
+	public function bill_confirm()
+	{
+		//$this->load->model('bill_model');
+		$bill_id=$this->input->post('invoice_number');
+		$client_email=$this->input->post('user_email');
+		$bill_reference=$this->input->post('invoice_reference');
+		$bill_date=$this->input->post('invoice_date');
+		$bill_due_date=$this->input->post('invoice_due_date');
+		
+		$date=date_create($bill_date);
+		date_add($date,date_interval_create_from_date_string($bill_due_date." days"));
+		$bill_due_date=date_format($date,"d-m-Y");
+		
+		$bill_total_amount=$this->input->post('total_amount');
+		$bill_due_amount=$this->input->post('amount_to_paid');
+		$bill_to_paid=$this->input->post('amount_to_paid');
+		$bill_allow_partial=$this->input->post('allow_partial');
+		$bill_allow_discount=$this->input->post('allow_discount');
+		
+		if($bill_allow_partial==1)
+		{
+			$partial_amount=$this->input->post('partial');
+		}
+		if($bill_allow_discount==1)
+		{
+			$discount_amount=$this->input->post('discount');
+		}
+	
+		$data=array(
+		'bill_id'=>$bill_id,
+		'client_email'=>$client_email,
+		'bill_reference'=>$bill_reference,
+		'bill_date'=>$bill_date,
+		'bill_due_date'=>$bill_due_date,
+		'bill_total_amount'=>$bill_total_amount,
+		'bill_due_amount'=>$bill_due_amount,
+		'bill_to_paid'=>$bill_to_paid,
+		'bill_allow_partial'=>$bill_allow_partial,
+		'bill_allow_discount'=>$bill_allow_discount,
+		'bill_status'=>0
+		);
+		print_r($data);
+		//$this->bill_model>create_new_bill($data);
+	}
+	
+	public function service_confirm()
+	{
+		//$this->load->model('bill_service_model');
+		
+		$bill_id=$this->input->post('invoice_number');
+		$user_email=$this->input->post('user_email');
+		$particulars=$this->input->post('invoice_reference');
+		$additional_particulars=$this->input->post('invoice_date');
+		$services=$this->input->post('invoice_due_date');
+		$bill_cycle=$this->input->post('invoice_due_date');
+		
+		date_default_timezone_set('Asia/Dacca');
+		$date = date('Y/m/d h:i:s a', time()); //with time
+		$currentdate = date("Y-m-d",strtotime($date));
+		
+		$date=date_create($currentdate);
+		date_add($date,date_interval_create_from_date_string($bill_due_date." days"));
+		$bill_due_date=date_format($date,"Y-m-d");
+		
+		$bill_total_amount=$this->input->post('total_amount');
+		$bill_due_amount=$this->input->post('total');
+		$bill_to_paid=$this->input->post('total');
+		$bill_allow_partial=$this->input->post('allow_partial');
+		$bill_allow_discount=$this->input->post('allow_discount');
+		
+		if($bill_allow_partial==1)
+		{
+			$partial_amount=$this->input->post('partial');
+		}
+		if($bill_allow_discount==1)
+		{
+			$discount_amount=$this->input->post('discount');
+		}
+	
+		$data=array(
+		'bill_id'=>$bil_id,
+		'client_email'=>$client_email,
+		'bill_reference'=>$bill_reference,
+		'bill_date'=>$bill_date,
+		'bill_due_date'=>$bill_due_date,
+		'bill_total_amount'=>$bill_total_amount,
+		'bill_due_amount'=>$bill_due_amount,
+		'bill_to_paid'=>$bill_to_paid,
+		'bill_allow_partial'=>$bill_allow_partial,
+		'bill_allow_discount'=>$bill_allow_discount,
+		'bill_status'=>0
+		);
+		print_r($data);
+		
+		//$this->invoice_gen_model->create_new_service($data);
 
+	}
 
 	public function view_bill()
 	{

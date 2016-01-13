@@ -58,11 +58,7 @@
 
 						<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1">Invoice Number</span>
-<<<<<<< HEAD
 						  <input type="text" class="form-control"  placeholder="Invoice Number" id="invoice_number" aria-describedby="basic-addon1" value="INV-<?php echo $invoice_no[0]['invoice_no']; ?>">
-=======
-						  <input type="text" class="form-control" readonly="readonly" placeholder="Invoice Number" id="invoice_number" aria-describedby="basic-addon1">
->>>>>>> 7aaaf1efc4abfc68760f870a3d09ad5db162c9da
 						</div>
 					</div>
 					<br>
@@ -144,9 +140,10 @@
 			 			<option value="Development">Development</option>
 			 		</select>
 			 		<select required name="" class="form-control" id="bill_cycle" style="float:left;width:119px;height: 32px;display:none">
-			 			<option value="">Cycle</option>
-			 			<option value="Monthly">Monthly</option>
-			 			<option value="Yearly">Yearly</option>
+						<option value="">Cycle</option>
+						<option value="0">Fixed</option>
+			 			<option value="1">Monthly</option>
+			 			<option value="2">Yearly</option>
 			 		</select>		 		
 				</div>
 			</div>
@@ -195,8 +192,9 @@
 			 		</select>
 			 		<select name="" class="form-control" id="bill_cycle_1" style="float:left;width:119px;height: 32px;display:none">
 			 			<option value="">Cycle</option>
-			 			<option value="Monthly">Monthly</option>
-			 			<option value="Yearly">Yearly</option>
+						<option value="0">Fixed</option>
+			 			<option value="1">Monthly</option>
+			 			<option value="2">Yearly</option>
 			 		</select>			 		
 				</div>
 			</div>
@@ -246,8 +244,9 @@
 			 		</select>
 			 		<select name="" class="form-control" id="bill_cycle_2" style="float:left;width:119px;height: 32px;display:none">
 			 			<option value="">Cycle</option>
-			 			<option value="Monthly">Monthly</option>
-			 			<option value="Yearly">Yearly</option>
+						<option value="0">Fixed</option>
+			 			<option value="1">Monthly</option>
+			 			<option value="2">Yearly</option>
 			 		</select>		 		
 				</div>
 			</div>
@@ -301,8 +300,9 @@
 			 		</select>
 			 		<select name="" class="form-control" id="bill_cycle_3" style="float:left;width:119px;height: 32px;display:none">
 			 			<option value="">Cycle</option>
-			 			<option value="Monthly">Monthly</option>
-			 			<option value="Yearly">Yearly</option>
+						<option value="0">Fixed</option>
+			 			<option value="1">Monthly</option>
+			 			<option value="2">Yearly</option>
 			 		</select>			 		
 				</div>
 			</div>
@@ -391,7 +391,7 @@ font-size: 15px;">0.00</span></td>
 				 </div>
 
 
-				<div class="row">
+				<!--<div class="row">
 				 	<div class="col-md-6">
 					   <div style="position:relative;">
 						<a class='btn btn-primary' href='javascript:;'>
@@ -402,7 +402,7 @@ font-size: 15px;">0.00</span></td>
 							<span class='label label-info' id="upload-file-info"></span>
 						</div>
 					</div>
-				</div>
+				</div>-->
 				<hr>
 
 				<div class="row">
@@ -434,6 +434,7 @@ font-size: 15px;">0.00</span></td>
     <?php include 'template/footer_link.php';?>
 <!-- Footer Link End-->
     <!-- flot -->
+	
     <script type="text/javascript">
         //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
         var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
@@ -675,8 +676,7 @@ font-size: 15px;">0.00</span></td>
         });
     </script>
 	
-	
-	
+
 	<script>
 
 function partial_payment()
@@ -908,16 +908,59 @@ function changetotal()
 }
 function checkFormData()
 {
-	var invoice_date = $('#invoice-date').val();
-	var invoice_number = $('#invoice-number').val();
-	var invoice_reference = $('#invoice-reference').val();
+	var invoice_date = $('#invoice_date').val();
+	var invoice_number = $('#invoice_number').val();
+	var invoice_reference = $('#invoice_reference').val();
 	var invoice_due = $('#invoice_due').val();
 	var bill_to = $('#bill_to').val();
 	var cc = $('#cc').val();
+	var allow_discount=0;
+	var allow_partial=0;
+	var discount=-1;
+	var partial=-1;
+	var subtotal=$('#subtotal').html();
+	var total=$('#total').html();
+	if($('#discount').val()!="")
+	{
+		allow_discount=1;
+		discount=$('#dis_count').html();
+		
+	}
+	
+	if($('#percentage_partial_value').val()!="")
+	{
+		allow_partial=1;
+		partial=$('#partial_payment_value').html();
+	}
+	
+	$.ajax({
+			type: 'POST',
+			url: '<?php echo base_url()?>index.php/admin/bill_confirm',
+			data: {invoice_date:invoice_date,invoice_number:invoice_number,user_email:bill_to,invoice_reference:invoice_reference,invoice_due_date:invoice_due,allow_discount:allow_discount,discount:discount,allow_partial:allow_partial,partial:partial,total_amount:subtotal,amount_to_paid:total},
+			success:function(result){
+				//alert('Successfully checkout. Thanks for shopping!');
+				//window.location.href = base_url;
+				alert(result);
+			}
+	});
+	
 	var invoice_description = $('#invoice_description').val();
 	var invoice_quantity = $('#invoice_quantity').val();
 	var invoice_price = $('#invoice_price').val();
+	var service_name=$('#service_name').val();
+	var bill_cycle=$('#bill_cycle').val();
 	var invoice_additional = $('#invoice_additional').val();
+		
+	/*$.ajax({
+			type: 'POST',
+			url: '<?php echo base_url()?>/admin/service_confirm',
+			data: { invoice_number:invoice_number,user_email:bill_to,invoice_description:invoice_description,invoice_quantity:invoice_quantity,invoice_price:invoice_price,service_name:service_name,bill_cycle:bill_cycle,invoice_additional:invoice_additional },
+			success:function(result){
+				//alert('Successfully checkout. Thanks for shopping!');
+				//window.location.href = base_url;
+			}
+	});*/
+	
 	if(arr.length>0)
 	{
 		for(var a=0;a<arr.length;a++)
@@ -925,7 +968,19 @@ function checkFormData()
 			var invoice_description = $('#invoice_description_'+arr[a]).val();
 			var invoice_quantity = $('#invoice_quantity_'+arr[a]).val();
 			var invoice_price = $('#invoice_price_'+arr[a]).val();
+			var service_name=$('#service_name'+arr[a]).val();
+			var bill_cycle=$('#bill_cycle'+arr[a]).val();
 			var invoice_additional = $('#invoice_additional_'+arr[a]).val();
+			
+			/*$.ajax({
+			type: 'POST',
+			url: '<?php echo base_url()?>/admin/service_confirm',
+			data: { invoice_number:invoice_number,user_email:bill_to,invoice_description:invoice_description,invoice_quantity:invoice_quantity,invoice_price:invoice_price,service_name:service_name,bill_cycle:bill_cycle,invoice_additional:invoice_additional },
+			success:function(result){
+				alert('Successfully checkout. Thanks for shopping!');
+				//window.location.href = base_url;
+			}
+	});*/
 		}
 	}
 	else
@@ -937,6 +992,7 @@ function checkFormData()
 	
 }
 </script>
+
     <!-- /datepicker -->
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript">
