@@ -19,21 +19,19 @@ class Client extends CI_Controller {
 	{
 		//$data['bills']=$this->bill_model->recent_bills_all();
 		$this->load->view('client/dashboard');
-
-		//echo "<pre>";
-		//print_r($data['bills']);
 	}
 
-	public function view_account()
+	public function account_info()
 	{
 		$user_name= $this->session->userdata('username');
-		//echo $user_name;
 		$data['user_info']=$this->client_model->account_information($user_name);
-		//print_r($data);
-		 $this->parser->parse('client/view_account',$data);
+		$this->parser->parse('client/view_account',$data);
 	}
 	
-
+	public function change_password()
+	{
+		$this->load->view('client/view_change_password');
+	}
 	public function view_bill()
 	{
 		//$data['bills']=$this->bill_model->view_bill($bil_id);

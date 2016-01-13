@@ -31,8 +31,8 @@
                                 <li><a><i class="fa fa-briefcase"></i> My Order</a> </li>
                                 <li><a><i class="fa fa-user"></i> My Account <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="<?php echo site_url('client/view_account');?>">My Details</a></li>
-                                        <li><a href="media_gallery.html">Change Password</a></li>
+                                        <li><a href="<?php echo site_url('client/account_info');?>">My Details</a></li>
+                                        <li><a href="<?php echo site_url('client/change_password');?>">Change Password</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-globe"></i> Domains</a></li>
