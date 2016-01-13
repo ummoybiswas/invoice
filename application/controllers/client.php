@@ -11,7 +11,7 @@ class Client extends CI_Controller {
 			$this->session->set_userdata('error', 'You need to login first!!!');
 			redirect('welcome','refresh');
 		}
-		
+		$this->load->model('client_model');
 		$this->load->model('bill_model');
     }
 	
@@ -26,7 +26,11 @@ class Client extends CI_Controller {
 
 	public function view_account()
 	{
-		$this->load->view('client/view_account');
+		$user_name= $this->session->userdata('username');
+		//echo $user_name;
+		$data['user_info']=$this->client_model->account_information($user_name);
+		//print_r($data);
+		 $this->parser->parse('client/view_account',$data);
 	}
 	
 
