@@ -852,6 +852,14 @@ function changesubtotal(id)
 	var sum=parseFloat($('#subtotal').html())-discount;
 	$('#dis_count').html(discount.toFixed(2));
 	$('#total').html(sum.toFixed(2));
+	var p=document.getElementById('percentage_partial_value').value;
+	if(p!="")
+	{
+		var total=document.getElementById('total').innerHTML;
+		var partial_value=((p*total)/100).toFixed(2);
+		document.getElementById('partial_payment_value').value=partial_value;
+	}
+	
 	}
 	else
 	{
@@ -868,6 +876,13 @@ function changetotal()
 	var sum=parseFloat($('#subtotal').html())-discount;
 	$('#dis_count').html(discount.toFixed(2));
 	$('#total').html(sum.toFixed(2));
+	var p=document.getElementById('percentage_partial_value').value;
+	if(p!="")
+	{
+		var total=parseFloat(document.getElementById('total').innerHTML);
+		var partial_value=((p*total)/100).toFixed(2);
+		document.getElementById('partial_payment_value').value=partial_value;
+	}
 	}
 	else
 	{
