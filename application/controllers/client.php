@@ -27,8 +27,10 @@ class Client extends CI_Controller {
 	public function view_account()
 	{
 		$user_name= $this->session->userdata('username');
-		$this->client_model->account_information($user_name);
-		$this->load->view('client/view_account');
+		//echo $user_name;
+		$data['user_info']=$this->client_model->account_information($user_name);
+		//print_r($data);
+		 $this->parser->parse('client/view_account',$data);
 	}
 	
 
