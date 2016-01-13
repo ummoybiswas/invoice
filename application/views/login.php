@@ -1,60 +1,88 @@
-﻿<?php $this->load->view('template/head'); ?>
-<body>
-    <div class="container">
-        <div class="row text-center ">
-            <div class="col-md-12">
-                <br /><br />
-                <h2> GeeksnTechnology Client : Login</h2>
-               
-                <h5>( Login yourself to get access )</h5>
-                 <br />
-            </div>
-        </div>
-         <div class="row ">
-               
-                  <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                        <strong>   Enter Details To Login </strong>  
-                            </div>
-                            <div class="panel-body">
-							<?php if($this->session->userdata('error') !="" || $this->session->userdata('error') !=NULL) {?>
+﻿<?php include 'template/head_link.php';?>
+
+<body style="background:#F7F7F7;">
+    
+    <div class="">
+        <a class="hiddenanchor" id="toregister"></a>
+        <a class="hiddenanchor" id="tologin"></a>
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+                <section class="login_content">
+											<?php if($this->session->userdata('error') !="" || $this->session->userdata('error') !=NULL) {?>
 							 <div class="alert alert-danger">
                                <?php echo $this->session->userdata('error');?>
                             </div>
 							<?php $this->session->unset_userdata('error'); } ?>
-                                <form role="form" action="<?php echo base_url()?>index.php/login" method="post">
-                                       <br />
-                                     <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
-                                            <input type="text" class="form-control" name="uname" placeholder="Your Username " />
-                                        </div>
-                                                                              <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control" name="pass" placeholder="Your Password" />
-                                        </div>
-                                    <div class="form-group">
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" /> Remember me
-                                            </label>
-                                            <span class="pull-right">
-                                                   <a href="#" >Forget password ? </a> 
-                                            </span>
-                                        </div>
-                                     
-                                     <button type="Submit" class="btn btn-primary ">Login Now</button>
-                                    <hr />
-                                    Not register ? <a href="registeration.html" >click here </a> 
-                                    </form>
-                            </div>
-                           
+                    <form action="<?php echo base_url();?>index.php/login" method="post">
+                        <h1>Login Form</h1>
+                        <div>
+                            <input type="text" class="form-control" name="uname" placeholder="Username" required="" />
                         </div>
-                    </div>
-                
-                
+                        <div>
+                            <input type="password" class="form-control" name="pass" placeholder="Password" required="" />
+                        </div>
+                        <div>
+                            <input style="float: left;" type="submit" class="btn btn-success submit" name="log_in" value="Login"/>
+                            <a class="reset_pass" href="#">Lost your password?</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+
+                            <p class="change_link">New to site?
+                                <a href="#toregister" class="to_register"> Create Account </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <br />
+                            <div>
+                                <h1><i class="fa fa-slack" style="font-size: 26px;"></i> GNT</h1>
+
+                                <p>©<?php echo date("Y");?> All Rights Reserved. Powered by <a href="">Geeksntechnology.com</a></p>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form -->
+                </section>
+                <!-- content -->
+            </div>
+            <div id="register" class="animate form">
+                <section class="login_content">
+                    <form>
+                        <h1>Create Account</h1>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Username" required="" />
+                        </div>
+                        <div>
+                            <input type="email" class="form-control" placeholder="Email" required="" />
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" placeholder="Password" required="" />
+                        </div>
+                        <div>
+                            <a class="btn btn-default submit" href="index.html">Submit</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+
+                            <p class="change_link">Already a member ?
+                                <a href="#tologin" class="to_register"> Log in </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <br />
+                            <div>
+                                <h1><i class="fa fa-slack" style="font-size: 26px;"></i>GNT</h1>
+
+                                <p>©<?php echo date("Y");?> All Rights Reserved. Powered by <a href="">Geeksntechnology.com</a></p>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form -->
+                </section>
+                <!-- content -->
+            </div>
         </div>
     </div>
 
-<?php $this->load->view('template/footer');?>
+</body>
 
 </html>

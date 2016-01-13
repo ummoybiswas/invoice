@@ -17,8 +17,8 @@ class Admin extends CI_Controller {
 	
 	public function dashboard()
 	{
-		$data['bills']=$this->bill_model->recent_bills_all();
-		$this->load->view('admin/home',$data);
+		//$data['bills']=$this->bill_model->recent_bills_all();
+		$this->load->view('admin/home');
 		//echo "<pre>";
 		//print_r($data['bills']);
 	}

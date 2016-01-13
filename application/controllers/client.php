@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Client extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
@@ -17,20 +17,18 @@ class Admin extends CI_Controller {
 	
 	public function dashboard()
 	{
-		$data['bills']=$this->bill_model->recent_bills_all();
-		$this->load->view('admin/home',$data);
-		//echo "<pre>";
-		//print_r($data['bills']);
-	}
-
-	public function create_invoice()
-	{
 		//$data['bills']=$this->bill_model->recent_bills_all();
-		$this->load->view('admin/invoice');
+		$this->load->view('client/dashboard');
+
 		//echo "<pre>";
 		//print_r($data['bills']);
 	}
 
+	public function view_account()
+	{
+		$this->load->view('client/view_account');
+	}
+	
 
 	public function view_bill()
 	{

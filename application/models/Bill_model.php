@@ -6,7 +6,7 @@ class Bill_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('bills');
-		$this->db->join('client', 'client.client_id = bills.client_id');
+		//$this->db->join('client', 'client.client_id = bills.client_id');
 		//$this->db->order_by("bills.due_date","desc");
 		$result = $this->db->get();
 		return $result->result();
