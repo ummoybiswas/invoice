@@ -29,7 +29,7 @@
 
                 <br />
                 <div class="">
-
+				<form>	
                     <div class="row top_tiles">
                         <div class="col-md-6"><h2>Create Invoice</h2></div>
 						 <div class="col-md-6 pull-right">
@@ -58,7 +58,7 @@
 
 						<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1">Invoice Number</span>
-						  <input type="text" class="form-control"  placeholder="Invoice Number" id="invoice_number" aria-describedby="basic-addon1">
+						  <input type="text" class="form-control" readonly="readonly" placeholder="Invoice Number" id="invoice_number" aria-describedby="basic-addon1">
 						</div>
 					</div>
 					<br>
@@ -67,14 +67,14 @@
 		            <div class="col-md-8 pull-right" style="margin-top:10px;">
 						<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1">Reference</span>
-						  <input  type="text" class="form-control" id="invoice_reference" placeholder="Such as PO#" aria-describedby="basic-addon1">
+						  <input  type="text" class="form-control" required id="invoice_reference" placeholder="Such as PO#" aria-describedby="basic-addon1">
 						</div>
 					</div>
 					<div class="col-md-8 pull-right" style="margin-top:10px;">
 						<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1">Due Date</span>
 						   <div class="dropdown">
-						    <select class="form-control" id="invoice_due">
+						    <select required class="form-control" id="invoice_due">
 								  <option value="0">Due on receipt</option>
 								  <option value="10">Due 10 days</option>
 								  <option value="15">Due 15 days</option>
@@ -96,7 +96,7 @@
 						<div class="col-md-6">
 		  			    <div class="form-group">
 					      <label for="bill">Bill to:</label>
-					      <input  type="email" placeholder="Email address" class="form-control" id="bill_to">
+					      <input  type="email" required placeholder="Email address" class="form-control" id="bill_to">
 					    </div>
 						</div>
 						<div class="col-md-6">
@@ -125,21 +125,21 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="descrip" style="float:left;width:300px;">
-						<input  id="invoice_description" style="" type="text" placeholder="Description" class="form-control" >
+						<input required  id="invoice_description" style="" type="text" placeholder="Description" class="form-control" >
 			 		</div>
 			 		<div class="price" style="float:left;">
-			 			<input  id="invoice_quantity" style="width: 144px;margin-right: 32px" onchange="changesubtotal(0)" type="number" value="1" placeholder="Quantity" class="form-control" >
+			 			<input required id="invoice_quantity" style="width: 144px;margin-right: 32px" onchange="changesubtotal(0)" type="number" value="1" placeholder="Quantity" class="form-control" >
 			 		</div>
 			 		<div class="price" style="float:left;">
 			 			<input  id="invoice_price" style="width: 144px;margin-left:-30px;" onchange="changesubtotal(0)" value="0" type="number" placeholder="Price" class="form-control" >
 			 		</div>
-			 		<select name="" class="form-control" id="service_name" style="float:left;width:119px;height: 32px;margin-right: 7px;" onchange="service_check()">
+			 		<select required name="" class="form-control" id="service_name" style="float:left;width:119px;height: 32px;margin-right: 7px;" onchange="service_check()">
 			 			<option value="">Services</option>
 			 			<option value="Hosting">Hosting</option>
 			 			<option value="Domain">Domain</option>
 			 			<option value="Development">Development</option>
 			 		</select>
-			 		<select name="" class="form-control" id="bill_cycle" style="float:left;width:119px;height: 32px;display:none">
+			 		<select required name="" class="form-control" id="bill_cycle" style="float:left;width:119px;height: 32px;display:none">
 			 			<option value="">Cycle</option>
 			 			<option value="Monthly">Monthly</option>
 			 			<option value="Yearly">Yearly</option>
@@ -149,7 +149,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="add_des">
-						<textarea class="form-control" style=" resize: none" id="invoice_additional"placeholder="Additional Description (optional)" rows="2" ></textarea>
+						<textarea required class="form-control" style=" resize: none" id="invoice_additional"placeholder="Additional Description (optional)" rows="2" ></textarea>
 					</div>					
 				</div>
 			</div>
@@ -175,7 +175,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="descrip" style="float:left;width:300px;">
-						<input  id="invoice_description_1" style="" type="text" placeholder="Description" class="form-control">
+						<input   id="invoice_description_1" style="" type="text" placeholder="Description" class="form-control">
 			 		</div>
 			 		<div class="price" style="float:left;">
 			 			<input  id="invoice_quantity_1" style="width: 144px;margin-right: 32px" onchange="changesubtotal(1)" type="number" value="1" placeholder="Quantity" class="form-control" >
@@ -337,13 +337,7 @@
 					<div class="col-md-5 pull-right">
 
 						<table class="table">
-						    <!--<thead>
-						      <tr>
-						        <th>Firstname</th>
-						        <th>Lastname</th>
-						        <th>Email</th>
-						      </tr>
-						    </thead>-->
+
 						    <tbody>
 						      <tr class="success">
 						        <td></td>
@@ -376,239 +370,45 @@ font-size: 15px;">0.00</span></td>
 						
 					</div> 
 				  </div>
-<!--
+ <br>
+				 <div class="row">
+				 	<div class="col-md-6">
+		  			    <div class="form-group">
+					      <label for="usr">Note to recipient</label>
+					      <textarea class="form-control" rows="5" style="resize:none" id="note_recipient"></textarea>
+					    </div>
+				    </div>
+				    <div class="col-md-6">
+		  			    <div class="form-group">
+					      <label for="usr">Terms and Condition</label>
+					      <textarea class="form-control" rows="5" style="resize:none" id="term_condition"></textarea>
+					    </div>
+				    </div>
+				 </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Top Profiles <small>Sessions</small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item One Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Three Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-md-4">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Top Profiles <small>Sessions</small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item One Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Three Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
+				<div class="row">
+				 	<div class="col-md-6">
+					   <div style="position:relative;">
+						<a class='btn btn-primary' href='javascript:;'>
+							Choose File...
+							<input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
+							</a>
+							&nbsp;
+							<span class='label label-info' id="upload-file-info"></span>
+						</div>
+					</div>
+				</div>
+				<hr>
 
-                    <div class="col-md-4">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Top Profiles <small>Sessions</small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item One Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Three Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-  -->  
+				<div class="row">
+				 	<div class="col-md-2 pull-right">
+						<button type="button" class="btn btn-primary">Preview</button>
+						<button type="submit" onclick="checkFormData()" class="btn btn-success">Send</button>
+					</div>
+				</div>
+             <!-- /. PAGE INNER  -->
+			 </form>
                 <!-- footer content -->
     <?php include 'template/footer.php';?>
                 <!-- /footer content -->
