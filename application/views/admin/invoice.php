@@ -29,14 +29,14 @@
 
                 <br />
                 <div class="">
-				<form>	
+				<form method="post">	
                     <div class="row top_tiles">
                         <div class="col-md-6"><h2>Create Invoice</h2></div>
 						 <div class="col-md-6 pull-right">
 								<div class="form-group ">
 									<label for="dtp_input2" class="col-md-6 control-label " style="text-align:right">Invoice Date</label>
 
-									<div style="cursor: pointer" class="input-group date form_date col-md-6 pull-right" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+									<div style="cursor: pointer" class="input-group date form_date col-md-6 pull-right" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 										<input class="form-control" size="16" type="text" id="invoice_date" value="" >
 										<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -141,9 +141,9 @@
 			 		</select>
 			 		<select required name="" class="form-control" id="bill_cycle" style="float:left;width:119px;height: 32px;display:none">
 						<option value="">Cycle</option>
-						<option value="0">Fixed</option>
-			 			<option value="1">Monthly</option>
-			 			<option value="2">Yearly</option>
+						<option value="fixed">Fixed</option>
+			 			<option value="monthly">Monthly</option>
+			 			<option value="yearly">Yearly</option>
 			 		</select>		 		
 				</div>
 			</div>
@@ -192,9 +192,9 @@
 			 		</select>
 			 		<select name="" class="form-control" id="bill_cycle_1" style="float:left;width:119px;height: 32px;display:none">
 			 			<option value="">Cycle</option>
-						<option value="0">Fixed</option>
-			 			<option value="1">Monthly</option>
-			 			<option value="2">Yearly</option>
+						<option value="fixed">Fixed</option>
+			 			<option value="monthly">Monthly</option>
+			 			<option value="yearly">Yearly</option>
 			 		</select>			 		
 				</div>
 			</div>
@@ -244,9 +244,9 @@
 			 		</select>
 			 		<select name="" class="form-control" id="bill_cycle_2" style="float:left;width:119px;height: 32px;display:none">
 			 			<option value="">Cycle</option>
-						<option value="0">Fixed</option>
-			 			<option value="1">Monthly</option>
-			 			<option value="2">Yearly</option>
+						<option value="fixed">Fixed</option>
+			 			<option value="monthly">Monthly</option>
+			 			<option value="yearly">Yearly</option>
 			 		</select>		 		
 				</div>
 			</div>
@@ -300,9 +300,9 @@
 			 		</select>
 			 		<select name="" class="form-control" id="bill_cycle_3" style="float:left;width:119px;height: 32px;display:none">
 			 			<option value="">Cycle</option>
-						<option value="0">Fixed</option>
-			 			<option value="1">Monthly</option>
-			 			<option value="2">Yearly</option>
+						<option value="fixed">Fixed</option>
+			 			<option value="monthly">Monthly</option>
+			 			<option value="yearly">Yearly</option>
 			 		</select>			 		
 				</div>
 			</div>
@@ -389,7 +389,7 @@ font-size: 15px;">0.00</span></td>
 					    </div>
 				    </div>
 				 </div>
-
+<p id="note">sadasd</p>
 
 				<!--<div class="row">
 				 	<div class="col-md-6">
@@ -408,7 +408,7 @@ font-size: 15px;">0.00</span></td>
 				<div class="row">
 				 	<div class="col-md-2 pull-right">
 						<button type="button" class="btn btn-primary">Preview</button>
-						<button type="submit" onclick="checkFormData()" class="btn btn-success">Send</button>
+						<button type="button" onclick="checkFormData()" class="btn btn-success">Send</button>
 					</div>
 				</div>
              <!-- /. PAGE INNER  -->
@@ -920,6 +920,9 @@ function checkFormData()
 	var partial=-1;
 	var subtotal=$('#subtotal').html();
 	var total=$('#total').html();
+	var note_recipient="";
+	var term_condition="";
+	
 	if($('#discount').val()!="")
 	{
 		allow_discount=1;
@@ -930,7 +933,7 @@ function checkFormData()
 	if($('#percentage_partial_value').val()!="")
 	{
 		allow_partial=1;
-		partial=$('#partial_payment_value').html();
+		partial=$('#partial_payment_value').val();
 	}
 	
 	$.ajax({
@@ -946,20 +949,22 @@ function checkFormData()
 	
 	var invoice_description = $('#invoice_description').val();
 	var invoice_quantity = $('#invoice_quantity').val();
-	var invoice_price = $('#invoice_price').val();
+	var invoice_price = parseFloat($('#invoice_price').val()).toFixed(2);
 	var service_name=$('#service_name').val();
 	var bill_cycle=$('#bill_cycle').val();
 	var invoice_additional = $('#invoice_additional').val();
+	var amount=$('#amount').html();
 		
-	/*$.ajax({
+	$.ajax({
 			type: 'POST',
-			url: '<?php echo base_url()?>/admin/service_confirm',
-			data: { invoice_number:invoice_number,user_email:bill_to,invoice_description:invoice_description,invoice_quantity:invoice_quantity,invoice_price:invoice_price,service_name:service_name,bill_cycle:bill_cycle,invoice_additional:invoice_additional },
+			url: '<?php echo base_url()?>index.php/admin/service_confirm',
+			data: { invoice_date:invoice_date,invoice_number:invoice_number,user_email:bill_to,invoice_description:invoice_description,invoice_quantity:invoice_quantity,invoice_price:invoice_price,total:amount,service_name:service_name,bill_cycle:bill_cycle,invoice_additional:invoice_additional },
 			success:function(result){
 				//alert('Successfully checkout. Thanks for shopping!');
 				//window.location.href = base_url;
+				alert(result);
 			}
-	});*/
+	});
 	
 	if(arr.length>0)
 	{
@@ -967,20 +972,22 @@ function checkFormData()
 		{
 			var invoice_description = $('#invoice_description_'+arr[a]).val();
 			var invoice_quantity = $('#invoice_quantity_'+arr[a]).val();
-			var invoice_price = $('#invoice_price_'+arr[a]).val();
-			var service_name=$('#service_name'+arr[a]).val();
-			var bill_cycle=$('#bill_cycle'+arr[a]).val();
+			var invoice_price = parseFloat($('#invoice_price_'+arr[a]).val()).toFixed(2);
+			var amount=$('#amount_'+arr[a]).html();
+			var service_name=$('#service_name_'+arr[a]).val();
+			var bill_cycle=$('#bill_cycle_'+arr[a]).val();
 			var invoice_additional = $('#invoice_additional_'+arr[a]).val();
 			
-			/*$.ajax({
-			type: 'POST',
-			url: '<?php echo base_url()?>/admin/service_confirm',
-			data: { invoice_number:invoice_number,user_email:bill_to,invoice_description:invoice_description,invoice_quantity:invoice_quantity,invoice_price:invoice_price,service_name:service_name,bill_cycle:bill_cycle,invoice_additional:invoice_additional },
-			success:function(result){
-				alert('Successfully checkout. Thanks for shopping!');
-				//window.location.href = base_url;
-			}
-	});*/
+			$.ajax({
+				type: 'POST',
+				url: '<?php echo base_url()?>index.php/admin/service_confirm',
+				data: { invoice_date:invoice_date,invoice_number:invoice_number,user_email:bill_to,invoice_description:invoice_description,invoice_quantity:invoice_quantity,invoice_price:invoice_price,total:amount,service_name:service_name,bill_cycle:bill_cycle,invoice_additional:invoice_additional },
+				success:function(result){
+					//alert('Successfully checkout. Thanks for shopping!');
+					//window.location.href = base_url;
+					alert(result);
+				}
+			});
 		}
 	}
 	else

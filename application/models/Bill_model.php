@@ -11,10 +11,25 @@ class Bill_model extends CI_Model
 		$result = $this->db->get();
 		return $result->result();
 	}
-	public function save($data)
+		
+	public function create_new_bill($data)
 	{
-		$this->db->insert('promotions', $data);
+		$this->db->insert('bills', $data);
 	}
+	
+	public function create_new_partial($data)
+	{
+		//print_r($data);
+		$this->db->insert('partial', $data);
+	}
+	
+	public function create_new_discount($data)
+	{
+		//print_r($data);
+		$this->db->insert('discount', $data);
+	}
+	
+	
 	public function get_pendingBill()
 	{
 		$this->db->select('*');
@@ -86,3 +101,4 @@ class Bill_model extends CI_Model
 		$this->session->unset_userdata('ID');
 	}
 }
+?>
