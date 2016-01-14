@@ -32,6 +32,14 @@ class Client extends CI_Controller {
 		$data['user_info']=$this->client_model->account_information($user_name);
 		$this->parser->parse('client/view_account',$data);
 	}
+
+
+	public function domain_list()
+	{
+		// $user_name= $this->session->userdata('username');
+		// $data['user_info']=$this->client_model->account_information($user_name);
+		$this->load->view('client/view_domain');
+	}
 	
 	public function change_password()
 	{

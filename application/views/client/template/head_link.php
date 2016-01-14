@@ -23,6 +23,7 @@
     <link href="<?php echo base_url();?>assets/css/icheck/flat/green.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/floatexamples.css" rel="stylesheet" />
 
+<link href="<?php echo base_url();?>assets/css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
     <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
 
     <!--[if lt IE 9]>
