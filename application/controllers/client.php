@@ -28,10 +28,7 @@ class Client extends CI_Controller {
 		$this->parser->parse('client/view_account',$data);
 	}
 	
-	public function change_password()
-	{
-		$this->load->view('client/view_change_password');
-	}
+
 	public function view_bill()
 	{
 		//$data['bills']=$this->bill_model->view_bill($bil_id);

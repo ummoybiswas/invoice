@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2016 at 10:50 AM
+-- Generation Time: Jan 14, 2016 at 05:25 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -105,8 +105,8 @@ CREATE TABLE IF NOT EXISTS `client` (
 --
 
 INSERT INTO `client` (`client_id`, `user_name`, `first_name`, `last_name`, `company_name`, `email`, `address`, `address2`, `state`, `city`, `country`, `post_code`, `phone_no`) VALUES
-(1, 'ummoy', 'Ummoy', 'Biswas', '', 'ummoy.biswas@live.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', ''),
-(6, 'aman', 'Aman', 'Ullah', '', 'aman.rabby@gmail.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '');
+(1, 'ummoy', 'Ummoy', 'Biswas', 'gnt', 'ummoy.biswas@live.com', 'Mohakhali Dohs', 'bashundara', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '6546'),
+(6, 'aman', 'Aman', 'Ullah', 'gnt', 'aman.rabby@gmail.com', 'Mohakhali Dohs', 'ctg', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '654165');
 
 -- --------------------------------------------------------
 
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `client_id`, `username`, `password`, `type`) VALUES
 (1, 1, 'admin', 'admin', '1'),
-(2, 2, 'client', 'client', '0');
+(2, 2, 'aman', 'aman', '0');
 
 --
 -- Indexes for dumped tables
