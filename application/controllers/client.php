@@ -18,7 +18,12 @@ class Client extends CI_Controller {
 	public function dashboard()
 	{
 		//$data['bills']=$this->bill_model->recent_bills_all();
-		$this->load->view('client/dashboard');
+		$user_name= $this->session->userdata('username');
+		$get_email=$this->client_model->get_email_id($user_name);
+		$data['active']=$this->client_model->dashboard_information($get_email);
+		//echo $data['active'];
+		//print_r( $data);
+		$this->parser->parse('client/dashboard',$data);
 	}
 
 	public function account_info()
@@ -28,7 +33,42 @@ class Client extends CI_Controller {
 		$this->parser->parse('client/view_account',$data);
 	}
 	
+	public function change_password()
+	{
+		if($this->input->post('update'))
+		{
+			$this->form_validation->set_rules('pas_wrd', 'Password', 'required|matches[con_pas_wrd]|min_length[6]');
+			$this->form_validation->set_rules('con_pas_wrd', 'Password Confirmation', 'required');
+		
 
+			if($this->form_validation->run() == false)
+				{
+					$data['message_error_password'] = validation_errors();
+					//echo 'error';
+					echo "<script>
+				alert('Password Not Fill the Requirement');
+				window.location.href='../client/dashboard';
+				</script>";
+					//$this->load->view('login',$data);
+				}
+			else
+			{
+				$user_name= $this->session->userdata('username');
+				$password=$this->input->post('pas_wrd');
+				
+				echo 'success area';
+	 			$this->client_model->change_password($password,$user_name);
+	 			echo "<script>
+				alert('Please Login with your new Password');
+				window.location.href='../welcome';
+				</script>";
+
+				$this->load->view('welcome',$data);
+				 // $this->load->library('../controllers/login');
+				 // $this->whathever->index($data);
+			}
+		}
+	}
 	public function view_bill()
 	{
 		//$data['bills']=$this->bill_model->view_bill($bil_id);

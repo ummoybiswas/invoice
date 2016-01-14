@@ -15,12 +15,9 @@ class Logout extends CI_Controller {
 	
 	public function index()
 	{
+		
 		$this->session->set_userdata('error', 'You are successfully logout!!!');
-		$data = array(
-                'username'  => $result[0]['username'],
-                'type'     => $result[0]['type'],
-           );
-		$this->session->unset_userdata($data);
+		$this->session->unset_userdata('username');
 		redirect('welcome','refresh');
 	}
 }

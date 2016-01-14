@@ -1,4 +1,4 @@
-<?php include 'template/head_link.php'?>;
+<?php include 'template/head_link.php';?>
 
 
 <body class="nav-md">
@@ -32,466 +32,203 @@
                     <div class="row top_tiles">
                         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats">
+
                                 <div class="icon"><i class="fa fa-puzzle-piece"></i>
                                 </div>
-                                <div class="count"><span>4</span> | <span style="color:#1ABB9C">2</span></div>
+                                <div class="count"><span><?php echo $active;?></span> | <span style="color:#1ABB9C">2</span> | <span style="color:#d23333">2</span></div>
 
                                 <h3>Services</h3>
-                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span></p>
+                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
                             </div>
                         </div>
                         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats">
                                 <div class="icon"><i class="fa fa-globe"></i>
                                 </div>
-                                <div class="count"><span>4</span> | <span style="color:#1ABB9C">2</span></div>
+                                <div class="count"><span>4</span> | <span style="color:#1ABB9C">2</span> | <span style="color:#d23333">2</span></div>
 
                                 <h3>Domains</h3>
-                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span></p>
+                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
                             </div>
                         </div>
                         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats">
                                 <div class="icon"><i class="fa fa-send"></i>
                                 </div>
-                                <div class="count"><span>4</span> | <span style="color:#1ABB9C">2</span></div>
+                                <div class="count"><span>4</span> | <span style="color:#1ABB9C">2</span> | <span style="color:#d23333">2</span></div>
 
                                 <h3>Invoices Due</h3>
-                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span></p>
+                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
                             </div>
                         </div>
                         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats">
                                 <div class="icon"><i class="fa fa-check-square-o"></i>
                                 </div>
-                                <div class="count"><span>4</span> | <span style="color:#1ABB9C">2</span></div>
+                                <div class="count"><span>4</span> | <span style="color:#1ABB9C">2</span> | <span style="color:#d23333">2</span></div>
 
                                 <h3>New Sign ups</h3>
-                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span></p>
+                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
                             </div>
                         </div>
                     </div>
-<!--
-                    <div class="row">
+
+        <div class="row">
                         <div class="col-md-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Transaction Summary <small>Weekly progress</small></h2>
-                                    <div class="filter">
-                                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                            <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                                        </div>
-                                    </div>
+                                    <h2>Due Invoices</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                                    </ul>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <div class="col-md-9 col-sm-12 col-xs-12">
-                                        <div class="demo-container" style="height:280px">
-                                            <div id="placeholder33x" class="demo-placeholder"></div>
-                                        </div>
-                                        <div class="tiles">
-                                            <div class="col-md-4 tile">
-                                                <span>Total Sessions</span>
-                                                <h2>231,809</h2>
-                                                <span class="sparkline11 graph" style="height: 160px;">
-                                        <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                    </span>
-                                            </div>
-                                            <div class="col-md-4 tile">
-                                                <span>Total Revenue</span>
-                                                <h2>$231,809</h2>
-                                                <span class="sparkline22 graph" style="height: 160px;">
-                                        <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                    </span>
-                                            </div>
-                                            <div class="col-md-4 tile">
-                                                <span>Total Sessions</span>
-                                                <h2>231,809</h2>
-                                                <span class="sparkline11 graph" style="height: 160px;">
-                                        <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                    </span>
-                                            </div>
-                                        </div>
 
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div>
-                                            <div class="x_title">
-                                                <h2>Top Profiles</h2>
-                                                <ul class="nav navbar-right panel_toolbox">
-                                                    <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                                    </li>
-                                                    <li class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li><a href="#">Settings 1</a>
-                                                            </li>
-                                                            <li><a href="#">Settings 2</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#"><i class="fa fa-close"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="clearfix"></div>
+                                    <section class="content invoice">
+                                        <!-- title row -->
+                                        <div class="row">
+                                            <div class="col-xs-12 invoice-header">
+                                                <h1>
+                                        <i class="fa fa-globe"></i> Invoice.
+                                        <small class="pull-right">Date: 16/08/2016</small>
+                                    </h1>
                                             </div>
-                                            <ul class="list-unstyled top_profiles scroll-view">
-                                                <li class="media event">
-                                                    <a class="pull-left border-aero profile_thumb">
-                                                        <i class="fa fa-user aero"></i>
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <a class="title" href="#">Ms. Mary Jane</a>
-                                                        <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                                        <p> <small>12 Sales Today</small>
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li class="media event">
-                                                    <a class="pull-left border-green profile_thumb">
-                                                        <i class="fa fa-user green"></i>
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <a class="title" href="#">Ms. Mary Jane</a>
-                                                        <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                                        <p> <small>12 Sales Today</small>
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li class="media event">
-                                                    <a class="pull-left border-blue profile_thumb">
-                                                        <i class="fa fa-user blue"></i>
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <a class="title" href="#">Ms. Mary Jane</a>
-                                                        <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                                        <p> <small>12 Sales Today</small>
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li class="media event">
-                                                    <a class="pull-left border-aero profile_thumb">
-                                                        <i class="fa fa-user aero"></i>
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <a class="title" href="#">Ms. Mary Jane</a>
-                                                        <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                                        <p> <small>12 Sales Today</small>
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li class="media event">
-                                                    <a class="pull-left border-green profile_thumb">
-                                                        <i class="fa fa-user green"></i>
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <a class="title" href="#">Ms. Mary Jane</a>
-                                                        <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                                        <p> <small>12 Sales Today</small>
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                            <!-- /.col -->
                                         </div>
-                                    </div>
+                                        <!-- info row -->
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-4 invoice-col">
+                                                From
+                                                <address>
+                                        <strong>Iron Admin, Inc.</strong>
+                                        <br>795 Freedom Ave, Suite 600
+                                        <br>New York, CA 94107
+                                        <br>Phone: 1 (804) 123-9876
+                                        <br>Email: ironadmin.com
+                                    </address>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-4 invoice-col">
+                                                To
+                                                <address>
+                                        <strong>John Doe</strong>
+                                        <br>795 Freedom Ave, Suite 600
+                                        <br>New York, CA 94107
+                                        <br>Phone: 1 (804) 123-9876
+                                        <br>Email: jon@ironadmin.com
+                                    </address>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-4 invoice-col">
+                                                <b>Invoice #007612</b>
+                                                <br>
+                                                <br>
+                                                <b>Order ID:</b> 4F3S8J
+                                                <br>
+                                                <b>Payment Due:</b> 2/22/2014
+                                                <br>
+                                                <b>Account:</b> 968-34567
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
 
+                                        <!-- Table row -->
+                                        <div class="row">
+                                            <div class="col-xs-12 table">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Qty</th>
+                                                            <th>Product</th>
+                                                            <th>Serial #</th>
+                                                            <th style="width: 59%">Description</th>
+                                                            <th>Subtotal</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Call of Duty</td>
+                                                            <td>455-981-221</td>
+                                                            <td>El snort testosterone trophy driving gloves handsome gerry Richardson helvetica tousled street art master testosterone trophy driving gloves handsome gerry Richardson
+                                                            </td>
+                                                            <td>$64.50</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Need for Speed IV</td>
+                                                            <td>247-925-726</td>
+                                                            <td>Wes Anderson umami biodiesel</td>
+                                                            <td>$50.00</td>
+                                                        </tr>
+                                     
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <div class="row">
+                                            <!-- accepted payments column -->
+                                            <div class="col-xs-6">
+                                                <p class="lead">Payment Methods:</p>
+                                                <img src="<?php echo base_url();?>assets/images/visa.png" alt="Visa">
+                                                <img src="<?php echo base_url();?>assets/images/mastercard.png" alt="Mastercard">
+                                                <img src="<?php echo base_url();?>assets/images/american-express.png" alt="American Express">
+                                                <img src="<?php echo base_url();?>assets/images/paypal2.png" alt="Paypal">
+                                                <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                                                </p>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-xs-6">
+                                                <p class="lead">Amount Due 2/22/2014</p>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th style="width:50%">Subtotal:</th>
+                                                                <td>$250.30</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Tax (9.3%)</th>
+                                                                <td>$10.34</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Shipping:</th>
+                                                                <td>$5.80</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Total:</th>
+                                                                <td>$265.24</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <!-- this row will not appear when printing -->
+                                        <div class="row no-print">
+                                            <div class="col-xs-12">
+                                                <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
+                                                <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
+                                                <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+                                            </div>
+                                        </div>
+                                    </section>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
 
-
--->
-<!--
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Weekly Summary <small>Activity shares</small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-
-                                    <div class="row" style="border-bottom: 1px solid #E0E0E0; padding-bottom: 5px; margin-bottom: 5px;">
-                                        <div class="col-md-7" style="overflow:hidden;">
-                                            <span class="sparkline_one" style="height: 160px; padding: 10px 25px;">
-                                    <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                </span>
-                                            <h4 style="margin:18px">Weekly sales progress</h4>
-                                        </div>
-
-                                        <div class="col-md-5">
-                                            <div class="row" style="text-align: center;">
-                                                <div class="col-md-4">
-                                                    <canvas id="canvas1i" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
-                                                    <h4 style="margin:0">Bounce Rates</h4>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <canvas id="canvas1i2" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
-                                                    <h4 style="margin:0">New Traffic</h4>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <canvas id="canvas1i3" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
-                                                    <h4 style="margin:0">Device Share</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
--->
-<!--
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Top Profiles <small>Sessions</small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item One Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Three Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Top Profiles <small>Sessions</small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item One Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Three Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
-
-                    <div class="col-md-4">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Top Profiles <small>Sessions</small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item One Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Two Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                    <article class="media event">
-                                        <a class="pull-left date">
-                                            <p class="month">April</p>
-                                            <p class="day">23</p>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Item Three Tittle</a>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-  -->  
                 <!-- footer content -->
     <?php include 'template/footer.php';?>
                 <!-- /footer content -->

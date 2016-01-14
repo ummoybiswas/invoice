@@ -1,6 +1,6 @@
                  
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-slack"></i> 
+                        <a href="<?php echo site_url('client/dashboard');?>" class="site_title"><i class="fa fa-slack"></i> 
                         <span>GNT Panel</span></a>
                     </div>
                     <div class="clearfix"></div>
@@ -44,18 +44,17 @@
           <h4 class="modal-title">Change Password</h4>
         </div>
         <div class="modal-body">
-           <form role="form">
-              <div class="form-group">
-                <label for="pwd">New Password:</label>
-                <input type="password" class="form-control" id="pwd">
-              </div>
-              <div class="form-group">
-                <label for="con_pwd">Confirm Password:</label>
-                <input type="password" class="form-control" id="con_pwd">
-              </div>
-
-              <button type="submit" class="btn btn-success">Update</button>
-            </form>
+           <form action="<?php echo site_url('client/change_password')?>" method="post" style="padding:20px;">
+            <div class="form-group">
+              <label for="pwd">New Password:</label>
+              <input type="password" class="form-control" name="pas_wrd" id="pwd" required>
+            </div>
+            <div class="form-group">
+              <label for="con_pwd">Confirm Password:</label>
+              <input type="password" class="form-control" name="con_pas_wrd" id="con_pwd" required>
+            </div>
+            <input type="submit" name="update" class="btn btn-success"value="Update">
+        </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
