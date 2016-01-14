@@ -22,10 +22,10 @@
                 								<li><a><i class="fa fa-send"></i> My Invoices</a> </li>
                 								<li><a><i class="fa fa-support"></i> Support <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="general_elements.html">New Ticket</a></li>
-                                        <li><a href="media_gallery.html">Support Tickets</a></li>
-                    										<li><a href="media_gallery.html">Unblock IP</a></li>
-                    										<li><a href="media_gallery.html">Server Status</a></li>
+                                        <li><a href="#">New Ticket</a></li>
+                                        <li><a href="#">Support Tickets</a></li>
+                    										<li><a href="#">Unblock IP</a></li>
+                    										<li><a href="#">Server Status</a></li>
                                     </ul>
                                 </li>
                             </ul>

@@ -35,7 +35,7 @@
 
                                 <div class="icon"><i class="fa fa-puzzle-piece"></i>
                                 </div>
-                                <div class="count"><span><?php echo $active;?></span> | <span style="color:#1ABB9C">2</span> | <span style="color:#d23333">2</span></div>
+                                <div class="count"><span><?php echo $total_service;?></span> | <span style="color:#1ABB9C"><?php echo $active_service;?></span> | <span style="color:#d23333"><?php echo $inactive_service;?></span></div>
 
                                 <h3>Services</h3>
                                 <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
@@ -45,9 +45,19 @@
                             <div class="tile-stats">
                                 <div class="icon"><i class="fa fa-globe"></i>
                                 </div>
-                                <div class="count"><span>4</span> | <span style="color:#1ABB9C">2</span> | <span style="color:#d23333">2</span></div>
-
+                                <div class="count"><span><?php echo $total_domain;?></span> | <span style="color:#1ABB9C"><?php echo $active_domain;?></span> | <span style="color:#d23333"><?php echo $inactive_domain;?></span></div>
                                 <h3>Domains</h3>
+                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
+                            </div>
+                        </div>
+
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="tile-stats">
+                                <div class="icon"><i class="fa fa-check-square-o"></i>
+                                </div>
+                                <div class="count"><span><?php echo $total_hosting;?></span> | <span style="color:#1ABB9C"><?php echo $active_hosting;?></span> | <span style="color:#d23333"><?php echo $inactive_hosting;?></span></div>
+
+                                <h3>Hosting</h3>
                                 <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
                             </div>
                         </div>
@@ -55,22 +65,13 @@
                             <div class="tile-stats">
                                 <div class="icon"><i class="fa fa-send"></i>
                                 </div>
-                                <div class="count"><span>4</span> | <span style="color:#1ABB9C">2</span> | <span style="color:#d23333">2</span></div>
+                                <div class="count"><span><?php echo $total_invoice;?></span> | <span style="color:#1ABB9C"><?php echo $active_invoice;?></span> | <span style="color:#d23333"><?php echo $inactive_invoice;?></span></div>
 
                                 <h3>Invoices Due</h3>
-                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
+                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Paid</span> | <span style="color:#d23333">Due</span></p>
                             </div>
                         </div>
-                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="tile-stats">
-                                <div class="icon"><i class="fa fa-check-square-o"></i>
-                                </div>
-                                <div class="count"><span>4</span> | <span style="color:#1ABB9C">2</span> | <span style="color:#d23333">2</span></div>
 
-                                <h3>New Sign ups</h3>
-                                <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
-                            </div>
-                        </div>
                     </div>
 
         <div class="row">
@@ -91,37 +92,41 @@
                                         <div class="row">
                                             <div class="col-xs-12 invoice-header">
                                                 <h1>
-                                        <i class="fa fa-globe"></i> Invoice.
-                                        <small class="pull-right">Date: 16/08/2016</small>
+                                        <p style="text-align:center"><i class="fa fa-globe"></i> Invoice.</p>
+                                       
                                     </h1>
                                             </div>
                                             <!-- /.col -->
                                         </div>
                                         <!-- info row -->
                                         <div class="row invoice-info">
-                                            <div class="col-sm-4 invoice-col">
+                                            <div class="col-sm-6 invoice-col">
                                                 From
-                                                <address>
-                                        <strong>Iron Admin, Inc.</strong>
-                                        <br>795 Freedom Ave, Suite 600
-                                        <br>New York, CA 94107
-                                        <br>Phone: 1 (804) 123-9876
-                                        <br>Email: ironadmin.com
+                                    {from_info}
+                                     <address>
+                                        <strong>Geeks'nTechnology Ltd</strong>
+                                        <br>{address}
+                                        <br>{city},{country}
+                                        <br>Phone: {phone_no}
+                                        <br>Email: {email}
                                     </address>
+                                    {/from_info}
                                             </div>
                                             <!-- /.col -->
-                                            <div class="col-sm-4 invoice-col">
+                                    <div class="col-sm-4 invoice-col pull-right">
                                                 To
-                                                <address>
-                                        <strong>John Doe</strong>
-                                        <br>795 Freedom Ave, Suite 600
-                                        <br>New York, CA 94107
-                                        <br>Phone: 1 (804) 123-9876
-                                        <br>Email: jon@ironadmin.com
+                                       {to_info}        
+                                     <address>
+                                        <strong>{first_name} {last_name}</strong>
+                                        <br>{address}
+                                        <br>{city},{country}
+                                        <br>Phone: {phone_no}
+                                        <br>Email: {email}
                                     </address>
+                                    {/to_info} 
                                             </div>
                                             <!-- /.col -->
-                                            <div class="col-sm-4 invoice-col">
+                                            <!--<div class="col-sm-4 invoice-col">
                                                 <b>Invoice #007612</b>
                                                 <br>
                                                 <br>
@@ -130,7 +135,7 @@
                                                 <b>Payment Due:</b> 2/22/2014
                                                 <br>
                                                 <b>Account:</b> 968-34567
-                                            </div>
+                                            </div>-->
                                             <!-- /.col -->
                                         </div>
                                         <!-- /.row -->
@@ -141,31 +146,26 @@
                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>
-                                                            <th>Qty</th>
-                                                            <th>Product</th>
-                                                            <th>Serial #</th>
-                                                            <th style="width: 59%">Description</th>
+                                                            <th>Invoice No</th>
+                                                            <th style="width:40%">Product Name</th>
+                                                            <th>Service</th>
+                                                            <th>Bill Date</th>
+                                                            <th>Due Date</th>
                                                             <th>Subtotal</th>
                                                         </tr>
-                                                    </thead>
+                                                    </thead\>
+                                                    {invoice_info}
                                                     <tbody>
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>Call of Duty</td>
-                                                            <td>455-981-221</td>
-                                                            <td>El snort testosterone trophy driving gloves handsome gerry Richardson helvetica tousled street art master testosterone trophy driving gloves handsome gerry Richardson
-                                                            </td>
-                                                            <td>$64.50</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Need for Speed IV</td>
-                                                            <td>247-925-726</td>
-                                                            <td>Wes Anderson umami biodiesel</td>
-                                                            <td>$50.00</td>
-                                                        </tr>
-                                     
+                                                            <td>{bill_id}</td>
+                                                            <td>{particulars}</td>
+                                                            <td>{services}</td>
+                                                            <td>{bill_date}</td>
+                                                            <td>{bill_due_date}</td>
+                                                            <td>{bill_due_amount}</td>
+                                                        </tr> 
                                                     </tbody>
+                                                    {/invoice_info}
                                                 </table>
                                             </div>
                                             <!-- /.col -->

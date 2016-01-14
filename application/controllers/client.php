@@ -17,10 +17,34 @@ class Client extends CI_Controller {
 	
 	public function dashboard()
 	{
-		//$data['bills']=$this->bill_model->recent_bills_all();
+		//// Dashboard Upper Part////
 		$user_name= $this->session->userdata('username');
 		$get_email=$this->client_model->get_email_id($user_name);
-		$data['active']=$this->client_model->dashboard_information($get_email);
+		$data['total_service']=$this->client_model->total_service($get_email);
+		$data['active_service']=$this->client_model->active_service($get_email);
+		$data['inactive_service']=$this->client_model->inactive_service($get_email);
+
+		$data['total_domain']=$this->client_model->total_domain($get_email);
+		$data['active_domain']=$this->client_model->active_domain($get_email);
+		$data['inactive_domain']=$this->client_model->inactive_domain($get_email);
+
+		$data['total_hosting']=$this->client_model->total_hosting($get_email);
+		$data['active_hosting']=$this->client_model->active_hosting($get_email);
+		$data['inactive_hosting']=$this->client_model->inactive_hosting($get_email);
+
+
+		$data['total_invoice']=$this->client_model->total_invoice($get_email);
+		$data['active_invoice']=$this->client_model->active_invoice($get_email);
+		$data['inactive_invoice']=$this->client_model->inactive_invoice($get_email);
+
+
+		//// Dashboard Upper Part END////
+
+		$data['from_info']=$this->client_model->admin_info();
+
+		$data['to_info']=$this->client_model->client_info($user_name);
+
+		$data['invoice_info']=$this->client_model->invoice_info($get_email);
 		//echo $data['active'];
 		//print_r( $data);
 		$this->parser->parse('client/dashboard',$data);
@@ -35,6 +59,14 @@ class Client extends CI_Controller {
 
 
 	public function domain_list()
+	{
+		// $user_name= $this->session->userdata('username');
+		// $data['user_info']=$this->client_model->account_information($user_name);
+		$this->load->view('client/view_domain');
+	}
+
+
+	public function service_list()
 	{
 		// $user_name= $this->session->userdata('username');
 		// $data['user_info']=$this->client_model->account_information($user_name);
