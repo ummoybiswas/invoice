@@ -12,9 +12,10 @@ class Bill_model extends CI_Model
 		return $result->result();
 	}
 		
-	public function create_new_bill($data)
+	public function create_new_bill($data1,$data2)
 	{
-		$this->db->insert('bills', $data);
+		$this->db->insert('bills', $data1);
+		$this->db->insert('order', $data2);
 	}
 	
 	public function create_new_partial($data)

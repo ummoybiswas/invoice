@@ -76,9 +76,9 @@ class Admin extends CI_Controller {
 			//print_r($data2);
 		}
 	
-		$data=array(
+		$data1=array(
 		'bill_id'=>$bill_id,
-		'client_email'=>$client_email,
+		'user_email'=>$client_email,
 		'bill_reference'=>$bill_reference,
 		'bill_date'=>$bill_date,
 		'bill_due_date'=>$bill_due_date,
@@ -91,8 +91,23 @@ class Admin extends CI_Controller {
 		'term_condition'=>$term_condition,
 		'bill_status'=>0
 		);
+		$data2=array(
+		'order_id'=>$bill_id,
+		'user_email'=>$client_email,
+		'order_reference'=>$bill_reference,
+		'order_date'=>$bill_date,
+		'order_due_date'=>$bill_due_date,
+		'order_total_amount'=>$bill_total_amount,
+		'order_due_amount'=>$bill_due_amount,
+		'order_to_paid'=>$bill_to_paid,
+		'order_allow_partial'=>$bill_allow_partial,
+		'order_allow_discount'=>$bill_allow_discount,
+		'note_recipient'=>$note_recipient,
+		'term_condition'=>$term_condition,
+		'order_status'=>1
+		);
 		//print_r($data);
-		$this->bill_model->create_new_bill($data);
+		$this->bill_model->create_new_bill($data1,$data2);
 	}
 	
 	public function service_confirm()
