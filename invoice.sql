@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2016 at 01:21 PM
+-- Generation Time: Jan 16, 2016 at 01:37 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -165,6 +165,29 @@ INSERT INTO `invoice_gen` (`invoice_no`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `order`
+--
+
+CREATE TABLE IF NOT EXISTS `order` (
+`order_id` int(11) NOT NULL,
+  `bill_id` varchar(255) NOT NULL,
+  `user_email` varchar(30) NOT NULL,
+  `order_reference` varchar(30) NOT NULL,
+  `order_date` date NOT NULL,
+  `order_due_date` date NOT NULL,
+  `order_total_amount` double(30,2) NOT NULL,
+  `order_due_amount` double(30,2) NOT NULL,
+  `order_to_paid` double(30,2) NOT NULL,
+  `order_allow_partial` int(3) NOT NULL DEFAULT '0',
+  `order_allow_discount` int(3) NOT NULL DEFAULT '0',
+  `note_recipient` varchar(255) DEFAULT NULL,
+  `term_condition` varchar(255) DEFAULT NULL,
+  `order_status` varchar(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `partial`
 --
 
@@ -310,6 +333,12 @@ ALTER TABLE `discount`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+ ADD PRIMARY KEY (`order_id`);
+
+--
 -- Indexes for table `partial`
 --
 ALTER TABLE `partial`
@@ -352,6 +381,11 @@ MODIFY `client_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 ALTER TABLE `discount`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10001;
 --
 -- AUTO_INCREMENT for table `partial`
 --
