@@ -154,7 +154,11 @@
                                                             <th>Subtotal</th>
                                                         </tr>
                                                     </thead\>
+                                                        <?php ?>
                                                     {invoice_info}
+                                                    <?php 
+                                                    
+                                                    ?>
                                                     <tbody>
                                                         <tr>
                                                             <td>{bill_id}</td>
@@ -163,6 +167,8 @@
                                                             <td>{bill_date}</td>
                                                             <td>{bill_due_date}</td>
                                                             <td>{bill_due_amount}</td>
+                                                            <?php $total=$total+$invoice_info[0]['bill_due_amount'];?>
+
                                                         </tr> 
                                                     </tbody>
                                                     {/invoice_info}
@@ -172,9 +178,9 @@
                                         </div>
                                         <!-- /.row -->
 
-                                        <div class="row">
+                                       <!-- <div class="row">
                                             <!-- accepted payments column -->
-                                            <div class="col-xs-6">
+                                            <!--<div class="col-xs-6">
                                                 <p class="lead">Payment Methods:</p>
                                                 <img src="<?php echo base_url();?>assets/images/visa.png" alt="Visa">
                                                 <img src="<?php echo base_url();?>assets/images/mastercard.png" alt="Mastercard">
@@ -185,14 +191,14 @@
                                                 </p>
                                             </div>
                                             <!-- /.col -->
-                                            <div class="col-xs-6">
+                                            <!--<div class="col-xs-6">
                                                 <p class="lead">Amount Due 2/22/2014</p>
                                                 <div class="table-responsive">
                                                     <table class="table">
                                                         <tbody>
                                                             <tr>
                                                                 <th style="width:50%">Subtotal:</th>
-                                                                <td>$250.30</td>
+                                                                <td><?php echo '$'.$total;?></td>
                                                             </tr>
                                                             <tr>
                                                                 <th>Tax (9.3%)</th>
@@ -215,7 +221,7 @@
                                         <!-- /.row -->
 
                                         <!-- this row will not appear when printing -->
-                                        <div class="row no-print">
+                                       <!-- <div class="row no-print">
                                             <div class="col-xs-12">
                                                 <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
                                                 <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
