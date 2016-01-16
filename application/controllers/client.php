@@ -47,6 +47,7 @@ class Client extends CI_Controller {
 		$data['invoice_info']=$this->client_model->invoice_info($get_email);
 		//echo $data['active'];
 		//print_r( $data);
+		$data['total']=1;
 		$this->parser->parse('client/dashboard',$data);
 	}
 
@@ -60,17 +61,25 @@ class Client extends CI_Controller {
 
 	public function domain_list()
 	{
-		// $user_name= $this->session->userdata('username');
-		// $data['user_info']=$this->client_model->account_information($user_name);
-		$this->load->view('client/view_domain');
+		$user_name= $this->session->userdata('username');
+		$get_email=$this->client_model->get_email_id($user_name);
+
+		$data['domain_list']=$this->client_model->domain_info($get_email);
+
+		$this->load->view('client/view_domain',$data);
 	}
 
 
 	public function service_list()
 	{
-		// $user_name= $this->session->userdata('username');
-		// $data['user_info']=$this->client_model->account_information($user_name);
-		$this->load->view('client/view_domain');
+		$user_name= $this->session->userdata('username');
+		$get_email=$this->client_model->get_email_id($user_name);
+
+		$data['services_list']=$this->client_model->service_info($get_email);
+		//print_r($data);
+		//echo br(2);
+
+		$this->load->view('client/view_services',$data);
 	}
 	
 	public function change_password()

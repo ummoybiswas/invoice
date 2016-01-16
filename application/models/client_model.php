@@ -204,6 +204,27 @@ public function admin_info()
 		return $result->result_array();
 	}
 
+	public function domain_info($email)
+	{
+		$this->db->select('*');
+		$this->db->from('bills');
+		$this->db->join('bill_service', 'bill_service.bill_id = bills.bill_id');
+		$this->db->where('bills.user_email', $email);
+		$this->db->where('bill_service.services', 'Domain');
+		$result = $this->db->get();
+		return $result->result();
+	}
+
+
+	public function service_info($email)
+	{
+		$this->db->select('*');
+		$this->db->from('bills');
+		$this->db->join('bill_service', 'bill_service.bill_id = bills.bill_id');
+		$this->db->where('bills.user_email', $email);
+		$result = $this->db->get();
+		return $result->result();
+	}
 
 
 	public function change_password($password,$user)

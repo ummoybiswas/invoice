@@ -51,7 +51,8 @@
                                                     <input type="checkbox" class="tableflat">
                                                 </th>-->
                                                 <th>Invoice No</th>
-                                                <th style="width:40%">Description </th>
+                                                <th style="width:35%">Description </th>
+                                                <th>Service</th>
                                                 <th>Reg_Date </th>
                                                 <th>Status</th>
                                                 <th>Amount </th>
@@ -60,10 +61,9 @@
                                                 </th>-->
                                             </tr>
                                         </thead>
-
                                         <tbody>
-                                     <?php 
-                                         foreach ($domain_list as $row)
+                                         <?php 
+                                         foreach ($services_list as $row)
                                          {
                                             ?>
                                             <tr class="even pointer">
@@ -72,10 +72,11 @@
                                                 </td>-->
                                                 <td class=" "><?=$row->bill_id;?></td>
                                                 <td class=" "><?=$row->particulars;?></td>
+                                                <td class=" "><?=$row->services;?></td>         
                                                 <td class=" "><?=$row->reg_date;?><i class="success fa fa-long-arrow-up"></i>
                                                 </td>
                                                 <td class=" ">
-                                                <?php
+                                                 <?php
                                                  if($row->status=='1'){ ?>
                                                  <span class="label label-primary">Active</span>
                                                <?php }
@@ -83,17 +84,16 @@
                                                 <span class="label label-warning">Inactive</span>
                                                 <?php } ?>
                                                 </td>
-                                                <td class=" "><?=$row->price;?></td>
+                                                <td class=" "><?php echo '$'.$row->price;?></td>
                                                 <td class="a-right a-right ">
-
-                                               <?php
+                                                 <?php
                                                  if($row->bill_status=='1'){ ?>
                                                  <span class="label label-success">Active</span>
                                                <?php }
                                                 if($row->bill_status=='0'){ ?>
                                                 <span class="label label-danger">Inactive</span>
                                                 <?php } ?>
-
+                                        
 
                                                 </td>
                                                 <!--<td class=" last"><a href="#">View</a>
@@ -101,6 +101,7 @@
                                                  
                                             </tr>
                                         <?php }?>
+                                  
                                         </tbody>
 
                                     </table>
