@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2016 at 11:06 AM
+-- Generation Time: Jan 16, 2016 at 01:21 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -28,26 +28,27 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `bills` (
   `bill_id` varchar(255) NOT NULL,
-  `client_email` varchar(30) NOT NULL,
+  `user_email` varchar(30) NOT NULL,
   `bill_reference` varchar(30) NOT NULL,
   `bill_date` date NOT NULL,
   `bill_due_date` date NOT NULL,
-  `bill_total_amount` double NOT NULL,
-  `bill_due_amount` double NOT NULL,
-  `bill_to_paid` double NOT NULL,
+  `bill_total_amount` double(30,2) NOT NULL,
+  `bill_due_amount` double(30,2) NOT NULL,
+  `bill_to_paid` double(30,2) NOT NULL,
   `bill_allow_partial` int(3) NOT NULL DEFAULT '0',
   `bill_allow_discount` int(3) NOT NULL DEFAULT '0',
   `note_recipient` varchar(255) DEFAULT NULL,
   `term_condition` varchar(255) DEFAULT NULL,
-  `bill_status` int(3) NOT NULL
+  `bill_status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`bill_id`, `client_email`, `bill_reference`, `bill_date`, `bill_due_date`, `bill_total_amount`, `bill_due_amount`, `bill_to_paid`, `bill_allow_partial`, `bill_allow_discount`, `note_recipient`, `term_condition`, `bill_status`) VALUES
-('INV-10008', 'fdg@fdg.fghgfh', '34rt', '2015-12-31', '2015-12-31', 7, 3.5, 3.5, 1, 1, '0', '0', 0);
+INSERT INTO `bills` (`bill_id`, `user_email`, `bill_reference`, `bill_date`, `bill_due_date`, `bill_total_amount`, `bill_due_amount`, `bill_to_paid`, `bill_allow_partial`, `bill_allow_discount`, `note_recipient`, `term_condition`, `bill_status`) VALUES
+('INV-10008', 'aman.rabby@gmail.com', '34rt', '2015-12-31', '2015-12-31', 7.00, 3.50, 3.50, 1, 1, '0', '0', '0'),
+('INV-10009', 'aman.rabby@gmail.com', '34rt', '2015-12-31', '2015-12-31', 7.00, 3.50, 7.00, 0, 0, '0', '0', '1');
 
 --
 -- Triggers `bills`
@@ -79,9 +80,9 @@ CREATE TABLE IF NOT EXISTS `bill_service` (
   `bill_cycle` varchar(10) NOT NULL,
   `reg_date` date NOT NULL,
   `next_due` date NOT NULL,
-  `quantity` double NOT NULL DEFAULT '1',
-  `price` double NOT NULL,
-  `total` double NOT NULL,
+  `quantity` double(30,2) NOT NULL DEFAULT '1.00',
+  `price` double(30,2) NOT NULL,
+  `total` double(30,2) NOT NULL,
   `status` int(3) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
@@ -90,8 +91,8 @@ CREATE TABLE IF NOT EXISTS `bill_service` (
 --
 
 INSERT INTO `bill_service` (`id`, `bill_id`, `user_email`, `particulars`, `additional_particulars`, `services`, `bill_cycle`, `reg_date`, `next_due`, `quantity`, `price`, `total`, `status`) VALUES
-(28, 'INV-10008', 'fdg@fdg.fghgfh', 'dfgdfg', 'dsfsdfsdfsdf', 'Hosting', 'fixed', '2015-12-31', '0000-00-00', 1, 3, 3, 0),
-(29, 'INV-10008', 'fdg@fdg.fghgfh', 'fdgdfgdfg', 'dsfsdfsdfsdf', 'Hosting', 'monthly', '2015-12-31', '2016-01-30', 1, 4, 4, 0);
+(28, 'INV-10008', 'aman.rabby@gmail.com', 'dfgdfg', 'dsfsdfsdfsdf', 'Hosting', 'fixed', '2015-12-31', '0000-00-00', 1.00, 3.00, 3.00, 1),
+(29, 'INV-10008', 'aman.rabby@gmail.com', 'fdgdfgdfg', 'dsfsdfsdfsdf', 'Hosting', 'monthly', '2015-12-31', '2016-01-30', 1.00, 4.00, 4.00, 0);
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `country` varchar(30) NOT NULL,
   `post_code` varchar(30) NOT NULL,
   `phone_no` varchar(15) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client`
@@ -121,7 +122,8 @@ CREATE TABLE IF NOT EXISTS `client` (
 
 INSERT INTO `client` (`client_id`, `user_name`, `first_name`, `last_name`, `company_name`, `email`, `address`, `address2`, `state`, `city`, `country`, `post_code`, `phone_no`) VALUES
 (1, 'ummoy', 'Ummoy', 'Biswas', '', 'ummoy.biswas@live.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', ''),
-(6, 'aman', 'Aman', 'Ullah', '', 'aman.rabby@gmail.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '');
+(6, 'aman', 'Aman', 'Ullah', '', 'aman.rabby@gmail.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', ''),
+(7, 'admin', 'Gnt', 'Ltd', '', 'info@geeksntechnology.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '');
 
 -- --------------------------------------------------------
 
@@ -133,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `discount` (
 `id` int(11) NOT NULL,
   `bill_id` varchar(30) NOT NULL,
   `user_email` varchar(30) NOT NULL,
-  `discount_amount` double NOT NULL
+  `discount_amount` double(30,2) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
@@ -141,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `discount` (
 --
 
 INSERT INTO `discount` (`id`, `bill_id`, `user_email`, `discount_amount`) VALUES
-(3, 'INV-10008', 'fdg@fdg.fghgfh', 3.5);
+(3, 'INV-10008', 'aman.rabby@gmail.com', 3.50);
 
 -- --------------------------------------------------------
 
@@ -158,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `invoice_gen` (
 --
 
 INSERT INTO `invoice_gen` (`invoice_no`) VALUES
-(10011);
+(10012);
 
 -- --------------------------------------------------------
 
@@ -170,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `partial` (
 `id` int(10) NOT NULL,
   `bill_id` varchar(255) NOT NULL,
   `user_email` varchar(30) NOT NULL,
-  `partial_amount` double NOT NULL
+  `partial_amount` double(30,2) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
@@ -178,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `partial` (
 --
 
 INSERT INTO `partial` (`id`, `bill_id`, `user_email`, `partial_amount`) VALUES
-(3, 'INV-10008', 'fdg@fdg.fghgfh', 1.75);
+(3, 'INV-10008', 'aman.rabby@gmail.com', 1.75);
 
 -- --------------------------------------------------------
 
@@ -277,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `client_id`, `username`, `password`, `type`) VALUES
 (1, 1, 'admin', 'admin', '1'),
-(2, 2, 'client', 'client', '0');
+(2, 2, 'aman', 'aman', '0');
 
 --
 -- Indexes for dumped tables
@@ -344,7 +346,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-MODIFY `client_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `client_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `discount`
 --
