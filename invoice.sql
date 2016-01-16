@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2016 at 05:25 AM
+-- Generation Time: Jan 16, 2016 at 11:06 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -35,18 +35,33 @@ CREATE TABLE IF NOT EXISTS `bills` (
   `bill_total_amount` double NOT NULL,
   `bill_due_amount` double NOT NULL,
   `bill_to_paid` double NOT NULL,
-  `bill_allow_partial` bit(1) NOT NULL DEFAULT b'0',
-  `bill_allow_discount` bit(1) NOT NULL DEFAULT b'0',
-  `bill_status` bit(1) NOT NULL DEFAULT b'0'
+  `bill_allow_partial` int(3) NOT NULL DEFAULT '0',
+  `bill_allow_discount` int(3) NOT NULL DEFAULT '0',
+  `note_recipient` varchar(255) DEFAULT NULL,
+  `term_condition` varchar(255) DEFAULT NULL,
+  `bill_status` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`bill_id`, `client_email`, `bill_reference`, `bill_date`, `bill_due_date`, `bill_total_amount`, `bill_due_amount`, `bill_to_paid`, `bill_allow_partial`, `bill_allow_discount`, `bill_status`) VALUES
-('INV-1000', 'ummoy.biswas@live.com', 'ref#123', '2016-01-11', '2016-01-11', 10, 10, 10, b'0', b'0', b'0'),
-('INV-1001', 'aman.rabby@gmail.com', 'ref#124', '2016-01-10', '2016-01-25', 5, 5, 5, b'0', b'0', b'0');
+INSERT INTO `bills` (`bill_id`, `client_email`, `bill_reference`, `bill_date`, `bill_due_date`, `bill_total_amount`, `bill_due_amount`, `bill_to_paid`, `bill_allow_partial`, `bill_allow_discount`, `note_recipient`, `term_condition`, `bill_status`) VALUES
+('INV-10008', 'fdg@fdg.fghgfh', '34rt', '2015-12-31', '2015-12-31', 7, 3.5, 3.5, 1, 1, '0', '0', 0);
+
+--
+-- Triggers `bills`
+--
+DELIMITER //
+CREATE TRIGGER `Invoice_generator` AFTER INSERT ON `bills`
+ FOR EACH ROW BEGIN
+ DECLARE prev_invoice_no INT;
+ set prev_invoice_no =(SELECT invoice_no from invoice_gen); 
+ update invoice_gen set invoice_no=prev_invoice_no+1;
+
+END
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -66,17 +81,17 @@ CREATE TABLE IF NOT EXISTS `bill_service` (
   `next_due` date NOT NULL,
   `quantity` double NOT NULL DEFAULT '1',
   `price` double NOT NULL,
-  `status` bit(1) NOT NULL DEFAULT b'0'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `total` double NOT NULL,
+  `status` int(3) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bill_service`
 --
 
-INSERT INTO `bill_service` (`id`, `bill_id`, `user_email`, `particulars`, `additional_particulars`, `services`, `bill_cycle`, `reg_date`, `next_due`, `quantity`, `price`, `status`) VALUES
-(1, 'INV-1000', 'ummoy.biswas@live.com', 'Domain Registration - hgewhewh.com - 1 Year/s (11/01/2016 - 10/01/2017)\r\n+ DNS Management', NULL, 'Domain', '1', '2016-01-11', '2017-01-10', 1, 10, b'0'),
-(2, 'INV-1001', 'aman.rabby@gmail.com', 'Domain Registration - hgewhewh.com - 1 Year/s (11/01/2016 - 10/01/2017)\r\n+ DNS Management', NULL, 'Domain', '1', '2016-01-11', '2017-01-10', 1, 10, b'0'),
-(3, 'INV-1001', 'aman.rabby@gmail.com', 'B-Advanced - hgewhewh.com (2016-01-11 - 2016-02-10)', NULL, 'Hosting', '0', '2016-01-11', '2016-02-10', 1, 30, b'0');
+INSERT INTO `bill_service` (`id`, `bill_id`, `user_email`, `particulars`, `additional_particulars`, `services`, `bill_cycle`, `reg_date`, `next_due`, `quantity`, `price`, `total`, `status`) VALUES
+(28, 'INV-10008', 'fdg@fdg.fghgfh', 'dfgdfg', 'dsfsdfsdfsdf', 'Hosting', 'fixed', '2015-12-31', '0000-00-00', 1, 3, 3, 0),
+(29, 'INV-10008', 'fdg@fdg.fghgfh', 'fdgdfgdfg', 'dsfsdfsdfsdf', 'Hosting', 'monthly', '2015-12-31', '2016-01-30', 1, 4, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -105,8 +120,8 @@ CREATE TABLE IF NOT EXISTS `client` (
 --
 
 INSERT INTO `client` (`client_id`, `user_name`, `first_name`, `last_name`, `company_name`, `email`, `address`, `address2`, `state`, `city`, `country`, `post_code`, `phone_no`) VALUES
-(1, 'ummoy', 'Ummoy', 'Biswas', 'gnt', 'ummoy.biswas@live.com', 'Mohakhali Dohs', 'bashundara', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '6546'),
-(6, 'aman', 'Aman', 'Ullah', 'gnt', 'aman.rabby@gmail.com', 'Mohakhali Dohs', 'ctg', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '654165');
+(1, 'ummoy', 'Ummoy', 'Biswas', '', 'ummoy.biswas@live.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', ''),
+(6, 'aman', 'Aman', 'Ullah', '', 'aman.rabby@gmail.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '');
 
 -- --------------------------------------------------------
 
@@ -116,10 +131,34 @@ INSERT INTO `client` (`client_id`, `user_name`, `first_name`, `last_name`, `comp
 
 CREATE TABLE IF NOT EXISTS `discount` (
 `id` int(11) NOT NULL,
-  `bil_id` varchar(255) NOT NULL,
-  `user_email` int(11) NOT NULL,
-  `discount_amount` int(11) NOT NULL
+  `bill_id` varchar(30) NOT NULL,
+  `user_email` varchar(30) NOT NULL,
+  `discount_amount` double NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `discount`
+--
+
+INSERT INTO `discount` (`id`, `bill_id`, `user_email`, `discount_amount`) VALUES
+(3, 'INV-10008', 'fdg@fdg.fghgfh', 3.5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice_gen`
+--
+
+CREATE TABLE IF NOT EXISTS `invoice_gen` (
+  `invoice_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `invoice_gen`
+--
+
+INSERT INTO `invoice_gen` (`invoice_no`) VALUES
+(10011);
 
 -- --------------------------------------------------------
 
@@ -129,10 +168,17 @@ CREATE TABLE IF NOT EXISTS `discount` (
 
 CREATE TABLE IF NOT EXISTS `partial` (
 `id` int(10) NOT NULL,
-  `bil_id` varchar(255) NOT NULL,
+  `bill_id` varchar(255) NOT NULL,
   `user_email` varchar(30) NOT NULL,
   `partial_amount` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `partial`
+--
+
+INSERT INTO `partial` (`id`, `bill_id`, `user_email`, `partial_amount`) VALUES
+(3, 'INV-10008', 'fdg@fdg.fghgfh', 1.75);
 
 -- --------------------------------------------------------
 
@@ -231,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `client_id`, `username`, `password`, `type`) VALUES
 (1, 1, 'admin', 'admin', '1'),
-(2, 2, 'aman', 'aman', '0');
+(2, 2, 'client', 'client', '0');
 
 --
 -- Indexes for dumped tables
@@ -293,7 +339,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bill_service`
 --
 ALTER TABLE `bill_service`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `client`
 --
@@ -303,12 +349,12 @@ MODIFY `client_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 -- AUTO_INCREMENT for table `discount`
 --
 ALTER TABLE `discount`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `partial`
 --
 ALTER TABLE `partial`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `product`
 --
