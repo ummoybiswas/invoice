@@ -197,11 +197,13 @@ public function admin_info()
 	public function invoice_info($email)
 	{
 		$this->db->select('*');
-		$this->db->from('bills');
-		$this->db->join('bill_service', 'bill_service.bill_id = bills.bill_id');
+		$this->db->from('discount');
+		$this->db->join('bills', 'discount.bill_id = bills.bill_id','right');
 		$this->db->where('bills.user_email', $email);
+		
 		$result = $this->db->get();
 		return $result->result_array();
+		
 	}
 
 	public function domain_info($email)

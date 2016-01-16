@@ -88,10 +88,10 @@
 
                                                <?php
                                                  if($row->bill_status=='1'){ ?>
-                                                 <span class="label label-success">Active</span>
+                                                 <span class="label label-success">Paid</span>
                                                <?php }
                                                 if($row->bill_status=='0'){ ?>
-                                                <span class="label label-danger">Inactive</span>
+                                                <span class="label label-danger">Pending</span>
                                                 <?php } ?>
 
 

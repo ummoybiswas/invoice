@@ -147,31 +147,47 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Invoice No</th>
-                                                            <th style="width:40%">Product Name</th>
-                                                            <th>Service</th>
                                                             <th>Bill Date</th>
                                                             <th>Due Date</th>
-                                                            <th>Subtotal</th>
+                                                            <th>Tot. Amount</th>
+                                                            <th>Dis. Amount</th>
+                                                            <th>Bill to Pay</th>
+                                                            <th>Status</th>
                                                         </tr>
                                                     </thead\>
                                                         <?php ?>
-                                                    {invoice_info}
+                                                    
                                                     <?php 
                                                     
                                                     ?>
                                                     <tbody>
+                                                    <?php foreach ($invoice_info as $invoice) {?>
                                                         <tr>
-                                                            <td>{bill_id}</td>
-                                                            <td>{particulars}</td>
-                                                            <td>{services}</td>
-                                                            <td>{bill_date}</td>
-                                                            <td>{bill_due_date}</td>
-                                                            <td>{bill_due_amount}</td>
-                                                            <?php $total=$total+$invoice_info[0]['bill_due_amount'];?>
+                                                            <td><?=$invoice['bill_id']?></td>
+                                                            <td><?=$invoice['bill_date']?></td>
+                                                            <td><?=$invoice['bill_due_date']?></td>
+                                                            <td><?=$invoice['bill_total_amount']?></td>
+                                                            <td><?php 
+                                                            if($invoice['discount_amount']==NULL){echo '0';}
+                                                                 else {echo $invoice['discount_amount'];}?>
+                                                            </td>
+                                                            <td><?=$invoice['bill_to_paid']?></td>
+                                                            <td>
+                                                                <?php 
+                                                            if($invoice['bill_status']=='0'){?>
+                                                            <span class="label label-danger">Pending</span>
+                                                            <?php }
+                                                                else {
+                                                                    ?>
+                                                                    <span class="label label-success">Paid</span>
+                                                                    <?php }?>
+                                                            </td>
+
 
                                                         </tr> 
+                                                       <?php } ?>
                                                     </tbody>
-                                                    {/invoice_info}
+                                                  
                                                 </table>
                                             </div>
                                             <!-- /.col -->
@@ -236,6 +252,11 @@
                     
 
                 <!-- footer content -->
+<!--                 <?php foreach ($invoice_info as $invoice) {
+                    # code...
+                    echo $invoice['bill_id'];
+                }
+                ?> -->
     <?php include 'template/footer.php';?>
                 <!-- /footer content -->
 

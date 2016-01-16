@@ -45,9 +45,7 @@ class Client extends CI_Controller {
 		$data['to_info']=$this->client_model->client_info($user_name);
 
 		$data['invoice_info']=$this->client_model->invoice_info($get_email);
-		//echo $data['active'];
-		//print_r( $data);
-		$data['total']=1;
+
 		$this->parser->parse('client/dashboard',$data);
 	}
 
