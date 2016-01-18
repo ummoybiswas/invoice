@@ -193,6 +193,7 @@ class Admin extends CI_Controller {
 
 
 		//Sending Email Email ................
+<<<<<<< HEAD
            $bill_id=$this->input->post('invoice_number');
            $client_email=$this->input->post('user_email');
 		   $f_name="";
@@ -221,6 +222,36 @@ class Admin extends CI_Controller {
                 $service .="<p><b>Billing Cycle: </b>".$s['bill_cycle']."</p>";
                 $service .="<p><b>Total Amount: </b>".$s['total']."</p><br/>";
             }
+=======
+                       $bill_id=$this->input->post('invoice_number');
+                       $client_email=$this->input->post('user_email');
+			$f_name="";
+$o_number="";
+                        print_r($bill_id);
+			$order_number=$this->send_email_model->get_order_number($bill_id);
+                        foreach($order_number as $o)
+                        {
+                           $o_number=$o['order_id'];
+
+                         }
+			$get_name=$this->send_email_model->get_name($client_email);
+                          foreach($get_name as $name)
+                        {
+                           $f_name=$name['first_name'];
+
+                         }
+                        $services=$this->send_email_model->get_service_name($bill_id);
+                        $service="";
+                        foreach($services as $s)
+                        {
+                            $service .="<p><b>Service Name: </b>".$s['services']."</p>";
+                            $service .="<p><b>Details: </b>".$s['particulars']."</p>";
+                            $service .="<p><b>Reg Date: </b>".$s['reg_date']."</p>";
+                            $service .="<p><b>Next Due Date: </b>".$s['next_due']."</p>";
+                            $service .="<p><b>Billing Cycle: </b>".$s['bill_cycle']."</p>";
+                            $service .="<p><b>Total Amount: </b>".$s['total']."</p><br/>";
+                        }
+>>>>>>> efae72f3b6e98c77f34692f37310e6f6c4e9a62e
 			$email_address = $client_email;	
 			$messag = '<html><body>';
 			$messag.= '<img src="http://thevoice24.com/invoice/assets/images/logo.png" alt="logo" />';
