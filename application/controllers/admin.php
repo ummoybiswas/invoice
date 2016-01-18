@@ -11,6 +11,8 @@ class Admin extends CI_Controller {
 			$this->session->set_userdata('error', 'You need to login first!!!');
 			redirect('welcome','refresh');
 		}
+		$this->load->model('send_email_model');
+		$this->load->model('admin_model');
 	}
 	
 	public function dashboard()
@@ -19,6 +21,77 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/home');
 		//echo "<pre>";
 		//print_r($data['bills']);
+	}
+
+        public function change_password()
+        {
+          if($this->input->post('update'))
+		{
+			$this->form_validation->set_rules('pas_wrd', 'Password', 'required|matches[con_pas_wrd]|min_length[6]');
+			$this->form_validation->set_rules('con_pas_wrd', 'Password Confirmation', 'required');
+		
+
+			if($this->form_validation->run() == false)
+				{
+					$data['message_error_password'] = validation_errors();
+					//echo 'error';
+					echo "<script>
+				alert('Password Not Fill the Requirement');
+				window.location.href='../client/dashboard';
+				</script>";
+					//$this->load->view('login',$data);
+				}
+			else
+			{
+				//$user_name= $this->session->userdata('username');
+				$password=$this->input->post('pas_wrd');
+				
+				//echo 'success area';
+	 			$this->admin_model->change_password($password);
+	 			echo "<script>
+				alert('Please Login with your new Password');
+				window.location.href='../welcome';
+				</script>";
+
+				$this->load->view('welcome',$data);
+				 // $this->load->library('../controllers/login');
+				 // $this->whathever->index($data);
+			}
+		}
+        }
+	public function myprofile()
+	{
+		
+		$data["user_info"]=$this->admin_model->get_admin_info();
+		$this->parser->parse('admin/view_admin_profile',$data);
+		//print_r($data["invoice_no"]);
+
+	}
+
+	public function update_profile_info()
+	{
+		$address=$this->input->post('address');
+		$address2=$this->input->post('address2');
+		$city=$this->input->post('city');
+		$state=$this->input->post('state');
+		$zip=$this->input->post('zip');
+		$country=$this->input->post('country');
+		$phone=$this->input->post('phone');
+
+
+		$data1=array(
+		'address'=>$address,
+		'address2'=>$address2,
+		'city'=>$city,
+		'state'=>$state,
+		'post_code'=>$zip,
+		'country'=>$country,
+		'phone_no'=>$phone,
+		);
+
+		$this->admin_model->update_admin_info($data1);
+		$this->myprofile();
+
 	}
 
 	public function create_invoice()
@@ -92,7 +165,7 @@ class Admin extends CI_Controller {
 		'bill_status'=>0
 		);
 		$data2=array(
-		'order_id'=>$bill_id,
+		'bill_id'=>$bill_id,
 		'user_email'=>$client_email,
 		'order_reference'=>$bill_reference,
 		'order_date'=>$bill_date,
@@ -108,12 +181,93 @@ class Admin extends CI_Controller {
 		);
 		//print_r($data);
 		$this->bill_model->create_new_bill($data1,$data2);
+
+
+
+	}
+
+
+
+	public function mail_confirm()
+	{
+
+
+		//Sending Email Email ................
+           $bill_id=$this->input->post('invoice_number');
+           $client_email=$this->input->post('user_email');
+		   $f_name="";
+		   $o_number="";
+           print_r($bill_id);
+		   $order_number=$this->send_email_model->get_order_number($bill_id);
+            foreach($order_number as $o)
+            {
+               $o_number=$o['order_id'];
+
+            }
+			$get_name=$this->send_email_model->get_name($client_email);
+            foreach($get_name as $name)
+            {
+               $f_name=$name['first_name'];
+
+            }
+            $services=$this->send_email_model->get_service_name($bill_id);
+            $service="";
+            foreach($services as $s)
+            {
+                $service .="<p><b>Service Name: </b>".$s['services']."</p>";
+                $service .="<p><b>Details: </b>".$s['particulars']."</p>";
+                $service .="<p><b>Reg Date: </b>".$s['reg_date']."</p>";
+                $service .="<p><b>Next Due Date: </b>".$s['next_due']."</p>";
+                $service .="<p><b>Billing Cycle: </b>".$s['bill_cycle']."</p>";
+                $service .="<p><b>Total Amount: </b>".$s['total']."</p><br/>";
+            }
+			$email_address = $client_email;	
+			$messag = '<html><body>';
+			$messag.= '<img src="http://thevoice24.com/invoice/assets/images/logo.png" alt="logo" />';
+			$messag.= '<p>Dear '.$f_name.',</p>';
+			$messag.= '<p>We have already processed your order. The details of the order are given below:</p>';
+			$messag.= '<p><b>Order Number: </b>'.$o_number.'</p>';
+			$messag.= $service;
+			$messag.= '<p>You will receive an email from us shortly once your account hass been setup. Please "quote" your order number if you wish to contact us about this order</p>';
+			$messag.= '<p><b>GNT</b></p>';
+			$messag.= '<p> <a href="http://geeksntechnology.com/">GeeksnTechnology</a></p>';
+			$messag.= '</body></html>';
+			
+
+
+
+				$this->load->helper('html');	
+				$this->load->library('email');
+
+               	$config = Array(
+			    'protocol' => 'smtp',
+			    'smtp_host' => 'ssl://orange.whitelabelwebserver.com',
+			    'smtp_port' => 465,
+			    'smtp_user' => 'aman@geeksntechnology.com',
+			    'smtp_pass' => 'Q^F{ke_&xk(}',
+			    'mailtype'  => 'html', 
+			    'charset'   => 'iso-8859-1'
+				);
+
+				$this->load->library('email', $config);
+				$this->email->set_newline("\r\n");
+				$this->email->from('info@geeksntechnology.com','admin');
+				$this->email->to($email_address);
+				$base=$this->config->base_url();
+				$this->email->subject('Order Confirmation');
+				$this->email->message($messag);
+                $this->email->set_mailtype('html');
+				$this->email->send();
+                                echo "<pre>";
+				print_r($services);
+
+//Sending Email Email End................
+
 	}
 	
 	public function service_confirm()
 	{
 		$this->load->model('bill_service_model');
-		
 		$bill_id=$this->input->post('invoice_number');
 		$user_email=$this->input->post('user_email');
 		$particulars=$this->input->post('invoice_description');
@@ -157,8 +311,12 @@ class Admin extends CI_Controller {
 		'status'=>0
 		);
 		//print_r($data);
-		
+
+
 		$this->bill_service_model->create_new_service($data);
+
+
+		
 
 	}
 

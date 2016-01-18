@@ -48,7 +48,7 @@
 
                     <div class="row">
                        				 <div class="col-md-4">
-					<div class="col-md-12"><img src="<?php echo base_url();?>assets/img/logo.png" alt="logo" /></div>
+					<div class="col-md-12"><img src="<?php echo base_url();?>assets/images/logo.png" alt="logo" /></div>
 					
 				 </div>
 				 
@@ -376,22 +376,15 @@ font-size: 15px;">0.00</span></td>
 				  </div>
  <br>
 
-                     <div class="col-md-12 col-sm-12 col-xs-12">
+  
+<!-- Editor                   <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Text areas<small>Sessions</small></h2>
+                                <h2></h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Settings 1</a>
-                                            </li>
-                                            <li><a href="#">Settings 2</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                   
                                     <li><a class="close-link"><i class="fa fa-close"></i></a>
                                     </li>
                                 </ul>
@@ -399,7 +392,6 @@ font-size: 15px;">0.00</span></td>
                             </div>
                             <div class="x_content">
 
-<!-- Editor
                                 <div id="alerts"></div>
                                 <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor">
                                     <div class="btn-group">
@@ -483,7 +475,7 @@ font-size: 15px;">0.00</span></td>
 					    </div>
 				    </div>
 				 </div>
-<p id="note">sadasd</p>
+<p id="note"></p>
 
 	
 				<hr>
@@ -1045,7 +1037,7 @@ function checkFormData()
 			success:function(result){
 				//alert('Successfully checkout. Thanks for shopping!');
 				//window.location.href = base_url;
-				alert(result);
+				//alert(result);
 			}
 	});
 	
@@ -1068,7 +1060,7 @@ function checkFormData()
 				success:function(result){
 					//alert('Successfully checkout. Thanks for shopping!');
 					//window.location.href = base_url;
-					alert(result);
+					//alert(result);
 				}
 			});
 		}
@@ -1077,7 +1069,16 @@ function checkFormData()
 	{
 		
 	}
-	
+	$.ajax({
+			type: 'POST',
+			url: '<?php echo base_url()?>index.php/admin/mail_confirm',
+			data: {invoice_number:invoice_number,user_email:bill_to},
+			success:function(result){
+				//alert('Successfully checkout. Thanks for shopping!');
+				//window.location.href = base_url;
+				alert(result);
+			}
+	});
 	
 	
 }
