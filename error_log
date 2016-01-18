@@ -1,0 +1,9 @@
+[17-Jan-2016 04:03:51 America/Chicago] PHP Parse error:  syntax error, unexpected '*' in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 195
+[17-Jan-2016 04:03:51 America/Chicago] PHP Parse error:  syntax error, unexpected '*' in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 195
+[17-Jan-2016 04:04:31 America/Chicago] PHP Parse error:  syntax error, unexpected '*' in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 195
+[17-Jan-2016 04:04:31 America/Chicago] PHP Parse error:  syntax error, unexpected '*' in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 195
+[17-Jan-2016 05:38:42 America/Chicago] PHP Fatal error:  Cannot use object of type stdClass as array in /home4/thevoice/public_html/invoice/application/models/send_email_model.php on line 13
+[17-Jan-2016 05:44:43 America/Chicago] PHP Parse error:  syntax error, unexpected '"', expecting ',' or ';' in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 232
+[17-Jan-2016 05:44:43 America/Chicago] PHP Parse error:  syntax error, unexpected '"', expecting ',' or ';' in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 232
+[17-Jan-2016 05:44:43 America/Chicago] PHP Parse error:  syntax error, unexpected '"', expecting ',' or ';' in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 232
+[18-Jan-2016 02:11:03 America/Chicago] PHP Parse error:  syntax error, unexpected 'fa' (T_STRING) in /home4/thevoice/public_html/invoice/application/views/admin/template/nav.php on line 29

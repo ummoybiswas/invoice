@@ -66,7 +66,6 @@ class Client_model extends CI_Model
 		$this->db->from('bill_service');
 		$this->db->where('user_email', $email);
 		$this->db->where('services', 'Domain');
-		$this->db->where('status', '1');
 		$result = $this->db->get();
 		return $result->num_rows();
 	}
@@ -105,7 +104,6 @@ class Client_model extends CI_Model
 		$this->db->from('bill_service');
 		$this->db->where('user_email', $email);
 		$this->db->where('services', 'Hosting');
-		$this->db->where('status', '1');
 		$result = $this->db->get();
 		return $result->num_rows();
 	}

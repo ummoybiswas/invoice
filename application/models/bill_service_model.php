@@ -6,6 +6,8 @@ class Bill_service_model extends CI_Model
 	{
 		$this->db->insert('bill_service', $data);
 	}
+
+	
 }
 
 ?>

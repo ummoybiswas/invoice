@@ -9,12 +9,13 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="<?php echo base_url();?>assets/images/img.jpg" alt="">John Doe
+                                    <img src="<?php echo base_url();?>assets/images/img.jpg" alt="">Admin
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="javascript:;">  Profile</a>
-                                    </li>
+                                    <li><a href="<?php echo site_url('admin/myprofile');?>"><i class="fa fa-user pull-right"></i>  Profile</a></li>
+
+                                     <li><a href="" data-toggle="modal" data-target="#myModal"> <i class="fa fa-cogs pull-right"></i>  Change Password</a></li>
                                     <!--<li>
                                         <a href="javascript:;">
                                             <span class="badge bg-red pull-right">50%</span>
@@ -29,7 +30,7 @@
                                 </ul>
                             </li>
 
-                            <li role="presentation" class="dropdown">
+                            <!--<li role="presentation" class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-envelope-o"></i>
                                     <span class="badge bg-green">6</span>
@@ -41,7 +42,7 @@
                                         <img src="<?php echo base_url();?>assets/images/img.jpg" alt="Profile Image" />
                                     </span>
                                             <span>
-                                        <span>John Smith</span>
+                                        <span>Admin</span>
                                             <span class="time">3 mins ago</span>
                                             </span>
                                             <span class="message">
@@ -100,10 +101,48 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>-->
 
                         </ul>
                     </nav>
                 </div>
 
             </div>
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Change Password</h4>
+        </div>
+        <div class="modal-body">
+           <form action="<?php echo site_url('admin/change_password')?>" method="post" style="padding:20px;">
+            <div class="form-group">
+              <label for="pwd">New Password:</label>
+              <input type="password" class="form-control" placeholder="minimum 6 char" name="pas_wrd" id="pwd" required>
+            </div>
+            <div class="form-group">
+              <label for="con_pwd">Confirm Password:</label>
+              <input type="password" class="form-control" name="con_pas_wrd" id="con_pwd" required>
+            </div>
+            <input type="submit" name="update" class="btn btn-success"value="Update">
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

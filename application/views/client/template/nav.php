@@ -47,7 +47,7 @@
            <form action="<?php echo site_url('client/change_password')?>" method="post" style="padding:20px;">
             <div class="form-group">
               <label for="pwd">New Password:</label>
-              <input type="password" class="form-control" name="pas_wrd" id="pwd" required>
+              <input type="password" class="form-control" placeholder="minimum 6 char" name="pas_wrd" id="pwd" required>
             </div>
             <div class="form-group">
               <label for="con_pwd">Confirm Password:</label>

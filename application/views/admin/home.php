@@ -1,4 +1,4 @@
-﻿<?php include 'template/head_link.php'?>;
+﻿<?php include 'template/head_link.php';?>
 
 
 <body class="nav-md">
