@@ -7,8 +7,11 @@
 [17-Jan-2016 05:44:43 America/Chicago] PHP Parse error:  syntax error, unexpected '"', expecting ',' or ';' in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 232
 [17-Jan-2016 05:44:43 America/Chicago] PHP Parse error:  syntax error, unexpected '"', expecting ',' or ';' in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 232
 [18-Jan-2016 02:11:03 America/Chicago] PHP Parse error:  syntax error, unexpected 'fa' (T_STRING) in /home4/thevoice/public_html/invoice/application/views/admin/template/nav.php on line 29
+<<<<<<< HEAD
 [18-Jan-2016 05:14:36 America/Chicago] PHP Parse error:  syntax error, unexpected 'src' (T_STRING) in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 230
 [18-Jan-2016 05:28:27 America/Chicago] PHP Fatal error:  Call to undefined method CI_Email::debugger() in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 267
 [19-Jan-2016 01:05:03 America/Chicago] PHP Parse error:  syntax error, unexpected '<' in /home4/thevoice/public_html/invoice/application/controllers/admin.php on line 289
 [19-Jan-2016 01:28:18 America/Chicago] PHP Parse error:  syntax error, unexpected '=' in /home4/thevoice/public_html/invoice/application/views/client/dashboard.php on line 186
 [19-Jan-2016 05:06:07 America/Chicago] PHP Parse error:  syntax error, unexpected '");' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home4/thevoice/public_html/invoice/application/views/client/view_bill.php on line 177
+=======
+>>>>>>> 43ce754b774e03933d8959d8ded0050cd9ce1925
