@@ -1,6 +1,6 @@
                  
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-slack"></i> <span>GNT Panel</span></a>
+                        <a href="<?php echo site_url('admin/dashboard');?>" class="site_title"><i class="fa fa-slack"></i> <span>GNT Panel</span></a>
                     </div>
                     <div class="clearfix"></div>
 <!--
@@ -26,7 +26,7 @@
                         <div class="menu_section">
                             
                             <ul class="nav side-menu">
-                                <li><a><i class="fa fa-home"></i> Dashboard</a></li>
+                                <li><a href="<?php echo site_url('admin/dashboard');?>"><i class="fa fa-home"></i> Dashboard</a></li>
                                 <li><a><i class="fa fa-briefcase"></i> My Order</a> </li>
                                 <li><a><i class="fa fa-send"></i> Invoice <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">

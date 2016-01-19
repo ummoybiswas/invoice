@@ -1,0 +1,195 @@
+<?php include 'template/head_link.php';?>
+
+
+<body class="nav-md">
+
+    <div class="container body">
+
+
+        <div class="main_container">
+
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+              
+                    <!-- sidebar menu -->
+                             <?php include 'template/nav.php';?>
+                    <!-- /sidebar menu -->
+
+                </div>
+            </div>
+
+            <!-- top navigation -->
+				  <?php include 'template/header.php';?>
+            <!-- /top navigation -->
+
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+
+                <br />
+                <div class="">
+
+                    
+
+        <div class="row">
+                        <div class="col-md-12">
+                                          <!-- Tabs -->
+                                    <div id="wizard_verticle" class="form_wizard wizard_verticle">
+                                        <ul class="list-unstyled wizard_steps">
+                                            <li>
+                                                <a href="#step-11">
+                                                    <span class="step_no">1</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#step-22">
+                                                    <span class="step_no">2</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#step-33">
+                                                    <span class="step_no">3</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#step-44">
+                                                    <span class="step_no">4</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <div id="step-11">
+											<div class="row">
+                                        <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                                            <div class="x_panel">
+                                                <div class="x_title">
+                                                    <h2>Partial Payment</h2>
+                                                    <ul class="nav navbar-right panel_toolbox" style="min-width: 20px;">
+                                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                        </li>
+
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="x_content">
+
+                                                    <div style="text-align: center; margin-bottom: 17px" id="price">
+                                                     <h2> $65456.6546</h2>
+                                                    </div>
+                                                    <div class="divider"></div>
+													<button class="btn btn-danger">Print</button>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                                            <div class="x_panel">
+                                                <div class="x_title">
+                                                    <h2>Full Payment</h2>
+                                                    <ul class="nav navbar-right panel_toolbox" style="min-width: 20px;">
+                                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                        </li>
+
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="x_content">
+
+                                                    <div style="text-align: center; margin-bottom: 17px">
+                                                      <h2>$65456.6546</h2>
+                                                    </div>
+                                                    <div class="divider"></div>
+													<button class="btn btn-danger">Print</button>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+										</div>
+                                        <div id="step-22">
+                                            <h2 class="StepTitle">Step 2 Content</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                        </div>
+                                        <div id="step-33">
+                                            <h2 class="StepTitle">Step 3 Content</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                        </div>
+                                        <div id="step-44">
+                                            <h2 class="StepTitle">Step 4 Content</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                        </div>
+                                    </div>
+ 
+  <hr />
+				<?php include 'template/footer.php';?>
+                <!-- /footer content -->
+
+            </div>
+            <!-- /page content -->
+    
+
+
+
+
+    <div id="custom_notifications" class="custom-notifications dsp_none">
+        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+        </ul>
+        <div class="clearfix"></div>
+        <div id="notif-group" class="tabbed_notifications"></div>
+    </div>
+<!-- Footer Link-->
+    <?php include 'template/footer_link.php';?>
+<!-- Footer Link End-->
+
+   
+    <!-- form wizard -->
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/wizard/jquery.smartWizard.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Smart Wizard 	
+            $('#wizard').smartWizard();
+
+            function onFinishCallback() {
+                $('#wizard').smartWizard('showMessage', 'Finish Clicked');
+                //alert('Finish Clicked');
+            }
+        });
+
+        $(document).ready(function () {
+            // Smart Wizard	
+            $('#wizard_verticle').smartWizard({
+                transitionEffect: 'slide'
+            });
+
+        });
+    </script>
+</body>
+
+</html>

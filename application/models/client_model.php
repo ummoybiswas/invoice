@@ -23,6 +23,37 @@ class Client_model extends CI_Model
 		return $ret->email;
 	}
 
+
+
+
+///////////// View Bill Details///////////////////////
+
+
+
+
+         public function get_bill_data($bill_id)
+	{
+		$this->db->select('*');
+		$this->db->from('bills');
+		$this->db->where('bill_id', $bill_id);
+		$result = $this->db->get();
+		return $result->result_array();
+	}
+
+
+  public function get_bill_data_des($bill_id)
+	{
+		$this->db->select('*');
+		$this->db->from('bill_service');
+		$this->db->where('bill_id', $bill_id);
+		$result = $this->db->get();
+		return $result->result_array();
+	}
+
+
+
+
+
 /////////////////////   Count Service For Dashboard/////////////////////
 
 	public function total_service($email)
@@ -66,7 +97,6 @@ class Client_model extends CI_Model
 		$this->db->from('bill_service');
 		$this->db->where('user_email', $email);
 		$this->db->where('services', 'Domain');
-		$this->db->where('status', '1');
 		$result = $this->db->get();
 		return $result->num_rows();
 	}
@@ -105,7 +135,6 @@ class Client_model extends CI_Model
 		$this->db->from('bill_service');
 		$this->db->where('user_email', $email);
 		$this->db->where('services', 'Hosting');
-		$this->db->where('status', '1');
 		$result = $this->db->get();
 		return $result->num_rows();
 	}
@@ -211,7 +240,7 @@ public function admin_info()
 		$this->db->select('*');
 		$this->db->from('bills');
 		$this->db->join('bill_service', 'bill_service.bill_id = bills.bill_id');
-		$this->db->where('bills.user_email', $email);
+ 		$this->db->where('bills.user_email', $email);
 		$this->db->where('bill_service.services', 'Domain');
 		$result = $this->db->get();
 		return $result->result();

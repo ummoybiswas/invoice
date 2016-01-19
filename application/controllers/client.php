@@ -49,6 +49,31 @@ class Client extends CI_Controller {
 		$this->parser->parse('client/dashboard',$data);
 	}
 
+
+
+    public function view_bill_details()
+    {
+
+$this->load->view('client/view_payment');
+
+        // $bill_id = $this->uri->segment(3);
+        // $data['invoice_id']=$bill_id;
+        // $user_name= $this->session->userdata('username');
+        // $get_email=$this->client_model->get_email_id($user_name);
+          
+        // $data['pay_to']=$this->client_model->admin_info();
+        // $data['invoice_to']=$this->client_model->client_info($user_name);
+
+
+       
+        //   // echo $bill_id;
+
+        // $data['bill_data']=$this->client_model->get_bill_data($bill_id);
+        // $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
+        // $this->parser->parse('client/view_bill',$data);
+    }
+
+
 	public function account_info()
 	{
 		$user_name= $this->session->userdata('username');

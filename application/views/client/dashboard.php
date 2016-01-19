@@ -30,7 +30,7 @@
                 <div class="">
 
                     <div class="row top_tiles">
-                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <a href="<?php echo site_url('client/service_list');?>"><div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats">
 
                                 <div class="icon"><i class="fa fa-puzzle-piece"></i>
@@ -40,8 +40,8 @@
                                 <h3>Services</h3>
                                 <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
                             </div>
-                        </div>
-                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        </div></a>
+                        <a href="<?php echo site_url('client/domain_list');?>"><div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats">
                                 <div class="icon"><i class="fa fa-globe"></i>
                                 </div>
@@ -49,7 +49,7 @@
                                 <h3>Domains</h3>
                                 <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
                             </div>
-                        </div>
+                        </div></a>
 
                         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats">
@@ -153,6 +153,7 @@
                                                             <th>Dis. Amount</th>
                                                             <th>Bill to Pay</th>
                                                             <th>Status</th>
+                                                            <th>Action</th>
                                                         </tr>
                                                     </thead\>
                                                         <?php ?>
@@ -182,7 +183,7 @@
                                                                     <span class="label label-success">Paid</span>
                                                                     <?php }?>
                                                             </td>
-
+                                                            <td><a href="<?php echo site_url('client/view_bill_details');?>/<?=$invoice['bill_id']?>"><button  type="button" class="btn-md btn-success" style="border:none;">View</button></a></td>
 
                                                         </tr> 
                                                        <?php } ?>
