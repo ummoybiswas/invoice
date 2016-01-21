@@ -30,14 +30,15 @@
                 <div class="">
 
                     
-
+            
         <div class="row">
+                        <input type="hidden" id="invoice_id" value="<?=$invoice_id?>">
                         <div class="col-md-12">
                                           <!-- Tabs -->
                                     <div id="wizard_verticle" class="form_wizard wizard_verticle">
                                         <ul class="list-unstyled wizard_steps">
                                             <li>
-                                                <a href="#step-11">
+                                                <a href="#step-11" >
                                                     <span class="step_no">1</span>
                                                 </a>
                                             </li>
@@ -60,9 +61,12 @@
 
                                         <div id="step-11">
 											<div class="row">
+                                            <?php if($partial_true==1){?>
                                         <div class="col-md-3 col-xs-12 widget widget_tally_box">
                                             <div class="x_panel">
                                                 <div class="x_title">
+
+                                                {bill_partial_amt}
                                                     <h2>Partial Payment</h2>
                                                     <ul class="nav navbar-right panel_toolbox" style="min-width: 20px;">
                                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -74,19 +78,26 @@
                                                 <div class="x_content">
 
                                                     <div style="text-align: center; margin-bottom: 17px" id="price">
-                                                     <h2> $65456.6546</h2>
+                                                     <h2>${partial_amount}</h2>
                                                     </div>
                                                     <div class="divider"></div>
-													<button class="btn btn-danger">Print</button>
-                                                   
+													<div class="radio">
+                                                    <label class="label1" onclick="bill_amount('partial','<?php echo $invoice_id;?>')">
+                                                        <div style="position: relative;" class="iradio_flat-green checked">
+                                                        <input id="partial_label" style="position: absolute; opacity: 0;" class="flat" name="iCheck" value="partial" type="radio">
+                                                        <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div> Partial Payment
+                                                    </label>
+                                                </div>
+                                                   {/bill_partial_amt}
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div><?php } ?>
 
 
                                         <div class="col-md-3 col-xs-12 widget widget_tally_box">
                                             <div class="x_panel">
                                                 <div class="x_title">
+                                                {bill_data}
                                                     <h2>Full Payment</h2>
                                                     <ul class="nav navbar-right panel_toolbox" style="min-width: 20px;">
                                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -98,11 +109,17 @@
                                                 <div class="x_content">
 
                                                     <div style="text-align: center; margin-bottom: 17px">
-                                                      <h2>$65456.6546</h2>
+                                                      <h2>${bill_due_amount}</h2>
                                                     </div>
                                                     <div class="divider"></div>
-													<button class="btn btn-danger">Print</button>
-                                                   
+													<div class="radio">
+                                                    <label class="label2" onclick="bill_amount('full','<?php echo $invoice_id;?>')">
+                                                        <div style="position: relative;" class="iradio_flat-green checked">
+                                                        <input id="full_label" style="position: absolute; opacity: 0;" class="flat" name="iCheck" value="full"  type="radio">
+                                                        <ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div> Full Payment
+                                                    </label>
+                                                </div>
+                                                   {/bill_data}
                                                 </div>
                                             </div>
                                         </div>
@@ -148,8 +165,9 @@
                                     </div>
  
   <hr />
+  <div style="position:">
 				<?php include 'template/footer.php';?>
-                <!-- /footer content -->
+       </div>         <!-- /footer content -->
 
             </div>
             <!-- /page content -->
@@ -165,7 +183,9 @@
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
 <!-- Footer Link-->
+    
     <?php include 'template/footer_link.php';?>
+    
 <!-- Footer Link End-->
 
    
@@ -189,6 +209,11 @@
             });
 
         });
+    </script>
+
+    <script>
+    
+
     </script>
 </body>
 

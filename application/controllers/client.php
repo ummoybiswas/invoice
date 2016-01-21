@@ -53,8 +53,27 @@ class Client extends CI_Controller {
 
     public function view_bill_details()
     {
+    	$bill_id = $this->uri->segment(3);
+    	$data['invoice_id']=$bill_id;
+    	//$data['bill_status']=$this->bill_model->get_payment_status($bill_id);
+    	//print_r($data['bill_status']);
 
-$this->load->view('client/view_payment');
+        $data['bill_data']=$this->client_model->get_bill_data($bill_id);
+        if($data['bill_data'][0]['bill_allow_partial'])
+        {
+        	//echo "1";
+        	$data['partial_true']=1;
+        	 $data['bill_partial_amt']=$this->bill_model->get_partial_amt($bill_id);
+        	 $this->parser->parse('client/view_payment',$data);
+        }
+        else
+        {
+        	//echo "0";
+        	$data['partial_true']=0;
+        	$this->parser->parse('client/view_payment',$data);
+        }
+
+        //  $this->parser->parse('client/view_payment',$data);
 
         // $bill_id = $this->uri->segment(3);
         // $data['invoice_id']=$bill_id;
@@ -72,8 +91,33 @@ $this->load->view('client/view_payment');
         // $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
         // $this->parser->parse('client/view_bill',$data);
     }
+ 	public function view_bill()
+	{
 
-
+		$bill_id=$this->input->post('bill_id');
+		$bill_amt=$this->input->post('bill_amt');
+		$data['invoice_id']=$bill_id;
+		$user_name= $this->session->userdata('username');
+        $get_email=$this->client_model->get_email_id($user_name);
+          
+        $data['pay_to']=$this->client_model->admin_info();
+        $data['invoice_to']=$this->client_model->client_info($user_name);
+		if($bill_amt=="full")
+		{
+			$data['bill_data']=$this->client_model->get_bill_data($bill_id);
+			$data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
+			$data["partial_true"]=0;
+			$this->parser->parse('client/view_bill',$data);
+		}
+		else
+		{
+			$data['bill_data']=$this->client_model->get_bill_partial_data($bill_id);
+			$data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
+			$data["partial_true"]=1;
+			$this->parser->parse('client/view_bill',$data);	
+		}
+		
+	}
 	public function account_info()
 	{
 		$user_name= $this->session->userdata('username');
@@ -93,15 +137,21 @@ $this->load->view('client/view_payment');
 	}
 
 
+
+	public function my_invoice()
+	{
+		$user_name= $this->session->userdata('username');
+		$get_email=$this->client_model->get_email_id($user_name);
+		$data['services_list']=$this->client_model->service_info($get_email);
+
+		$this->load->view('client/view_my_invoice',$data);
+	}
+
 	public function service_list()
 	{
 		$user_name= $this->session->userdata('username');
 		$get_email=$this->client_model->get_email_id($user_name);
-
 		$data['services_list']=$this->client_model->service_info($get_email);
-		//print_r($data);
-		//echo br(2);
-
 		$this->load->view('client/view_services',$data);
 	}
 	
@@ -141,27 +191,24 @@ $this->load->view('client/view_payment');
 			}
 		}
 	}
-	public function view_bill()
-	{
-		//$data['bills']=$this->bill_model->view_bill($bil_id);
-		$this->load->view('admin/view_bill');
-		//echo "<pre>";
-		//print_r($data['bills']);
-	}
+	
 	public function charge()
 	{ 
 		try {
 		require_once('vendor/autoload.php');
 		//require_once('vendor/stripe/stripe-php/lib/Stripe.php');
-		  \Stripe\Stripe::setApiKey("sk_live_TUg7TuDFTWUysfr32yiqL2Cv"); //Replace with your Secret Key
-		 
+		  \Stripe\Stripe::setApiKey("sk_test_EHJ1IfSgNOROsyRkAskJnJmF"); //Replace with your Secret Key
+		      $item_name=$this->input->post("item_name");
+			  $item_price=$this->input->post("item_price");
 			  $charge = \Stripe\Charge::create(array(
-			  "amount" => 10000,
+			  "amount" => $item_price*100,
 			  "currency" => "usd",
 			  "card" => $_POST['stripeToken'],
-			  "description" => "Charge for Facebook Login code."
+			  "description" => $item_name
 			));
+			echo "<pre>";
 			print_r($charge);
+			echo "</pre>";
 			//send the file, this line will be reached if no error was thrown above
 			echo "<h1>Your payment has been completed. We will send you the Facebook Login code in a minute.</h1>";
 			//you can send the file to this email:
@@ -192,10 +239,7 @@ $this->load->view('client/view_payment');
 			// Something else happened, completely unrelated to Stripe
 }
 	}
-	public function paymentwithstripe()
-	{
-		$this->load->view('client/stripe');
-	}
+
 	
 }
 

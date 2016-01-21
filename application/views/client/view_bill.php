@@ -39,7 +39,7 @@ p{
                         </div>
 
                         <div class="col-sm-4">
-                            <div class="invoice-status text-right" style="margin: 75px 0 0;font-size:30px;">
+                            <div class="invoice-status text-right" style="margin: 35px 0 0;font-size:30px;">
                                 <span class="unpaid">Unpaid</span>
                             </div>
                         </div>
@@ -47,7 +47,7 @@ p{
 
                     <div class="row">
                         <div class="col-md-8">
-                            <h3>Invoice <?php echo "#".$invoice_id;?></h3>
+                            <h3>Invoice <?php echo "#<span id='invoice_id'>".$invoice_id."</span>";?></h3>
                         </div>    
                     
                         <div class="col-md-4">
@@ -118,6 +118,9 @@ p{
                                 <td>Sub Total</td>
                                 <td class="text-right">${bill_total_amount}</td>
                             </tr>
+                            <tr class="active" id="charge">
+                                
+                            </tr>
                                                                       
                          <tr class="active">
                             <td>Credit</td>
@@ -127,6 +130,18 @@ p{
                             <td><h4>Total</h4></td>
                             <td class="text-right"><h4>${bill_due_amount}</h4></td>
                         </tr>
+
+                        <?php if($partial_true){?><tr>
+                            <td><h4>Amount to Pay</h4></td>
+                            <?php $encode=base64_encode($bill_data[0]['partial_amount']);?>
+                            <input type="hidden" id="amt" value="<?=$encode?>">
+                            <td class="text-right"><h4>$<span id="amount">{partial_amount}</span></h4></td>
+                        </tr><?php } else { ?><tr>
+                            <td><h4>Amount to Pay</h4></td>
+                            <?php $encode=base64_encode($bill_data[0]['bill_due_amount']);?>
+                            <input type="hidden" id="amt" value="<?=$encode?>">
+                            <td class="text-right"><h4>$<span id="amount">{bill_due_amount}</span></h4></td>
+                            </tr><?php } ?>
                         {/bill_data}
                     </tbody>
                 </table>
@@ -158,9 +173,9 @@ p{
     </div>
 </div>
 <p class="text-center hidden-print">
-<a class="btn btn-link" href="clientarea.php">&laquo; Back to Client Area</a>
+<a class="btn btn-link" href="<?php echo base_url();?>index.php/client/dashboard">&laquo; Back to Client Area</a>
 <a href="javascript:window.print()" class="btn btn-link"><i class="fa fa-print"></i> Print</a>
-<a href="dl.php?type=i&amp;id=14324" class="btn btn-link"><i class="fa fa-arrow-down"></i> Download</a>
+<a href="#" class="btn btn-link"><i class="fa fa-arrow-down"></i> Download</a>
 </p>
 </div>
 
@@ -173,30 +188,75 @@ gateway=$('#gateway').val();
 str="";
 if(gateway=="paypal")
 {
-    alert("<?php echo $invoice_id; ?>");
-   str='<p><img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></p>';
+    //alert("<?php echo $invoice_id; ?>");
+    amount=0;
+    amount=<?php echo base64_decode($encode);?>;
+    //alert(amount);
+    var amount=parseFloat(amount).toFixed(2);
+    var charge=parseFloat((amount*3.99)/100+0.30).toFixed(2);
+    amount = parseFloat(amount)+parseFloat(charge);
+    
+    $("#amount").html(amount);
+    
+    str='<td>Payment Gateway Charge ($0.30+3.99%)</td><td class="text-right">$'+charge+'</td>';
+    $("#charge").html(str);
+   
+   str='<p><form action="<?php echo base_url();?>/index.php/payments/do_purchase" method="post"><input type="hidden" name="in" value="<?php echo $invoice_id;?>"><input type="hidden" name="item_name" value="Invoice#<?php echo $invoice_id;?>"><input type="hidden" name="item_price" value="'+amount+'"><button><img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></button></form></p>';
    $('.payment-btn-container').html(str);
 }
-if(gateway=="card")
+else if(gateway=="card")
 {
-    str = '<form action="<?php echo base_url();?>index.php/admin/charge" method="POST">';
-   // str += '<script';
+    amount=0;
+    amount=<?php echo base64_decode($encode);?>;
+    var amount=parseFloat(amount).toFixed(2);
+    var charge=parseFloat((amount*3.99)/100+0.30).toFixed(2);
+    amount = parseFloat(amount)+parseFloat(charge);
+    
+    $("#amount").html(amount);
+    
+    str='<td>Payment Gateway Charge ($0.30+3.99%)</td><td class="text-right">$'+charge+'</td>';
+    $("#charge").html(str);
+
+    str = '<form action="<?php echo base_url();?>index.php/client/charge" method="POST">';
+    str +='<input type="hidden" name="item_name" value="Invoice#<?php echo $invoice_id;?>"><input type="hidden" name="item_price" value="'+amount+'">';
     str += '<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"';
-    str += 'data-key="pk_live_DdTUjGTT8gTtBITCDC13OcEC"' // your publishable keys;
+    str += 'data-key="pk_test_ADMkuFVTjCvVh3RmmJhDrxbd"' // your publishable keys;
     str += 'data-image="<?php echo base_url();?>assets/img/logo.png"' // your company Logo;
-    str += 'data-name="GeeksnTechnology.com"';
-    str+='data-description="Download Script ($100.00)"';
-    str+='data-amount="10000">';
+    str += 'data-name="Invoice#<?php echo $invoice_id;?>"';
+    str+='data-description="Amount to Pay: ($'+amount+')"';
+    str+='data-amount="'+(amount*100)+'">';
     str += "</scr"+"ipt>";
     str+='</form>' ;
 $('.payment-btn-container').html(str);
 //alert(str);
 }
-if(gateway=="banktransfer")
+else if(gateway=="banktransfer")
 {
-    str="<p>Please check below link for Bank Account number and bKash number.<br />http://clients.hostpair.com/knowledgebase.php?action=displayarticle&amp;id=171<br />Reference Number: 14324</p>";
+    amount=0;
+    amount=<?php echo base64_decode($encode);?>;
+    //alert(amount);
+    var amount=parseFloat(amount).toFixed(2);
+    var charge=parseFloat((amount*2)/100).toFixed(2);
+    amount = parseFloat(amount)+parseFloat(charge);
+    
+    $("#amount").html(amount);
+    
+    str='<td>BKash Charge (2%)</td><td class="text-right">$'+charge+'</td>';
+    $("#charge").html(str);
+
+    str="<p>Please check below link for Bank Account number and bKash number.<br />http://clients.hostpair.com/knowledgebase.php?action=displayarticle&amp;id=171<br />Reference Number: <?php echo $invoice_id;?></p>";
     $('.payment-btn-container').html(str);
 }
+else
+{
+    amount=<?php echo base64_decode($encode);?>;
+    //alert(amount);
+    var amount=parseFloat(amount).toFixed(2);
+   $("#amount").html(amount); 
+   $("#charge").html("");
+   $('.payment-btn-container').html("");
+}
+
 }
 </script>
 </body>

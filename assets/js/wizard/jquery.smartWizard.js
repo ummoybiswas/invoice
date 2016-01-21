@@ -10,7 +10,23 @@
  * http://www.techlaboratory.net
  * http://tech-laboratory.blogspot.com
  */
+var bill_amt="";
+var invoice_id="";
 
+function bill_amount(bill_amt,invoice_id)
+{    
+    $(".next").removeAttr("disabled");  
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost/invoice/index.php/client/view_bill',
+        data: { bill_id:invoice_id,bill_amt:bill_amt},
+        success:function(result){
+            //alert(result);
+            $("#step-22").html(result);
+            //$(".next").attr("disabled","true");
+        }
+    });
+}
 function SmartWizard(target, options) {
     this.target       = target;
     this.options      = options;
@@ -21,7 +37,7 @@ function SmartWizard(target, options) {
     this.elmStepContainer = $('<div></div>').addClass("stepContainer");
     this.loader = $('<div>Loading</div>').addClass("loader");
     this.buttons = {
-        next : $('<a>'+options.labelNext+'</a>').attr("href","#").addClass("btn btn-success"),
+        next : $('<a>'+options.labelNext+'</a>').attr("href","#").attr("disabled","true").addClass("btn btn-success next"),
         previous : $('<a>'+options.labelPrevious+'</a>').attr("href","#").addClass("btn btn-primary"),
         finish  : $('<a>'+options.labelFinish+'</a>').attr("href","#").addClass("btn btn-default")
     };
@@ -83,12 +99,38 @@ function SmartWizard(target, options) {
         $this.target.append(elmActionBar);
         this.contentWidth = $this.elmStepContainer.width();
 
+        var cnt=1;
+        $(".label1").click(function(){
+            bill_amt=$("#partial_label").val();
+         });
+        $(".label2").click(function(){
+            bill_amt=$("#full_label").val();
+         });
         $($this.buttons.next).click(function() {
             $this.goForward();
+            invoice_id=$("#invoice_id").val();
+
+            if(cnt==1)
+            {
+                 //alert(bill_amt);
+                 $.ajax({
+                     type: 'POST',
+                    url: 'http://localhost/invoice/index.php/client/view_bill',
+                    data: { bill_id:invoice_id,bill_amt:bill_amt},
+                    success:function(result){
+                        //alert(result);
+                       $("#step-22").html(result);
+                        $(".next").attr("disabled","true");
+                    }
+                });
+                cnt++;
+            }
+            
             return false;
         });
         $($this.buttons.previous).click(function() {
             $this.goBackward();
+            cnt--;
             return false;
         });
         $($this.buttons.finish).click(function() {
@@ -112,9 +154,14 @@ function SmartWizard(target, options) {
             if($this.steps.index(this) == $this.curStepIdx){
                 return false;
             }
+            //alert('amer_alert1_disabled');
             var nextStepIdx = $this.steps.index(this);
             var isDone = $this.steps.eq(nextStepIdx).attr("isDone") - 0;
             if(isDone == 1){
+                 if(nextStepIdx==1)
+                 {
+                    $(".next").attr("disabled","true");
+                 }
                 _loadContent($this, nextStepIdx);
             }
             return false;
@@ -342,10 +389,12 @@ function SmartWizard(target, options) {
         var stepIdx = stepNum - 1;
         if (stepIdx >= 0 && stepIdx < this.steps.length) {
             _loadContent(this, stepIdx);
+            //alert("inside if");
         }
     };
     SmartWizard.prototype.enableStep = function(stepNum) {
         var stepIdx = stepNum - 1;
+        //alert("enable step");
         if (stepIdx == this.curStepIdx || stepIdx < 0 || stepIdx >= this.steps.length) {
             return false;
         }

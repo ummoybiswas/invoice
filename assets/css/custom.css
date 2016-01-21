@@ -370,7 +370,7 @@ dark,
 
 body {
     color: #73879C;
-    background: #2A3F54;
+    background: #2A3F54 !important;
     /*#ECF0F1; #FCFCFC*/
     
     font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
@@ -3730,7 +3730,7 @@ ul.social li {
 /**-------**/
 
 .wizard_verticle .stepContainer {
-    width: 80%;
+    width: 90%;
     float: left;
     padding: 0 10px;
 }
@@ -3775,7 +3775,7 @@ ul.social li {
 /**-------**/
 
 .wizard_verticle .wizard_content {
-    width: 80%;
+    width: 95%;
     float: left;
     padding-left: 20px;
 }
@@ -3784,7 +3784,7 @@ ul.social li {
     display: table;
     list-style: none;
     position: relative;
-    width: 20%;
+    width: 10%;
     float: left;
     margin: 0 0 20px;
 }

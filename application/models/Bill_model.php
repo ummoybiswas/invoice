@@ -12,6 +12,17 @@ class Bill_model extends CI_Model
 		return $result->result();
 	}
 		
+
+
+	public function get_partial_amt($bill_id)
+	{
+		$this->db->select('partial_amount');
+		$this->db->from('partial');
+		$this->db->where('bill_id', $bill_id);
+		$result = $this->db->get();
+		return $result->result();
+
+	}
 	public function create_new_bill($data1,$data2)
 	{
 		$this->db->insert('bills', $data1);
