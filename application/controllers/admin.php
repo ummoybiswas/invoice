@@ -115,6 +115,7 @@ class Admin extends CI_Controller {
 		);
 
 		$this->admin_model->insert_new_client_all_info($data1,$data2);
+		
 		//$this->admin_model->insert_new_client_login_info($data2);
 		//echo $first_name." ".$last_name." ".$company_name." ".$email." ".$address;
 		//echo " ".$address2." ".$city." ".$state." ".$zip." ".$country." ".$phone;

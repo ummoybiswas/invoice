@@ -201,7 +201,7 @@ if(gateway=="paypal")
     str='<td>Payment Gateway Charge ($0.30+3.99%)</td><td class="text-right">$'+charge+'</td>';
     $("#charge").html(str);
    
-   str='<p><form action="<?php echo base_url();?>/index.php/payments/do_purchase" method="post"><input type="hidden" name="in" value="<?php echo $invoice_id;?>"><input type="hidden" name="item_name" value="Invoice#<?php echo $invoice_id;?>"><input type="hidden" name="item_price" value="'+amount+'"><button><img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></button></form></p>';
+   str='<p><form action="<?php echo base_url();?>/index.php/payments/do_purchase" method="post"><input type="hidden" name="in" value="<?php echo $invoice_id;?>"><input type="hidden" name="item_name" value="Invoice#<?php echo $invoice_id;?>"><input type="hidden" name="item_price" value="'+(parseFloat(amount)-parseFloat(charge)).toFixed(2)+'"><input type="hidden" name="charge_name" value="Payment Gateway Charge"><input type="hidden" name="charge_price" value="'+charge+'"><button><img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></button></form></p>';
    $('.payment-btn-container').html(str);
 }
 else if(gateway=="card")

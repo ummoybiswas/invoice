@@ -11,6 +11,8 @@ class Payments extends CI_Controller{
 
 		$item_name=$this->input->post("item_name");
 		$item_price=$this->input->post("item_price");
+		$charge_name=$this->input->post("charge_name");
+		$charge_price=$this->input->post("charge_price");
 		$invoice=$this->input->post("in");
 		$config['business'] 			= 'geeksntechnology@gmail.com';
 		$config['cpp_header_image'] 	= ''; //Image header url [750 pixels wide by 90 pixels high]
@@ -24,21 +26,33 @@ class Payments extends CI_Controller{
 		
 		#$this->paypal->add(<name>,<price>,<quantity>[Default 1],<code>[Optional]);
 		$this->paypal->add($item_name,$item_price,1); //First item
-	
+		$this->paypal->add($charge_name,$charge_price,1);
 		$this->paypal->pay(); //Proccess the payment
 
 	}
 
 	public function notify_payment(){
-
+		
+		$this->load->model('client_model');
+		$this->load->model('bill_model');
 		$received_data = $this->input->post();
-        
+        $user_name= $this->session->userdata('username');
+		$get_email=$this->client_model->get_email_id($user_name);
+		$get_balance=$this->bill_model->get_balance($received_data["invoice"],$get_email);
         $data=array(
         	"transaction_id"=>$received_data["txn_id"],
-        	"payer_id"=>$received_data["payer_id"],
+        	"gateway"=>"paypal",
+        	'invoice'=>$received_data["invoice"],
+        	"user_email"=>$get_email,
+        	"credit"=>$received_data["mc_gross_1"],
+        	"vat"=>$received_data['mc_gross_2'];
+        	"balance"=>$get_balance['balance']-$received_data["mc_gross_1"],
+        	"transaction_date_time"=>$received_data["payment_date"]
         	
         );
-		//echo "<pre>".$received_data."</pre>";
+		echo "<pre>";
+		print_r($get_balance);
+		echo "</pre>";
 
 	}
 

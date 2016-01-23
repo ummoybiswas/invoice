@@ -9,10 +9,20 @@ class Bill_model extends CI_Model
 		//$this->db->join('client', 'client.client_id = bills.client_id');
 		//$this->db->order_by("bills.due_date","desc");
 		$result = $this->db->get();
-		return $result->result();
+		return $result->result_array();
 	}
 		
+	public function insert_transaction()
+	{
+		
+	}
 
+	public function get_balance($bill_id,$user_email)
+	{
+		$result=$this->db->query('SELECT * FROM transaction Where id= (select max(id) from transaction WHERE bill_id="'.$bill_id.'" )');
+		return $result->result();
+
+	}
 
 	public function get_partial_amt($bill_id)
 	{
