@@ -71,8 +71,79 @@ class Admin extends CI_Controller {
 	public function create_new_client()
 	{
 		
-		//$data["user_info"]=$this->admin_model->get_admin_info();
 		$this->load->view('admin/view_new_client');
+	}
+
+	public function insert_new_client_data()
+	{
+		$first_name=$this->input->post('first_name');
+		$last_name=$this->input->post('last_name');
+		$company_name=$this->input->post('company_name');
+		$email=$this->input->post('email');
+
+		$address=$this->input->post('address');
+		$address2=$this->input->post('address2');
+		$city=$this->input->post('city');
+		$state=$this->input->post('state');
+		$zip=$this->input->post('zip');
+		$country=$this->input->post('country');
+		$phone=$this->input->post('phone');
+
+		$user_name=$this->input->post('uname');
+		$password=$this->input->post('pass');
+
+
+		$data1=array(
+		'user_name'=>$user_name,
+		'first_name'=>$first_name,
+		'last_name'=>$last_name,
+		'company_name'=>$company_name,
+		'email'=>$email,	
+		'address'=>$address,
+		'address2'=>$address2,
+		'city'=>$city,
+		'state'=>$state,
+		'post_code'=>$zip,
+		'country'=>$country,
+		'phone_no'=>$phone
+		);
+
+		$data2=array(
+		'username'=>$user_name,
+		'password'=>$password,
+		'type'=>'0'
+		);
+
+		$this->admin_model->insert_new_client_all_info($data1,$data2);
+		//$this->admin_model->insert_new_client_login_info($data2);
+		//echo $first_name." ".$last_name." ".$company_name." ".$email." ".$address;
+		//echo " ".$address2." ".$city." ".$state." ".$zip." ".$country." ".$phone;
+		//echo " ".$user_name." ".$password;
+
+
+
+	}
+
+	public function check_email_is_unique()
+	{
+		
+		$email=$this->input->post('email');
+		$num_email=$this->admin_model->get_unique_email($email);
+		//echo $num_email;
+		if($num_email==1){echo 'Email is already exists';}
+		//$this->load->view('admin/view_check_message',$data);
+
+	}
+
+
+	public function check_uname_is_unique()
+	{
+		
+		$uname=$this->input->post('uname');
+		$num_uname=$this->admin_model->get_unique_uname($uname);
+		//echo $num_email;
+		if($num_uname==1){echo 'Username is already exists';}
+		//$this->load->view('admin/view_check_message',$data);
 
 	}
 	public function update_profile_info()

@@ -18,8 +18,34 @@ class Admin_model extends CI_Model
 	}
 
 
+	public function get_unique_email($email)
+	{
 
-      public function change_password($password)
+		$this->db->select('email');
+		$this->db->from('client');
+		$this->db->where('email', $email);
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
+
+	public function insert_new_client_all_info($data1,$data2)
+	{
+		$this->db->insert('client', $data1);
+		$this->db->insert('user', $data2);
+	}
+	public function get_unique_uname($uname)
+	{
+
+		$this->db->select('user_name');
+		$this->db->from('client');
+		$this->db->where('user_name', $uname);
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+    public function change_password($password)
 	{
 
 		 $newdata = array(
