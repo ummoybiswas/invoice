@@ -21,34 +21,29 @@ class Send_email_model extends CI_Model
 			return $result->result_array();
 		}
 
-<<<<<<< HEAD
-              public function get_service_name($bill_id)
-                {
-=======
-public function get_service_name($bill_id)
-{
->>>>>>> 43ce754b774e03933d8959d8ded0050cd9ce1925
-                         $this->db->select('*');
+
+      
+	public function get_service_name($bill_id)
+		{
+            $this->db->select('*');
 			$this->db->from('bill_service');
 			$this->db->where('bill_id', $bill_id);
 			$result = $this->db->get();
 			return $result->result_array();
+        }
 
-<<<<<<< HEAD
-             }
-
-           public function get_bill_data($bill_id)
-         {
-                         $this->db->select('*');
+    public function get_bill_data($bill_id)
+        {
+        	$this->db->select('*');
 			$this->db->from('bills');
 			$this->db->where('bill_id', $bill_id);
 			$result = $this->db->get();
 			return $result->result_array();
 
-          }
-=======
-}
->>>>>>> 43ce754b774e03933d8959d8ded0050cd9ce1925
+        }
+
+
+
 
 	
 }

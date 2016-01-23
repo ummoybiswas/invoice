@@ -27,7 +27,7 @@
                             
                             <ul class="nav side-menu">
                                 <li><a href="<?php echo site_url('admin/dashboard');?>"><i class="fa fa-home"></i> Dashboard</a></li>
-                                <li><a><i class="fa fa-briefcase"></i> My Order</a> </li>
+                                <li><a href="<?php echo site_url('admin/create_new_client');?>"><i class="fa fa-user"></i>Create New Client</a> </li>
                                 <li><a><i class="fa fa-send"></i> Invoice <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="<?php echo site_url('admin/create_invoice');?>">Create Invoice</a></li>

@@ -64,10 +64,17 @@ class Admin extends CI_Controller {
 		
 		$data["user_info"]=$this->admin_model->get_admin_info();
 		$this->parser->parse('admin/view_admin_profile',$data);
-		//print_r($data["invoice_no"]);
 
 	}
 
+
+	public function create_new_client()
+	{
+		
+		//$data["user_info"]=$this->admin_model->get_admin_info();
+		$this->load->view('admin/view_new_client');
+
+	}
 	public function update_profile_info()
 	{
 		$address=$this->input->post('address');
@@ -193,9 +200,7 @@ class Admin extends CI_Controller {
 
 
 		//Sending Email Email ................
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
            $bill_id=$this->input->post('invoice_number');
            $client_email=$this->input->post('user_email');
 		   $f_name="";
@@ -224,8 +229,7 @@ class Admin extends CI_Controller {
                 $service .="<p><b>Billing Cycle: </b>".$s['bill_cycle']."</p>";
                 $service .="<p><b>Total Amount: </b>".$s['total']."</p><br/>";
             }
-=======
->>>>>>> 43ce754b774e03933d8959d8ded0050cd9ce1925
+
                        $bill_id=$this->input->post('invoice_number');
                        $client_email=$this->input->post('user_email');
 			$f_name="";
@@ -254,16 +258,15 @@ $o_number="";
                             $service .="<p><b>Billing Cycle: </b>".$s['bill_cycle']."</p>";
                             $service .="<p><b>Total Amount: </b>".$s['total']."</p><br/>";
                         }
-<<<<<<< HEAD
+
 			$email_address = $client_email;	
 			$messag = '<html><body>';
 			$messag.= '<img src="http://www.geeksntechnology.com/img/slider/logo.png" alt="logo" />';
-=======
->>>>>>> efae72f3b6e98c77f34692f37310e6f6c4e9a62e
+
 			$email_address = $client_email;	
 			$messag = '<html><body>';
 			$messag.= '<img src="http://thevoice24.com/invoice/assets/images/logo.png" alt="logo" />';
->>>>>>> 43ce754b774e03933d8959d8ded0050cd9ce1925
+
 			$messag.= '<p>Dear '.$f_name.',</p>';
 			$messag.= '<p>We have already processed your order. The details of the order are given below:</p>';
 			$messag.= '<p><b>Order Number: </b>'.$o_number.'</p>';
@@ -296,16 +299,16 @@ $o_number="";
 				$base=$this->config->base_url();
 				$this->email->subject('Order Confirmation');
 				$this->email->message($messag);
-<<<<<<< HEAD
+
                                 $this->email->set_mailtype('html');
-=======
+
                 $this->email->set_mailtype('html');
->>>>>>> 43ce754b774e03933d8959d8ded0050cd9ce1925
+
 				$this->email->send();
                                 echo "<pre>";
 				print_r($services);
 
-<<<<<<< HEAD
+
 
 //second mail
 
@@ -374,12 +377,6 @@ $gen_date="";
 				//print_r($services);
 
 
-
-
-
-
-=======
->>>>>>> 43ce754b774e03933d8959d8ded0050cd9ce1925
 //Sending Email Email End................
 
 	}

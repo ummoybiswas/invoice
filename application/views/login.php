@@ -1,6 +1,6 @@
 ﻿<?php include 'template/head_link.php';?>
 
-<body style="background:#F7F7F7;">
+<body style="background:#F7F7F7 !important;">
     
     <div class="">
         <a class="hiddenanchor" id="toregister"></a>
