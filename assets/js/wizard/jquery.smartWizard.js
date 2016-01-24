@@ -14,7 +14,8 @@ var bill_amt="";
 var invoice_id="";
 
 function bill_amount(bill_amt,invoice_id)
-{    
+{   
+    document.cookie="invoice_id="+invoice_id; 
     $(".next").removeAttr("disabled");  
     $.ajax({
         type: 'POST',
@@ -27,6 +28,16 @@ function bill_amount(bill_amt,invoice_id)
         }
     });
 }
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+} 
 function SmartWizard(target, options) {
     this.target       = target;
     this.options      = options;
@@ -109,10 +120,12 @@ function SmartWizard(target, options) {
         $($this.buttons.next).click(function() {
             $this.goForward();
             invoice_id=$("#invoice_id").val();
-
+          //  alert('m');
             if(cnt==1)
             {
                  //alert(bill_amt);
+                 //document.cookie="cnt="+cnt; 
+                 document.cookie="invoice_id="+invoice_id; 
                  $.ajax({
                      type: 'POST',
                     url: 'http://localhost/invoice/index.php/client/view_bill',
@@ -124,7 +137,9 @@ function SmartWizard(target, options) {
                     }
                 });
                 cnt++;
+                
             }
+
             
             return false;
         });
@@ -160,7 +175,27 @@ function SmartWizard(target, options) {
             if(isDone == 1){
                  if(nextStepIdx==1)
                  {
+                    alert("hiii step 2!!!");
                     $(".next").attr("disabled","true");
+                 }
+                 if(nextStepIdx==3)
+                 {
+                    alert("hiii step 4!!!");
+                    //$(".next").attr("disabled","true");
+                    var invoice_id=getCookie("invoice_id");
+                    if (invoice_id!="") {
+                          $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost/invoice/index.php/client/view_bill_final',
+                            data: { bill_id:invoice_id,bill_amt:bill_amt},
+                            success:function(result){
+                                //alert(result);
+                                $("#step-44").html(result);
+                                //$(".next").attr("disabled","true");
+                            }
+                        });
+                    }  
+                
                  }
                 _loadContent($this, nextStepIdx);
             }
@@ -370,6 +405,23 @@ function SmartWizard(target, options) {
                 return false;
             }
             nextStepIdx = 0;
+        }
+        if(nextStepIdx==3)
+        {
+            var invoice_id=getCookie("invoice_id");
+                    if (invoice_id!="") {
+                          $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost/invoice/index.php/client/view_bill_final',
+                            data: { bill_id:invoice_id,bill_amt:bill_amt},
+                            success:function(result){
+                                //alert(result);
+                                $("#step-44").html(result);
+                                //$(".next").attr("disabled","true");
+                            }
+                        });
+                    }  
+                
         }
         _loadContent(this, nextStepIdx);
     };

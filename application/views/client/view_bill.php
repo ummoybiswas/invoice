@@ -162,8 +162,8 @@ p{
                                 <td colspan="4">No Related Transactions Found</td>
                             </tr>
                                                         <tr>
-                                <td colspan="3">Balance</td>
-                                <td class="text-right">$19.20 USD</td>
+                                <!--<td colspan="3">Balance</td>
+                                <td class="text-right">$19.20 USD</td>-->
                             </tr>
                         </tbody>
                     </table>

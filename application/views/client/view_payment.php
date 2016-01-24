@@ -143,25 +143,24 @@
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                             </p>
                                         </div>
+
+                                         <?php if(isset($txn_id)){ ?>
                                         <div id="step-33">
-                                            <h2 class="StepTitle">Step 3 Content</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
+                                           <br>
+                                            <h2 class="StepTitle" style="text-align:center">Payment Status</h2>
+                                            <p>You have successfully <?=$payment_status;?> for <?=$invoice_id;?></p>
+                                            <h4>Details are given below...</h4>
+                                            <p><b>Payment: </b><?=$credit;?></p>
+                                            <p><b>Payment Method: </b><?=$gateway;?></p>
+                                            <p><b>Payment Date: </b><?=$transaction_date_time;?></p>
                                         </div>
+
+                                        
                                         <div id="step-44">
                                             <h2 class="StepTitle">Step 4 Content</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
+                                            <?php //$this->parser->parse('client/view_bill_paid');?>
                                         </div>
+                                        <?php } ?>
                                     </div>
  
   <hr />
@@ -191,10 +190,25 @@
    
     <!-- form wizard -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/js/wizard/jquery.smartWizard.js"></script>
-    <script type="text/javascript">
+    <?php if(isset($txn_id)){ ?>
+    <script>
+     $(document).ready(function () {
+            // Smart Wizard 
+            $('#wizard_verticle').smartWizard({
+                transitionEffect: 'slide'
+            });
+            $('#wizard_verticle').smartWizard('goToStep', 3);
+             $(".next").removeAttr("disabled"); 
+
+        });
+    </script>
+
+    <?php } else { ?>
+     <script type="text/javascript">
         $(document).ready(function () {
-            // Smart Wizard 	
-            $('#wizard').smartWizard();
+            // Smart Wizard     
+           // $('#wizard').smartWizard();
+            
 
             function onFinishCallback() {
                 $('#wizard').smartWizard('showMessage', 'Finish Clicked');
@@ -203,18 +217,16 @@
         });
 
         $(document).ready(function () {
-            // Smart Wizard	
+            // Smart Wizard 
             $('#wizard_verticle').smartWizard({
                 transitionEffect: 'slide'
             });
+            //$('#wizard_verticle').smartWizard('goToStep', 3);
 
         });
     </script>
+    <?php } ?>
 
-    <script>
-    
-
-    </script>
 </body>
 
 </html>

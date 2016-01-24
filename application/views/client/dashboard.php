@@ -61,16 +61,16 @@
                                 <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Active</span> | <span style="color:#d23333">Inactive</span></p>
                             </div>
                         </div>
-                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <a href="<?php echo site_url('client/my_invoice');?>"><div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats">
                                 <div class="icon"><i class="fa fa-send"></i>
                                 </div>
                                 <div class="count"><span><?php echo $total_invoice;?></span> | <span style="color:#1ABB9C"><?php echo $active_invoice;?></span> | <span style="color:#d23333"><?php echo $inactive_invoice;?></span></div>
 
-                                <h3>Invoices Due</h3>
+                                <h3>Invoices</h3>
                                 <p style="font-weight:bold"><span style="color:#73879C">Total</span> | <span style="color:#1ABB9C">Paid</span> | <span style="color:#d23333">Due</span></p>
                             </div>
-                        </div>
+                        </div></a>
 
                     </div>
 

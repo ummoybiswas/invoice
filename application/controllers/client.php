@@ -50,38 +50,87 @@ class Client extends CI_Controller {
 	}
 
 
+	public function view_bill_final()
+	{
+		$bill_id =$this->input->post('bill_id');
+		$data['invoice_id']=$bill_id;
+		
+		$user_name= $this->session->userdata('username');
+	    $get_email=$this->client_model->get_email_id($user_name);
 
+	    $data['pay_to']=$this->client_model->admin_info();
+	    $data['invoice_to']=$this->client_model->client_info($user_name);
+	    $data['bill_data']=$this->client_model->get_bill_data($bill_id);
+	    $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
+
+	    $this->parser->parse('client/view_bill_paid',$data);
+
+	}
     public function view_bill_details()
     {
     	$bill_id = $this->uri->segment(3);
     	$data['invoice_id']=$bill_id;
-    	//$data['bill_status']=$this->bill_model->get_payment_status($bill_id);
-    	//print_r($data['bill_status']);
-    	$user_name= $this->session->userdata('username');
-        $get_email=$this->client_model->get_email_id($user_name);
+	    	//$data['bill_status']=$this->bill_model->get_payment_status($bill_id);
+	    	//print_r($data['bill_status']);
+	    $user_name= $this->session->userdata('username');
+	    $get_email=$this->client_model->get_email_id($user_name);
+	   
 
-        $data['bill_data']=$this->client_model->get_bill_data($bill_id);
-        if($data['bill_data'][0]['bill_status'])
-        {
-        	$data['pay_to']=$this->client_model->admin_info();
-        	$data['invoice_to']=$this->client_model->client_info($user_name);
-        	$data['bill_data']=$this->client_model->get_bill_data($bill_id);
-            $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
-        	$this->parser->parse('client/view_bill_paid',$data);
-        }
-        else if($data['bill_data'][0]['bill_allow_partial'])
-        {
-        	//echo "1";
-        	$data['partial_true']=1;
-        	 $data['bill_partial_amt']=$this->bill_model->get_partial_amt($bill_id);
-        	 $this->parser->parse('client/view_payment',$data);
-        }
-        else
-        {
-        	//echo "0";
-        	$data['partial_true']=0;
-        	$this->parser->parse('client/view_payment',$data);
-        }
+	    $data['pay_to']=$this->client_model->admin_info();
+	    $data['invoice_to']=$this->client_model->client_info($user_name);
+	    $data['bill_data']=$this->client_model->get_bill_data($bill_id);
+	    $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
+    	
+    	if($this->session->userdata('transaction_id'))
+    	{
+    		$data['txn_id']=$this->session->userdata('transaction_id');
+    		
+    		if($this->session->userdata('balance')>0)
+    		{
+    			$data["payment_status"]="Partially Paid";
+    			$data['partial_true']=1;
+	        	$data['bill_partial_amt']=$this->bill_model->get_partial_amt($bill_id);
+    		}
+    		else
+    		{
+    			$data['partial_true']=0;
+    			$data["payment_status"]="Fully Paid";
+    		}
+    		$data['bill_data_txn']=$this->client_model->get_bill_data_txn_details($bill_id);
+
+    		$data['transaction_date_time']=$this->session->userdata('transaction_date_time');
+    		$data['gateway']=$this->session->userdata('gateway');
+    		$data["credit"]=$this->session->userdata('credit');
+
+    		$this->session->unset_userdata("transaction_id");
+    		$this->session->unset_userdata("balance");
+    		$this->session->unset_userdata("transaction_date_time");
+    		$this->session->unset_userdata("bill_id");
+    		$this->session->unset_userdata("gateway");
+    		$this->session->unset_userdata("credit");
+    		
+    		$this->parser->parse('client/view_payment',$data);
+    	}
+    	else
+    	{
+	    	if($data['bill_data'][0]['bill_status'])
+	        {
+	        	$this->parser->parse('client/view_bill_paid',$data);
+	        }
+	        else if($data['bill_data'][0]['bill_allow_partial'])
+	        {
+	        	//echo "1";
+	        	$data['partial_true']=1;
+	        	 $data['bill_partial_amt']=$this->bill_model->get_partial_amt($bill_id);
+	        	 $this->parser->parse('client/view_payment',$data);
+	        }
+	        else
+	        {
+	        	//echo "0";
+	        	$data['partial_true']=0;
+	        	$this->parser->parse('client/view_payment',$data);
+	        }
+	       }
 
         //  $this->parser->parse('client/view_payment',$data);
 

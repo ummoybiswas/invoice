@@ -12,6 +12,21 @@ class Bill_model extends CI_Model
 		return $result->result_array();
 	}
 		
+	public function update_bill($data,$bill_id)
+	{
+		$this->db->where('bill_id', $bill_id);
+		$this->db->update('bills', $data);
+	}
+
+	public function bill_due_date($bill_id)
+	{
+		$this->db->select('*');
+		$this->db->from('bills');
+		$this->db->where('bill_id', $bill_id);
+		$result = $this->db->get();
+		return $result->result_array();
+
+	}
 	public function insert_transaction($data1)
 	{
 		$this->db->insert('transaction', $data1);
@@ -20,7 +35,7 @@ class Bill_model extends CI_Model
 	public function get_balance($bill_id,$user_email)
 	{
 		$result=$this->db->query('SELECT * FROM transaction Where id= (select max(id) from transaction WHERE bill_id="'.$bill_id.'" )');
-		return $result->result();
+		return $result->result_array();
 
 	}
 

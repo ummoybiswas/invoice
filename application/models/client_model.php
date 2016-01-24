@@ -12,7 +12,15 @@ class Client_model extends CI_Model
 	}
 
 
-
+	public function get_bill_data_txn_details($bill_id)
+	{
+		$this->db->select('*');
+		$this->db->from('transaction');
+		$this->db->where('bill_id', $bill_id);
+		$this->db->where('debit', '0.00');
+		$result = $this->db->get();
+		return $result->result_array();		
+	}
 	public function get_email_id($user_name)
 	{
 		$this->db->select('email');
