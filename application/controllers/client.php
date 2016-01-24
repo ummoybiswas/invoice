@@ -57,9 +57,19 @@ class Client extends CI_Controller {
     	$data['invoice_id']=$bill_id;
     	//$data['bill_status']=$this->bill_model->get_payment_status($bill_id);
     	//print_r($data['bill_status']);
+    	$user_name= $this->session->userdata('username');
+        $get_email=$this->client_model->get_email_id($user_name);
 
         $data['bill_data']=$this->client_model->get_bill_data($bill_id);
-        if($data['bill_data'][0]['bill_allow_partial'])
+        if($data['bill_data'][0]['bill_status'])
+        {
+        	$data['pay_to']=$this->client_model->admin_info();
+        	$data['invoice_to']=$this->client_model->client_info($user_name);
+        	$data['bill_data']=$this->client_model->get_bill_data($bill_id);
+            $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
+        	$this->parser->parse('client/view_bill_paid',$data);
+        }
+        else if($data['bill_data'][0]['bill_allow_partial'])
         {
         	//echo "1";
         	$data['partial_true']=1;

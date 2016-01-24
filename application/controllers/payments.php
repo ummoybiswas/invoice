@@ -50,6 +50,9 @@ class Payments extends CI_Controller{
         	"transaction_date_time"=>$received_data["payment_date"]
         	
         );
+
+        $this->bill_model->insert_transaction($data);
+
 		echo "<pre>";
 		print_r($get_balance);
 		echo "</pre>";

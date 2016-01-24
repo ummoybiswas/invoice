@@ -34,13 +34,13 @@ p{
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="logo" style="width:35%">
-                                <img style="width:100%" src="<?php echo base_url();?>assets/img/logo.png" title="HostPair LLC" />
+                                <img style="width:100%" src="<?php echo base_url();?>assets/img/logo.png" title="GNT LLC" />
                             </div>                         
                         </div>
 
                         <div class="col-sm-4">
                             <div class="invoice-status text-right" style="margin: 35px 0 0;font-size:30px;">
-                                <span class="unpaid">Unpaid</span>
+                                <span class="paid" style="color: #339500;border: 3px #339500 solid;" >Paid</span>
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@ p{
                             <td class="text-right"><h4>${bill_due_amount}</h4></td>
                         </tr>
 
-                        <?php if($partial_true){?><tr>
+                       <!-- <?php if($partial_true){?><tr>
                             <td><h4>Amount to Pay</h4></td>
                             <?php $encode=base64_encode($bill_data[0]['partial_amount']);?>
                             <input type="hidden" id="amt" value="<?=$encode?>">
@@ -141,14 +141,14 @@ p{
                             <?php $encode=base64_encode($bill_data[0]['bill_due_amount']);?>
                             <input type="hidden" id="amt" value="<?=$encode?>">
                             <td class="text-right"><h4>$<span id="amount">{bill_due_amount}</span></h4></td>
-                            </tr><?php } ?>
+                            </tr><?php } ?>-->
                         {/bill_data}
                     </tbody>
                 </table>
             </div>
                         <div class="transactions-container">
                 <div class="table-responsive">
-                    <table class="table table-condensed">
+                    <!--<table class="table table-condensed">
                         <thead>
                             <tr>
                                 <td>Transaction Date</td>
@@ -166,7 +166,7 @@ p{
                                 <td class="text-right">$19.20 USD</td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table>-->
                 </div>
             </div>
                     </div>
@@ -181,7 +181,7 @@ p{
 
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
 <script>
-    
+/*    
 function onPayment_method_change()
 {
 gateway=$('#gateway').val();
@@ -201,7 +201,7 @@ if(gateway=="paypal")
     str='<td>Payment Gateway Charge ($0.30+3.99%)</td><td class="text-right">$'+charge+'</td>';
     $("#charge").html(str);
    
-   str='<p><form action="<?php echo base_url();?>/index.php/payments/do_purchase" method="post"><input type="hidden" name="in" value="<?php echo $invoice_id;?>"><input type="hidden" name="item_name" value="Invoice#<?php echo $invoice_id;?>"><input type="hidden" name="item_price" value="'+(parseFloat(amount)-parseFloat(charge)).toFixed(2)+'"><input type="hidden" name="charge_name" value="Payment Gateway Charge"><input type="hidden" name="charge_price" value="'+charge+'"><button style="border:none;background:none;margin-right: 5px;"><img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></button></form></p>';
+   str='<p><form action="<?php echo base_url();?>/index.php/payments/do_purchase" method="post"><input type="hidden" name="in" value="<?php echo $invoice_id;?>"><input type="hidden" name="item_name" value="Invoice#<?php echo $invoice_id;?>"><input type="hidden" name="item_price" value="'+(parseFloat(amount)-parseFloat(charge)).toFixed(2)+'"><input type="hidden" name="charge_name" value="Payment Gateway Charge"><input type="hidden" name="charge_price" value="'+charge+'"><button><img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></button></form></p>';
    $('.payment-btn-container').html(str);
 }
 else if(gateway=="card")
@@ -257,7 +257,7 @@ else
    $('.payment-btn-container').html("");
 }
 
-}
+}*/
 </script>
 </body>
 </html>

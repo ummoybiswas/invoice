@@ -50,13 +50,14 @@
                                                <!-- <th>
                                                     <input type="checkbox" class="tableflat">
                                                 </th>-->
-                                                <th>Invoice No</th>
+                                                <!--<th>Invoice No</th>-->
                                                 <th style="width:35%">Description </th>
                                                 <th>Service</th>
                                                 <th>Reg_Date </th>
                                                 <th>Status</th>
                                                 <th>Amount </th>
                                                 <th>Bill_Status</th>
+                                                <th>Action</th>
                                                 <!--<th class=" no-link last"><span class="nobr">Action</span>
                                                 </th>-->
                                             </tr>
@@ -69,8 +70,8 @@
                                             <tr class="even pointer">
                                                 <!--<td class="a-center ">
                                                     <input type="checkbox" class="tableflat">
-                                                </td>-->
-                                                <td class=" "><?=$row->bill_id;?></td>
+                                                </td>
+                                                <td class=" "><?=$row->bill_id;?></td>-->
                                                 <td class=" "><?=$row->particulars;?></td>
                                                 <td class=" "><?=$row->services;?></td>         
                                                 <td class=" "><?=$row->reg_date;?><i class="success fa fa-long-arrow-up"></i>
@@ -98,7 +99,8 @@
                                                 </td>
                                                 <!--<td class=" last"><a href="#">View</a>
                                                 </td>-->
-                                                 
+                                                 <td><a href="<?php echo site_url('client/view_bill_details');?>/<?=$row->bill_id?>"><button  type="button" class="btn-md btn-success" style="border:none;">View</button></a></td>
+
                                             </tr>
                                         <?php }?>
                                   

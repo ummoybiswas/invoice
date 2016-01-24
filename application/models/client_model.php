@@ -240,7 +240,7 @@ public function admin_info()
 		$this->db->from('discount');
 		$this->db->join('bills', 'discount.bill_id = bills.bill_id','right');
 		$this->db->where('bills.user_email', $email);
-		
+		$this->db->where('bills.bill_status', '0');
 		$result = $this->db->get();
 		return $result->result_array();
 		

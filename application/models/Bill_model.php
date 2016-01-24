@@ -12,9 +12,9 @@ class Bill_model extends CI_Model
 		return $result->result_array();
 	}
 		
-	public function insert_transaction()
+	public function insert_transaction($data1)
 	{
-		
+		$this->db->insert('transaction', $data1);
 	}
 
 	public function get_balance($bill_id,$user_email)
