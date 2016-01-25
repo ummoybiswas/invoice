@@ -63,6 +63,7 @@ class Payments extends CI_Controller{
         	
            	$data=array(
         		"bill_due_date"=>$bill_date,
+                "bill_allow_partial"=>0,
         		"bill_to_paid"=>$bill_due_date[0]["bill_to_paid"]+$received_data["mc_gross_1"],
         		'bill_due_amount'=>$balance,
         		"partial_status"=>1

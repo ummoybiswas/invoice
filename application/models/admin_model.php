@@ -18,6 +18,15 @@ class Admin_model extends CI_Model
 	}
 
 
+	public function get_client_info()
+	{
+		$this->db->select('*');
+		$this->db->from('user');
+		$this->db->join('client', 'client.user_name = user.username');
+		$this->db->where('user.type', '0');
+		$result = $this->db->get();
+		return $result->result();
+	}
 	public function get_unique_email($email)
 	{
 

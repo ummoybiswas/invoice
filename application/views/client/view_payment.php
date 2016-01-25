@@ -19,7 +19,7 @@
             </div>
 
             <!-- top navigation -->
-				  <?php include 'template/header.php';?>
+                  <?php include 'template/header.php';?>
             <!-- /top navigation -->
 
 
@@ -60,7 +60,7 @@
                                         </ul>
 
                                         <div id="step-11">
-											<div class="row">
+                                            <div class="row">
                                             <?php if($partial_true==1){?>
                                         <div class="col-md-3 col-xs-12 widget widget_tally_box">
                                             <div class="x_panel">
@@ -81,7 +81,7 @@
                                                      <h2>${partial_amount}</h2>
                                                     </div>
                                                     <div class="divider"></div>
-													<div class="radio">
+                                                    <div class="radio">
                                                     <label class="label1" onclick="bill_amount('partial','<?php echo $invoice_id;?>')">
                                                         <div style="position: relative;" class="iradio_flat-green checked">
                                                         <input id="partial_label" style="position: absolute; opacity: 0;" class="flat" name="iCheck" value="partial" type="radio">
@@ -112,7 +112,7 @@
                                                       <h2>${bill_due_amount}</h2>
                                                     </div>
                                                     <div class="divider"></div>
-													<div class="radio">
+                                                    <div class="radio">
                                                     <label class="label2" onclick="bill_amount('full','<?php echo $invoice_id;?>')">
                                                         <div style="position: relative;" class="iradio_flat-green checked">
                                                         <input id="full_label" style="position: absolute; opacity: 0;" class="flat" name="iCheck" value="full"  type="radio">
@@ -125,34 +125,60 @@
                                         </div>
                                         
                                     </div>
-										</div>
+                                        </div>
                                         <div id="step-22">
                                             <h2 class="StepTitle">Step 2 Content</h2>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                             </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
+                                           
                                         </div>
 
                                          <?php if(isset($txn_id)){ ?>
                                         <div id="step-33">
-                                           <br>
-                                            <h2 class="StepTitle" style="text-align:center">Payment Status</h2>
+
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="x_panel">
+                                                <div class="x_title">
+                                                    <h2>Payment Status</h2>
+                                                    <ul class="nav navbar-right panel_toolbox">
+                                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                        </li>
+                                                       
+                                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="x_content">
+
+                                                        <div class="">
+                                                        <h4>You have successfully <?=$payment_status;?> for <?=$invoice_id;?></h4>
+                                                        <h5>Details are given below...</h5>
+                                                            <ul class="to_do">
+                                                                <li>
+                                                                    <p style="color:#242424"><b>Payment: </b><?=$credit;?></p>
+                                                                </li>
+                                                                <li>
+                                                                    <p style="color:#242424"><b>Payment Method: </b><?=$gateway;?></p>
+                                                                </li>
+                                                                <li>
+                                                                    <p style="color:#242424"><b>Payment Date: </b><?=$transaction_date_time;?></p>
+                                                                </li>
+                                                               
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           <!--<br>
+                                            <h2 class="StepTitle" style="text-align:center">    </h2>
                                             <p>You have successfully <?=$payment_status;?> for <?=$invoice_id;?></p>
                                             <h4>Details are given below...</h4>
                                             <p><b>Payment: </b><?=$credit;?></p>
                                             <p><b>Payment Method: </b><?=$gateway;?></p>
-                                            <p><b>Payment Date: </b><?=$transaction_date_time;?></p>
+                                            <p><b>Payment Date: </b><?=$transaction_date_time;?></p>-->
                                         </div>
 
                                         
@@ -165,7 +191,7 @@
  
   <hr />
   <div style="position:">
-				<?php include 'template/footer.php';?>
+                <?php include 'template/footer.php';?>
        </div>         <!-- /footer content -->
 
             </div>

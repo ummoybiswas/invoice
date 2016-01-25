@@ -39,8 +39,8 @@ p{
                         </div>
 
                         <div class="col-sm-4">
-                            <div class="invoice-status text-right" style="margin: 35px 0 0;font-size:30px;">
-                                <span class="paid" style="color: #339500;border: 3px #339500 solid;" >Paid</span>
+                            <div class="invoice-status text-right" style="margin: 35px 0 0;font-size:24px;">
+                                <span class="paid" style="color: #339500;border: 3px #339500 solid;">{paid_information}</span>
                             </div>
                         </div>
                     </div>
@@ -94,8 +94,9 @@ p{
                         <div class="col-md-3 col-sm-6">
                          <h5>Payment Method:</h5>
                          <!--<form method="post" action="" class="form-inline">-->
-                            <input type="hidden" name="token" value="" /><select name="gateway" id="gateway" onchange="onPayment_method_change()" class="form-control select-inline"><option value="banktransfer" selected="selected">Bank or bKash(BD only)</option><option value="easypayway">EasyPayWay (BD Only)</option><option value="paypal">PayPal</option><option value="card">2CheckOut(Credit/Debit Card)</option></select>
+                            <!--<input type="hidden" name="token" value="" /><select name="gateway" id="gateway" onchange="onPayment_method_change()" class="form-control select-inline"><option value="banktransfer" selected="selected">Bank or bKash(BD only)</option><option value="easypayway">EasyPayWay (BD Only)</option><option value="paypal">PayPal</option><option value="card">2CheckOut(Credit/Debit Card)</option></select>
                         <!--</form>-->
+                        <input type="text" style="font-weight:bold;color:#242424"disabled="true" value="{payment_method}">
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -122,13 +123,13 @@ p{
                                 
                             </tr>
                                                                       
-                         <tr class="active">
+                         <!--<tr class="active">
                             <td>Credit</td>
                             <td class="text-right">$0.00 USD</td>
-                        </tr>
+                        </tr>-->
                         <tr>
                             <td><h4>Total</h4></td>
-                            <td class="text-right"><h4>${bill_due_amount}</h4></td>
+                            <td class="text-right"><h4>${bill_total_amount}</h4></td>
                         </tr>
 
                        <!-- <?php if($partial_true){?><tr>
@@ -148,7 +149,7 @@ p{
             </div>
                         <div class="transactions-container">
                 <div class="table-responsive">
-                    <!--<table class="table table-condensed">
+                    <table class="table table-condensed">
                         <thead>
                             <tr>
                                 <td>Transaction Date</td>
@@ -158,15 +159,17 @@ p{
                             </tr>
                         </thead>
                         <tbody>
-                                                        <tr>
-                                <td colspan="4">No Related Transactions Found</td>
-                            </tr>
-                                                        <tr>
-                                <td colspan="3">Balance</td>
-                                <td class="text-right">$19.20 USD</td>
-                            </tr>
+                        {payment_gateway}
+                            <tr>
+                                <td >{transaction_date_time}</td>
+                                <td >{gateway}</td>
+                                <td >{transaction_id}</td>
+                                <td class="text-right">{credit}</td>
+                             </tr>
+                            
+                        {/payment_gateway}
                         </tbody>
-                    </table>-->
+                    </table>
                 </div>
             </div>
                     </div>

@@ -61,6 +61,29 @@ class Client extends CI_Controller {
 	    $data['pay_to']=$this->client_model->admin_info();
 	    $data['invoice_to']=$this->client_model->client_info($user_name);
 	    $data['bill_data']=$this->client_model->get_bill_data($bill_id);
+	    $data['payment_gateway']=$this->bill_model->get_balance($bill_id,$get_email);
+
+	    if($data['payment_gateway'][0]['gateway']=='Paypal')
+	    {
+	        		$data['payment_method']='Paypal';
+	    }
+	    else if($data['payment_gateway'][0]['gateway']=='Stripe')
+	    {
+	        		$data['payment_method']='Stripe';
+	    }
+	    else{
+				$data['payment_method']='Bkash';
+	    }
+
+
+	    if(!$data['bill_data'][0]['bill_status'])
+	    {
+	   		$data['paid_information']='Partially Paid'; 	
+	    }
+	    else
+	    {
+	   		$data['paid_information']='Fully Paid'; 	
+	    }
 	    $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
 
 	    $this->parser->parse('client/view_bill_paid',$data);
@@ -70,8 +93,7 @@ class Client extends CI_Controller {
     {
     	$bill_id = $this->uri->segment(3);
     	$data['invoice_id']=$bill_id;
-	    	//$data['bill_status']=$this->bill_model->get_payment_status($bill_id);
-	    	//print_r($data['bill_status']);
+
 	    $user_name= $this->session->userdata('username');
 	    $get_email=$this->client_model->get_email_id($user_name);
 	   
@@ -85,14 +107,16 @@ class Client extends CI_Controller {
     	{
     		$data['txn_id']=$this->session->userdata('transaction_id');
     		
-    		if($this->session->userdata('balance')>0)
+    		if($this->session->userdata('balance')>0.00)
     		{
+    			$data['balance']=$this->session->userdata('balance');
     			$data["payment_status"]="Partially Paid";
     			$data['partial_true']=1;
 	        	$data['bill_partial_amt']=$this->bill_model->get_partial_amt($bill_id);
     		}
     		else
     		{
+    			$data['balance']=$this->session->userdata('balance');
     			$data['partial_true']=0;
     			$data["payment_status"]="Fully Paid";
     		}
@@ -115,6 +139,15 @@ class Client extends CI_Controller {
     	{
 	    	if($data['bill_data'][0]['bill_status'])
 	        {
+	        	$data['payment_gateway']=$this->bill_model->get_balance($bill_id,$get_email);
+	        	if($data['payment_gateway'][0]['gateway']=='Paypal')
+	        	{
+	        		$data['payment_method']='Paypal';
+	        	}
+	        	$data['paid_information']='Fully Paid'; 
+
+	        	//print_r($data);	
+	        	//echo $data['payment_gateway'][0]['gateway'];
 	        	$this->parser->parse('client/view_bill_paid',$data);
 	        }
 	        else if($data['bill_data'][0]['bill_allow_partial'])

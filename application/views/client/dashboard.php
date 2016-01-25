@@ -172,7 +172,7 @@
                                                             if($invoice['discount_amount']==NULL){echo '0';}
                                                                  else {echo $invoice['discount_amount'];}?>
                                                             </td>
-                                                            <td><?=$invoice['bill_to_paid']?></td>
+                                                            <td><?=$invoice['bill_due_amount']?></td>
                                                             <td>
                                                                 <?php 
                                                             if($invoice['bill_status']=='0'){?>

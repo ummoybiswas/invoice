@@ -67,7 +67,14 @@ class Admin extends CI_Controller {
 
 	}
 
-
+	public function clients_list()
+	{
+		$data["client_info"]=$this->admin_model->get_client_info();
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
+		$this->parser->parse('admin/view_client_list',$data);
+	}
 	public function create_new_client()
 	{
 		
