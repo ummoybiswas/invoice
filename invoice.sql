@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2016 at 01:37 PM
+-- Generation Time: Jan 25, 2016 at 12:11 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `bills` (
   `bill_allow_discount` int(3) NOT NULL DEFAULT '0',
   `note_recipient` varchar(255) DEFAULT NULL,
   `term_condition` varchar(255) DEFAULT NULL,
+  `partial_status` int(1) NOT NULL DEFAULT '0',
   `bill_status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -46,9 +47,32 @@ CREATE TABLE IF NOT EXISTS `bills` (
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`bill_id`, `user_email`, `bill_reference`, `bill_date`, `bill_due_date`, `bill_total_amount`, `bill_due_amount`, `bill_to_paid`, `bill_allow_partial`, `bill_allow_discount`, `note_recipient`, `term_condition`, `bill_status`) VALUES
-('INV-10008', 'aman.rabby@gmail.com', '34rt', '2015-12-31', '2015-12-31', 7.00, 3.50, 3.50, 1, 1, '0', '0', '0'),
-('INV-10009', 'aman.rabby@gmail.com', '34rt', '2015-12-31', '2015-12-31', 7.00, 3.50, 7.00, 0, 0, '0', '0', '1');
+INSERT INTO `bills` (`bill_id`, `user_email`, `bill_reference`, `bill_date`, `bill_due_date`, `bill_total_amount`, `bill_due_amount`, `bill_to_paid`, `bill_allow_partial`, `bill_allow_discount`, `note_recipient`, `term_condition`, `partial_status`, `bill_status`) VALUES
+('INV-10035', 'ummoy.biswas@live.com', 'ref#213123', '2015-12-31', '2015-12-31', 9.00, 9.00, 9.00, 0, 0, '0', '0', 0, '0'),
+('INV-10036', 'ummoy.biswas@live.com', 'ref#213123', '2015-12-31', '2015-12-31', 9.00, 9.00, 9.00, 0, 0, '0', '0', 0, '0'),
+('INV-10037', 'ummoy.biswas@live.com', 'dsfsds', '0000-00-00', '2016-01-16', 149.00, 149.00, 149.00, 0, 0, '0', '0', 0, '0'),
+('INV-10038', 'ummoy.biswas@live.com', 'dsfsds', '2016-01-21', '2016-01-31', 138.00, 138.00, 138.00, 0, 0, '0', '0', 0, '0'),
+('INV-10039', 'ummoy.biswas@live.com', 'dsfsds', '2016-01-21', '2016-01-31', 138.00, 138.00, 138.00, 0, 0, '0', '0', 0, '0'),
+('INV-10040', 'ummoy.biswas@live.com', 'ui', '2016-01-07', '2016-01-17', 14.00, 28.00, 0.00, 0, 0, '0', '0', 0, '0'),
+('INV-10041', 'ummoy.biswas@live.com', 'yyujbhj', '2016-01-05', '2016-01-20', 145.00, 145.00, 145.00, 0, 0, '0', '0', 0, '0'),
+('INV-10042', 'aman.rabby@gmail.com', 'INV-10042', '2016-01-02', '2016-03-27', 28.00, 0.00, 28.00, 0, 0, '0', '0', 1, '1'),
+('INV-10043', 'aman.rabby@gmail.com', 'INV-10043', '2016-01-02', '2016-01-27', 28.00, 28.00, 0.00, 0, 0, '0', '0', 0, '0'),
+('INV-10044', 'aman.rabby@gmail.com', 'INV-10044', '2016-01-02', '2016-01-27', 28.00, -28.00, 56.00, 0, 0, '0', '0', 0, '1'),
+('INV-10045', 'aman.rabby@gmail.com', '', '2016-01-02', '2016-01-27', 9.00, -9.00, 18.00, 0, 0, '0', '0', 0, '1'),
+('INV-10046', 'aman.rabby@gmail.com', '', '2016-01-02', '2016-01-27', 9.00, -9.00, 18.00, 0, 0, '0', '0', 0, '1'),
+('INV-10047', 'aman.rabby@gmail.com', '', '2016-01-02', '2016-01-27', 9.00, -9.00, 18.00, 0, 0, '0', '0', 0, '1'),
+('INV-10048', 'smkiron@gmail.com', '2ewqeqwe', '2016-01-13', '2016-01-28', 1.00, -1.00, 1.00, 0, 0, '0', '0', 0, '1'),
+('INV-10049', 'ummoy.biswas@live.com', 'lkkh', '2016-01-13', '2016-01-13', 6.00, 6.00, 6.00, 0, 0, '0', '0', 0, '0'),
+('INV-10050', 'ummoy.biswas@live.com', 'lkkh', '2016-01-13', '2016-01-13', 6.00, 6.00, 6.00, 0, 0, '0', '0', 0, '0'),
+('INV-10051', 'ummoy.biswas@live.com', 'lkkh', '2016-01-13', '2016-01-13', 6.00, 6.00, 6.00, 0, 0, '0', '0', 0, '0'),
+('INV-10052', 'ummoy.biswas@live.com', 'lkkh', '2016-01-13', '2016-01-13', 6.00, 6.00, 6.00, 0, 0, '0', '0', 0, '0'),
+('INV-10053', 'ummoy.biswas@live.com', 'lkkh', '2016-01-13', '2016-01-13', 6.00, 6.00, 6.00, 0, 0, '0', '0', 0, '0'),
+('INV-10054', 'ummoy.biswas@live.com', 'opiop', '2016-01-14', '2016-01-24', 4.00, 4.00, 4.00, 0, 0, '0', '0', 0, '0'),
+('INV-10055', 'aman.rabby@gmail.com', '', '2015-12-31', '2015-12-31', 3.00, 3.00, 3.00, 0, 0, '0', '0', 0, '0'),
+('INV-10056', 'aman.rabby@gmail.com', '', '2015-12-31', '2015-12-31', 3.00, 3.00, 3.00, 0, 0, '0', '0', 0, '0'),
+('INV-10057', 'aman.rabby@gmail.com', '', '2015-12-31', '2016-01-20', 3.00, 3.00, 3.00, 0, 0, '0', '0', 0, '0'),
+('INV-10058', 'aman.rabby@gmail.com', '', '2016-01-22', '2016-02-11', 3.00, 3.00, 3.00, 0, 0, '0', '0', 0, '0'),
+('INV-10059', 'aman.rabby@gmail.com', '', '2016-01-21', '2016-02-10', 3.00, 0.00, 3.00, 0, 0, '0', '0', 0, '1');
 
 --
 -- Triggers `bills`
@@ -84,15 +108,49 @@ CREATE TABLE IF NOT EXISTS `bill_service` (
   `price` double(30,2) NOT NULL,
   `total` double(30,2) NOT NULL,
   `status` int(3) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bill_service`
 --
 
 INSERT INTO `bill_service` (`id`, `bill_id`, `user_email`, `particulars`, `additional_particulars`, `services`, `bill_cycle`, `reg_date`, `next_due`, `quantity`, `price`, `total`, `status`) VALUES
-(28, 'INV-10008', 'aman.rabby@gmail.com', 'dfgdfg', 'dsfsdfsdfsdf', 'Hosting', 'fixed', '2015-12-31', '0000-00-00', 1.00, 3.00, 3.00, 1),
-(29, 'INV-10008', 'aman.rabby@gmail.com', 'fdgdfgdfg', 'dsfsdfsdfsdf', 'Hosting', 'monthly', '2015-12-31', '2016-01-30', 1.00, 4.00, 4.00, 0);
+(1, 'INV-10035', 'ummoy.biswas@live.com', 'hosting', 'hosting', 'Hosting', 'monthly', '2015-12-31', '2016-01-30', 1.00, 6.00, 6.00, 0),
+(2, 'INV-10035', 'ummoy.biswas@live.com', 'domain', 'domain', 'Domain', 'yearly', '2015-12-31', '2016-12-30', 1.00, 3.00, 3.00, 0),
+(3, 'INV-10036', 'ummoy.biswas@live.com', 'domain', 'domain', 'Domain', 'yearly', '2015-12-31', '2016-12-30', 1.00, 3.00, 3.00, 0),
+(4, 'INV-10036', 'ummoy.biswas@live.com', 'hosting', 'hosting', 'Hosting', 'monthly', '2015-12-31', '2016-01-30', 1.00, 6.00, 6.00, 0),
+(5, 'INV-10037', 'ummoy.biswas@live.com', 'sadkjasde', 'wqqweqwe', 'Hosting', 'yearly', '0000-00-00', '2017-01-05', 1.00, 80.00, 80.00, 0),
+(6, 'INV-10037', 'ummoy.biswas@live.com', 'asdasdas', 'adeqwaewe', 'Development', 'fixed', '0000-00-00', '0000-00-00', 1.00, 58.00, 58.00, 0),
+(7, 'INV-10037', 'ummoy.biswas@live.com', 'fdgfdgfdgfdg', 'dsfdsfsdf', 'Domain', 'yearly', '0000-00-00', '2017-01-05', 1.00, 11.00, 11.00, 0),
+(8, 'INV-10038', 'ummoy.biswas@live.com', 'asdasdas', 'adeqwaewe', 'Development', 'fixed', '2016-01-21', '0000-00-00', 1.00, 58.00, 58.00, 0),
+(9, 'INV-10038', 'ummoy.biswas@live.com', 'sadkjasde', 'wqqweqwe', 'Hosting', 'yearly', '2016-01-21', '2017-01-20', 1.00, 80.00, 80.00, 0),
+(10, 'INV-10039', 'ummoy.biswas@live.com', 'asdasdas', 'adeqwaewe', 'Development', 'fixed', '2016-01-21', '0000-00-00', 1.00, 58.00, 58.00, 0),
+(11, 'INV-10039', 'ummoy.biswas@live.com', 'sadkjasde', 'wqqweqwe', 'Hosting', 'yearly', '2016-01-21', '2017-01-20', 1.00, 80.00, 80.00, 0),
+(12, 'INV-10040', 'ummoy.biswas@live.com', 'sdfs', 'sderdf', 'Hosting', 'monthly', '2016-01-07', '2016-02-06', 1.00, 4.00, 4.00, 0),
+(13, 'INV-10040', 'ummoy.biswas@live.com', 'dsfsfg', '', 'Domain', 'yearly', '2016-01-07', '2017-01-06', 1.00, 10.00, 10.00, 0),
+(14, 'INV-10041', 'ummoy.biswas@live.com', 'sadasdasd', 'zSdsad', 'Hosting', 'yearly', '2016-01-05', '2017-01-04', 1.00, 45.00, 45.00, 0),
+(15, 'INV-10041', 'ummoy.biswas@live.com', 'sdfsdf', 'cxvxfdsf', 'Development', 'fixed', '2016-01-05', '0000-00-00', 1.00, 100.00, 100.00, 0),
+(16, 'INV-10042', 'aman.rabby@gmail.com', 'aman.com', 'aman.com', 'Hosting', 'monthly', '2016-01-02', '2016-02-01', 4.00, 7.00, 28.00, 0),
+(17, 'INV-10043', 'aman.rabby@gmail.com', 'aman.com', 'aman.com', 'Hosting', 'monthly', '2016-01-02', '2016-02-01', 4.00, 7.00, 28.00, 0),
+(18, 'INV-10044', 'aman.rabby@gmail.com', 'aman.com', 'aman.com', 'Hosting', 'monthly', '2016-01-02', '2016-02-01', 4.00, 7.00, 28.00, 0),
+(19, 'INV-10045', 'aman.rabby@gmail.com', 'sdfdsfds', 'sdfdsfdsfds', 'Domain', 'fixed', '2016-01-02', '0000-00-00', 1.00, 4.00, 4.00, 0),
+(20, 'INV-10045', 'aman.rabby@gmail.com', 'sdf', 'sdfsdfdsf', 'Hosting', 'yearly', '2016-01-02', '2017-01-01', 1.00, 5.00, 5.00, 0),
+(21, 'INV-10046', 'aman.rabby@gmail.com', 'sdfdsfds', 'sdfdsfdsfds', 'Domain', 'fixed', '2016-01-02', '0000-00-00', 1.00, 4.00, 4.00, 0),
+(22, 'INV-10046', 'aman.rabby@gmail.com', 'sdf', 'sdfsdfdsf', 'Hosting', 'yearly', '2016-01-02', '2017-01-01', 1.00, 5.00, 5.00, 0),
+(23, 'INV-10047', 'aman.rabby@gmail.com', 'sdfdsfds', 'sdfdsfdsfds', 'Domain', 'fixed', '2016-01-02', '0000-00-00', 1.00, 4.00, 4.00, 0),
+(24, 'INV-10047', 'aman.rabby@gmail.com', 'sdf', 'sdfsdfdsf', 'Hosting', 'yearly', '2016-01-02', '2017-01-01', 1.00, 5.00, 5.00, 0),
+(25, 'INV-10048', 'smkiron@gmail.com', 'sadasd', 'asdasdasd', 'Domain', 'yearly', '2016-01-13', '2017-01-12', 1.00, 5.00, 5.00, 0),
+(26, 'INV-10049', 'ummoy.biswas@live.com', 'sdfsdfdsf', 'sdfsfdfsdf', 'Hosting', 'fixed', '2016-01-13', '0000-00-00', 1.00, 6.00, 6.00, 0),
+(27, 'INV-10050', 'ummoy.biswas@live.com', 'sdfsdfdsf', 'sdfsfdfsdf', 'Hosting', 'fixed', '2016-01-13', '0000-00-00', 1.00, 6.00, 6.00, 0),
+(28, 'INV-10051', 'ummoy.biswas@live.com', 'sdfsdfdsf', 'sdfsfdfsdf', 'Hosting', 'fixed', '2016-01-13', '0000-00-00', 1.00, 6.00, 6.00, 0),
+(29, 'INV-10052', 'ummoy.biswas@live.com', 'sdfsdfdsf', 'sdfsfdfsdf', 'Hosting', 'fixed', '2016-01-13', '0000-00-00', 1.00, 6.00, 6.00, 0),
+(30, 'INV-10053', 'ummoy.biswas@live.com', 'sdfsdfdsf', 'sdfsfdfsdf', 'Hosting', 'fixed', '2016-01-13', '0000-00-00', 1.00, 6.00, 6.00, 0),
+(31, 'INV-10054', 'ummoy.biswas@live.com', 'asdasd', 'sadasd', 'Hosting', 'monthly', '2016-01-14', '2016-02-13', 1.00, 4.00, 4.00, 0),
+(32, 'INV-10055', 'aman.rabby@gmail.com', 'sdfds', 'sfdsfds', 'Hosting', 'fixed', '2015-12-31', '0000-00-00', 1.00, 3.00, 3.00, 0),
+(33, 'INV-10056', 'aman.rabby@gmail.com', 'sdfds', 'sfdsfds', 'Hosting', 'fixed', '2015-12-31', '0000-00-00', 1.00, 3.00, 3.00, 0),
+(34, 'INV-10057', 'aman.rabby@gmail.com', 'sdfds', 'sfdsfds', 'Hosting', 'fixed', '2015-12-31', '0000-00-00', 1.00, 3.00, 3.00, 0),
+(35, 'INV-10058', 'aman.rabby@gmail.com', 'sdfds', 'sfdsfds', 'Hosting', 'fixed', '2016-01-22', '0000-00-00', 1.00, 3.00, 3.00, 0),
+(36, 'INV-10059', 'aman.rabby@gmail.com', 'sdfds', 'sfdsfds', 'Hosting', 'fixed', '2016-01-21', '0000-00-00', 1.00, 3.00, 3.00, 0);
 
 -- --------------------------------------------------------
 
@@ -114,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `country` varchar(30) NOT NULL,
   `post_code` varchar(30) NOT NULL,
   `phone_no` varchar(15) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client`
@@ -122,8 +180,9 @@ CREATE TABLE IF NOT EXISTS `client` (
 
 INSERT INTO `client` (`client_id`, `user_name`, `first_name`, `last_name`, `company_name`, `email`, `address`, `address2`, `state`, `city`, `country`, `post_code`, `phone_no`) VALUES
 (1, 'ummoy', 'Ummoy', 'Biswas', '', 'ummoy.biswas@live.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', ''),
-(6, 'aman', 'Aman', 'Ullah', '', 'aman.rabby@gmail.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', ''),
-(7, 'admin', 'Gnt', 'Ltd', '', 'info@geeksntechnology.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '');
+(6, 'aman', 'Aman', 'Ullah', 'gnt', 'aman.rabby@gmail.com', 'Mohakhali Dohs', '', 'Dhaka', 'Dhaka', 'Bangladesh', '1203', '874651654'),
+(7, 'admin', 'Gnt', 'Ltd', 'geeksntechnology', 'info@geeksntechnology.com', 'Mohkhali Dohs', '0', 'Dhaka', 'Dhaka', 'bangladesh', '1203', '345435'),
+(8, 'new', 'f_name', 'l_name', 'c_name', 'email@email.com', 'address', 'address1', 'Dhaka', 'dhaka', 'bangladesh', '1212', '654654');
 
 -- --------------------------------------------------------
 
@@ -136,14 +195,7 @@ CREATE TABLE IF NOT EXISTS `discount` (
   `bill_id` varchar(30) NOT NULL,
   `user_email` varchar(30) NOT NULL,
   `discount_amount` double(30,2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `discount`
---
-
-INSERT INTO `discount` (`id`, `bill_id`, `user_email`, `discount_amount`) VALUES
-(3, 'INV-10008', 'aman.rabby@gmail.com', 3.50);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -160,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `invoice_gen` (
 --
 
 INSERT INTO `invoice_gen` (`invoice_no`) VALUES
-(10012);
+(10060);
 
 -- --------------------------------------------------------
 
@@ -169,7 +221,7 @@ INSERT INTO `invoice_gen` (`invoice_no`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `order` (
-`order_id` int(11) NOT NULL,
+`order_id` int(10) NOT NULL,
   `bill_id` varchar(255) NOT NULL,
   `user_email` varchar(30) NOT NULL,
   `order_reference` varchar(30) NOT NULL,
@@ -183,7 +235,38 @@ CREATE TABLE IF NOT EXISTS `order` (
   `note_recipient` varchar(255) DEFAULT NULL,
   `term_condition` varchar(255) DEFAULT NULL,
   `order_status` varchar(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10025 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`order_id`, `bill_id`, `user_email`, `order_reference`, `order_date`, `order_due_date`, `order_total_amount`, `order_due_amount`, `order_to_paid`, `order_allow_partial`, `order_allow_discount`, `note_recipient`, `term_condition`, `order_status`) VALUES
+(10000, 'INV-10035', 'ummoy.biswas@live.com', 'ref#213123', '2015-12-31', '2015-12-31', 9.00, 9.00, 9.00, 0, 0, '0', '0', '1'),
+(10001, 'INV-10036', 'ummoy.biswas@live.com', 'ref#213123', '2015-12-31', '2015-12-31', 9.00, 9.00, 9.00, 0, 0, '0', '0', '1'),
+(10002, 'INV-10037', 'ummoy.biswas@live.com', 'dsfsds', '0000-00-00', '2016-01-16', 149.00, 149.00, 149.00, 0, 0, '0', '0', '1'),
+(10003, 'INV-10038', 'ummoy.biswas@live.com', 'dsfsds', '2016-01-21', '2016-01-31', 138.00, 138.00, 138.00, 0, 0, '0', '0', '1'),
+(10004, 'INV-10039', 'ummoy.biswas@live.com', 'dsfsds', '2016-01-21', '2016-01-31', 138.00, 138.00, 138.00, 0, 0, '0', '0', '1'),
+(10005, 'INV-10040', 'ummoy.biswas@live.com', 'ui', '2016-01-07', '2016-01-17', 14.00, 14.00, 14.00, 0, 0, '0', '0', '1'),
+(10006, 'INV-10041', 'ummoy.biswas@live.com', 'yyujbhj', '2016-01-05', '2016-01-20', 145.00, 145.00, 145.00, 0, 0, '0', '0', '1'),
+(10007, 'INV-10042', 'aman.rabby@gmail.com', 'INV-10042', '2016-01-02', '2016-01-27', 28.00, 28.00, 28.00, 0, 0, '0', '0', '1'),
+(10008, 'INV-10043', 'aman.rabby@gmail.com', 'INV-10043', '2016-01-02', '2016-01-27', 28.00, 28.00, 28.00, 0, 0, '0', '0', '1'),
+(10009, 'INV-10044', 'aman.rabby@gmail.com', 'INV-10044', '2016-01-02', '2016-01-27', 28.00, 28.00, 28.00, 0, 0, '0', '0', '1'),
+(10010, 'INV-10045', 'aman.rabby@gmail.com', '', '2016-01-02', '2016-01-27', 9.00, 9.00, 9.00, 0, 0, '0', '0', '1'),
+(10011, 'INV-10046', 'aman.rabby@gmail.com', '', '2016-01-02', '2016-01-27', 9.00, 9.00, 9.00, 0, 0, '0', '0', '1'),
+(10012, 'INV-10047', 'aman.rabby@gmail.com', '', '2016-01-02', '2016-01-27', 9.00, 9.00, 9.00, 0, 0, '0', '0', '1'),
+(10013, 'INV-10048', 'smkiron@gmail.com', '2ewqeqwe', '2016-01-13', '2016-01-28', 5.00, 5.00, 5.00, 0, 0, '0', '0', '1'),
+(10014, 'INV-10049', 'ummoy.biswas@live.com', 'lkkh', '2016-01-13', '2016-01-13', 6.00, 6.00, 6.00, 0, 0, '0', '0', '1'),
+(10015, 'INV-10050', 'ummoy.biswas@live.com', 'lkkh', '2016-01-13', '2016-01-13', 6.00, 6.00, 6.00, 0, 0, '0', '0', '1'),
+(10016, 'INV-10051', 'ummoy.biswas@live.com', 'lkkh', '2016-01-13', '2016-01-13', 6.00, 6.00, 6.00, 0, 0, '0', '0', '1'),
+(10017, 'INV-10052', 'ummoy.biswas@live.com', 'lkkh', '2016-01-13', '2016-01-13', 6.00, 6.00, 6.00, 0, 0, '0', '0', '1'),
+(10018, 'INV-10053', 'ummoy.biswas@live.com', 'lkkh', '2016-01-13', '2016-01-13', 6.00, 6.00, 6.00, 0, 0, '0', '0', '1'),
+(10019, 'INV-10054', 'ummoy.biswas@live.com', 'opiop', '2016-01-14', '2016-01-24', 4.00, 4.00, 4.00, 0, 0, '0', '0', '1'),
+(10020, 'INV-10055', 'aman.rabby@gmail.com', '', '2015-12-31', '2015-12-31', 3.00, 3.00, 3.00, 0, 0, '0', '0', '1'),
+(10021, 'INV-10056', 'aman.rabby@gmail.com', '', '2015-12-31', '2015-12-31', 3.00, 3.00, 3.00, 0, 0, '0', '0', '1'),
+(10022, 'INV-10057', 'aman.rabby@gmail.com', '', '2015-12-31', '2016-01-20', 3.00, 3.00, 3.00, 0, 0, '0', '0', '1'),
+(10023, 'INV-10058', 'aman.rabby@gmail.com', '', '2016-01-22', '2016-02-11', 3.00, 3.00, 3.00, 0, 0, '0', '0', '1'),
+(10024, 'INV-10059', 'aman.rabby@gmail.com', '', '2016-01-21', '2016-02-10', 3.00, 3.00, 3.00, 0, 0, '0', '0', '1');
 
 -- --------------------------------------------------------
 
@@ -196,14 +279,14 @@ CREATE TABLE IF NOT EXISTS `partial` (
   `bill_id` varchar(255) NOT NULL,
   `user_email` varchar(30) NOT NULL,
   `partial_amount` double(30,2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `partial`
 --
 
 INSERT INTO `partial` (`id`, `bill_id`, `user_email`, `partial_amount`) VALUES
-(3, 'INV-10008', 'aman.rabby@gmail.com', 1.75);
+(1, 'INV-10042', 'aman.rabby@gmail.com', 14.00);
 
 -- --------------------------------------------------------
 
@@ -274,13 +357,33 @@ INSERT INTO `service` (`service_id`, `product_id`, `service_name`, `amount`, `se
 --
 
 CREATE TABLE IF NOT EXISTS `transaction` (
-  `transaction_id` varchar(255) NOT NULL,
+`id` int(10) NOT NULL,
+  `transaction_id` varchar(255) DEFAULT NULL,
+  `gateway` varchar(10) DEFAULT NULL,
   `bill_id` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
-  `debit` double NOT NULL,
-  `credit` double NOT NULL,
-  `balance` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `debit` double(10,2) NOT NULL DEFAULT '0.00',
+  `credit` double(10,2) NOT NULL DEFAULT '0.00',
+  `vat` double(10,2) NOT NULL DEFAULT '0.00',
+  `balance` double(10,2) NOT NULL,
+  `transaction_date_time` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`id`, `transaction_id`, `gateway`, `bill_id`, `user_email`, `debit`, `credit`, `vat`, `balance`, `transaction_date_time`) VALUES
+(1, NULL, 'Paypal', 'INV-10042', 'aman.rabby@gmail.com', 28.00, 0.00, 0.00, 28.00, ''),
+(8, '1JN53258LL056974S', 'Paypal', 'INV-10043', 'aman.rabby@gmail.com', 0.00, 14.00, 0.86, 0.00, '02:24:38 Jan 24, 2016 PST'),
+(9, '5CA17715TV864192T', 'Paypal', 'INV-10044', 'aman.rabby@gmail.com', 0.00, 28.00, 1.42, -28.00, '03:39:00 Jan 24, 2016 PST'),
+(10, '1AE58435PG8085713', 'Paypal', 'INV-10045', 'aman.rabby@gmail.com', 0.00, 9.00, 0.66, -9.00, '04:27:59 Jan 24, 2016 PST'),
+(11, '49272722L46865238', 'Paypal', 'INV-10046', 'aman.rabby@gmail.com', 0.00, 9.00, 0.66, -9.00, '04:32:35 Jan 24, 2016 PST'),
+(12, '4FE037091T2804017', 'Paypal', 'INV-10047', 'aman.rabby@gmail.com', 0.00, 9.00, 0.66, -9.00, '04:44:08 Jan 24, 2016 PST'),
+(13, '1WW55174JN5871835', 'Paypal', 'INV-10048', 'aman.rabby@gmail.com', 0.00, 1.00, 0.34, -1.00, '04:48:31 Jan 24, 2016 PST'),
+(23, '4KB67015C1933350P', 'Paypal', 'INV-10059', 'aman.rabby@gmail.com', 0.00, 3.00, 0.42, 0.00, '23:20:53 Jan 24, 2016 PST'),
+(28, '6D6011995D663403C', 'Paypal', 'INV-10042', 'aman.rabby@gmail.com', 0.00, 14.00, 0.86, 14.00, '00:53:05 Jan 25, 2016 PST'),
+(29, '0WX491957H950672S', 'Paypal', 'INV-10042', 'aman.rabby@gmail.com', 0.00, 14.00, 0.86, 0.00, '00:54:09 Jan 25, 2016 PST');
 
 -- --------------------------------------------------------
 
@@ -294,7 +397,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(100) NOT NULL,
   `password` varchar(50) NOT NULL,
   `type` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -302,7 +405,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `client_id`, `username`, `password`, `type`) VALUES
 (1, 1, 'admin', 'admin', '1'),
-(2, 2, 'aman', 'aman', '0');
+(2, 2, 'aman', 'aman', '0'),
+(3, 0, 'new', '12345678', '0');
 
 --
 -- Indexes for dumped tables
@@ -357,6 +461,12 @@ ALTER TABLE `service`
  ADD PRIMARY KEY (`service_id`);
 
 --
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -370,27 +480,27 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bill_service`
 --
 ALTER TABLE `bill_service`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-MODIFY `client_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `client_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `discount`
 --
 ALTER TABLE `discount`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10001;
+MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10025;
 --
 -- AUTO_INCREMENT for table `partial`
 --
 ALTER TABLE `partial`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `product`
 --
@@ -402,10 +512,15 @@ MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 ALTER TABLE `service`
 MODIFY `service_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
