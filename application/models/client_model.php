@@ -39,11 +39,12 @@ class Client_model extends CI_Model
 
 
 
-         public function get_bill_data($bill_id)
+         public function get_bill_data($bill_id,$email)
 	{
 		$this->db->select('*');
 		$this->db->from('bills');
 		$this->db->where('bill_id', $bill_id);
+		$this->db->where('user_email', $email);
 		$result = $this->db->get();
 		return $result->result_array();
 	}
@@ -60,11 +61,12 @@ class Client_model extends CI_Model
 
 
 
-  public function get_bill_data_des($bill_id)
+  public function get_bill_data_des($bill_id,$email)
 	{
 		$this->db->select('*');
 		$this->db->from('bill_service');
 		$this->db->where('bill_id', $bill_id);
+		$this->db->where('user_email', $email);
 		$result = $this->db->get();
 		return $result->result_array();
 	}

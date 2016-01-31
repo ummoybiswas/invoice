@@ -15,13 +15,42 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model');
 	}
 	
-	public function dashboard()
+
+		public function dashboard()
 	{
-		//$data['bills']=$this->bill_model->recent_bills_all();
-		$this->load->view('admin/home');
-		//echo "<pre>";
-		//print_r($data['bills']);
+		//// Dashboard Upper Part////
+		//$user_name= $this->session->userdata('username');
+		//$get_email=$this->client_model->get_email_id($user_name);
+		$data['total_service']=$this->admin_model->total_service();
+		$data['active_service']=$this->admin_model->active_service();
+		$data['inactive_service']=$this->admin_model->inactive_service();
+
+		$data['total_domain']=$this->admin_model->total_domain();
+		$data['active_domain']=$this->admin_model->active_domain();
+		$data['inactive_domain']=$this->admin_model->inactive_domain();
+
+		$data['total_hosting']=$this->admin_model->total_hosting();
+		$data['active_hosting']=$this->admin_model->active_hosting();
+		$data['inactive_hosting']=$this->admin_model->inactive_hosting();
+
+
+		$data['total_invoice']=$this->admin_model->total_invoice();
+		$data['active_invoice']=$this->admin_model->active_invoice();
+		$data['inactive_invoice']=$this->admin_model->inactive_invoice();
+
+
+		//// Dashboard Upper Part END////
+
+		//$data['from_info']=$this->admin_model->admin_info();
+
+		//$data['to_info']=$this->client_model->client_info($user_name);
+
+		//$data['invoice_info']=$this->client_model->invoice_info($get_email);
+
+		$this->parser->parse('admin/home',$data);
 	}
+
+	
 
         public function change_password()
         {
@@ -117,6 +146,7 @@ class Admin extends CI_Controller {
 
 		$data2=array(
 		'username'=>$user_name,
+		'email'=>$email,
 		'password'=>$password,
 		'type'=>'0'
 		);

@@ -24,7 +24,7 @@
                         </div>
                         <div>
                             <input style="float: left;" type="submit" class="btn btn-success submit" name="log_in" value="Login"/>
-                            <a class="reset_pass" href="#">Lost your password?</a>
+                            <a class="reset_pass" href="<?php echo base_url();?>index.php/forget">Lost your password?</a>
                         </div>
                         <div class="clearfix"></div>
                         <div class="separator">

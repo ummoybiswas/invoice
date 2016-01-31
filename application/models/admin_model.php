@@ -39,6 +39,144 @@ class Admin_model extends CI_Model
 
 
 
+	/////////////////////   Count Service For Dashboard/////////////////////
+
+	public function total_service()
+	{
+		$this->db->select('*');
+		$this->db->from('bill_service');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
+	public function active_service()
+	{
+		$this->db->select('*');
+		$this->db->from('bill_service');
+		$this->db->where('status', '1');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
+	public function inactive_service()
+	{
+		$this->db->select('*');
+		$this->db->from('bill_service');
+		$this->db->where('status', '0');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+/////////////////////   Count Service For Dashboard END/////////////////////
+
+/////////////////////   Count Domain For Dashboard/////////////////////
+
+	public function total_domain()
+	{
+		$this->db->select('*');
+		$this->db->from('bill_service');
+		$this->db->where('services', 'Domain');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+	public function active_domain()
+	{
+		$this->db->select('*');
+		$this->db->from('bill_service');
+		$this->db->where('services', 'Domain');
+		$this->db->where('status', '1');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
+	public function inactive_domain()
+	{
+		$this->db->select('*');
+		$this->db->from('bill_service');
+		$this->db->where('services', 'Domain');
+		$this->db->where('status', '0');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
+
+/////////////////////   Count Domain For Dashboard END/////////////////////
+
+/////////////////////   Count Hosting For Dashboard/////////////////////
+
+	public function total_hosting()
+	{
+		$this->db->select('*');
+		$this->db->from('bill_service');
+		$this->db->where('services', 'Hosting');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+	public function active_hosting()
+	{
+		$this->db->select('*');
+		$this->db->from('bill_service');
+		$this->db->where('services', 'Hosting');
+		$this->db->where('status', '1');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
+	public function inactive_hosting()
+	{
+		$this->db->select('*');
+		$this->db->from('bill_service');
+		$this->db->where('services', 'Hosting');
+		$this->db->where('status', '0');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
+
+/////////////////////   Count Hosting For Dashboard END/////////////////////
+
+
+
+	/////////////////////   Count Invoice For Dashboard/////////////////////
+
+	public function total_invoice()
+	{
+		$this->db->select('*');
+		$this->db->from('bills');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
+	public function active_invoice()
+	{
+		$this->db->select('*');
+		$this->db->from('bills');
+		$this->db->where('bill_status', '1');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
+	public function inactive_invoice()
+	{
+		$this->db->select('*');
+		$this->db->from('bills');
+		$this->db->where('bill_status', '0');
+		$result = $this->db->get();
+		return $result->num_rows();
+	}
+
+
+
+/////////////////////   Count Invoice For Dashboard END/////////////////////
+
 	public function insert_new_client_all_info($data1,$data2)
 	{
 		$this->db->insert('client', $data1);

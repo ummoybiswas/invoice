@@ -60,7 +60,7 @@ class Client extends CI_Controller {
 
 	    $data['pay_to']=$this->client_model->admin_info();
 	    $data['invoice_to']=$this->client_model->client_info($user_name);
-	    $data['bill_data']=$this->client_model->get_bill_data($bill_id);
+	    $data['bill_data']=$this->client_model->get_bill_data($bill_id,$get_email);
 	    $data['payment_gateway']=$this->bill_model->get_balance($bill_id,$get_email);
 
 	    if($data['payment_gateway'][0]['gateway']=='Paypal')
@@ -84,7 +84,7 @@ class Client extends CI_Controller {
 	    {
 	   		$data['paid_information']='Fully Paid'; 	
 	    }
-	    $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
+	   // $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
 
 	    $this->parser->parse('client/view_bill_paid',$data);
 
@@ -100,9 +100,14 @@ class Client extends CI_Controller {
 
 	    $data['pay_to']=$this->client_model->admin_info();
 	    $data['invoice_to']=$this->client_model->client_info($user_name);
-	    $data['bill_data']=$this->client_model->get_bill_data($bill_id);
-	    $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
+	    $data['bill_data']=$this->client_model->get_bill_data($bill_id,$get_email);
+	    $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id,$get_email);
     	
+	    //print_r($data['bill_data_des']);
+	    if(!$data['bill_data_des'])
+	    {
+	    	redirect('client/dashboard','refresh');
+	    }
     	if($this->session->userdata('transaction_id'))
     	{
     		$data['txn_id']=$this->session->userdata('transaction_id');
@@ -165,23 +170,7 @@ class Client extends CI_Controller {
 	        }
 	       }
 
-        //  $this->parser->parse('client/view_payment',$data);
-
-        // $bill_id = $this->uri->segment(3);
-        // $data['invoice_id']=$bill_id;
-        // $user_name= $this->session->userdata('username');
-        // $get_email=$this->client_model->get_email_id($user_name);
-          
-        // $data['pay_to']=$this->client_model->admin_info();
-        // $data['invoice_to']=$this->client_model->client_info($user_name);
-
-
-       
-        //   // echo $bill_id;
-
-        // $data['bill_data']=$this->client_model->get_bill_data($bill_id);
-        // $data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
-        // $this->parser->parse('client/view_bill',$data);
+      
     }
  	public function view_bill()
 	{
@@ -194,17 +183,19 @@ class Client extends CI_Controller {
           
         $data['pay_to']=$this->client_model->admin_info();
         $data['invoice_to']=$this->client_model->client_info($user_name);
+
+        $data['bill_data']=$this->client_model->get_bill_data($bill_id,$get_email);
+		$data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id,$get_email);
+
 		if($bill_amt=="full")
 		{
-			$data['bill_data']=$this->client_model->get_bill_data($bill_id);
-			$data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
+
 			$data["partial_true"]=0;
 			$this->parser->parse('client/view_bill',$data);
 		}
 		else
 		{
-			$data['bill_data']=$this->client_model->get_bill_partial_data($bill_id);
-			$data['bill_data_des']=$this->client_model->get_bill_data_des($bill_id);
+
 			$data["partial_true"]=1;
 			$this->parser->parse('client/view_bill',$data);	
 		}
