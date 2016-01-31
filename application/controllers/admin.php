@@ -297,7 +297,14 @@ class Admin extends CI_Controller {
 		);
 		//print_r($data);
 		$this->bill_model->create_new_bill($data1,$data2);
-
+		
+		$data3=array(
+		'bill_id'=>$bill_id,
+		'user_email'=>$client_email,
+		'debit'=>$bill_due_amount,
+		'balance'=>$bill_due_amount
+		);
+        $this->db->insert('transaction', $data3);
 
 
 	}
