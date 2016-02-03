@@ -41,12 +41,6 @@ class Admin extends CI_Controller {
 
 		//// Dashboard Upper Part END////
 
-		//$data['from_info']=$this->admin_model->admin_info();
-
-		//$data['to_info']=$this->client_model->client_info($user_name);
-
-		//$data['invoice_info']=$this->client_model->invoice_info($get_email);
-
 		$this->parser->parse('admin/home',$data);
 	}
 
@@ -99,9 +93,6 @@ class Admin extends CI_Controller {
 	public function clients_list()
 	{
 		$data["client_info"]=$this->admin_model->get_client_info();
-		// echo "<pre>";
-		// print_r($data);
-		// echo "</pre>";
 		$this->parser->parse('admin/view_client_list',$data);
 	}
 	public function create_new_client()
@@ -152,12 +143,63 @@ class Admin extends CI_Controller {
 		);
 
 		$this->admin_model->insert_new_client_all_info($data1,$data2);
-		
-		//$this->admin_model->insert_new_client_login_info($data2);
-		//echo $first_name." ".$last_name." ".$company_name." ".$email." ".$address;
-		//echo " ".$address2." ".$city." ".$state." ".$zip." ".$country." ".$phone;
-		//echo " ".$user_name." ".$password;
 
+
+
+
+				$this->load->helper('html');	
+				$this->load->library('email');
+
+               	$config = Array(
+			    'protocol' => 'smtp',
+			    'smtp_host' => 'ssl://orange.whitelabelwebserver.com',
+			    'smtp_port' => 465,
+			    'smtp_user' => 'aman@geeksntechnology.com',
+			    'smtp_pass' => 'Q^F{ke_&xk(}',
+			    'mailtype'  => 'html', 
+			    'charset'   => 'iso-8859-1'
+				);
+
+				$this->load->library('email', $config);
+				$this->email->set_newline("\r\n");
+				$this->email->from('info@geeksntechnology.com','admin GNT_Invoice');
+				$this->email->to($email);
+				$base=$this->config->base_url();
+				$this->email->subject('Login Information');
+
+
+
+			$messag = '<html><body>';
+			$messag.= '<img src="http://geeksntechnology.com/gnt_invoice/assets/images/logo.png" alt="logo" />';
+			$messag.= '<p>Dear '.$first_name.',</p>';
+			$messag.= '<p>Your Login Information are given Below: </p>';
+			$messag.= '<table>';
+			$messag.= '<tr>';
+			$messag.= '<td style="background:#444;color:#fff;padding: 5px"><b>Email: </b></td>';
+			$messag.= '<td style="background:#eee">'.$email.'</td>';
+			$messag.= '</tr>';
+			$messag.= '<tr>';
+			$messag.= '<td style="background:#444;color:#fff;padding: 5px"><b>Username: </b></td>';
+			$messag.= '<td style="background:#eee">'.$user_name.'</td>';
+			$messag.= '</tr>';
+			$messag.= '<tr>';
+			$messag.= '<td style="background:#444;color:#fff;padding: 5px"><b>Password: </b></td>';
+			$messag.= '<td style="background:#eee">'.$password.'</td>';
+			$messag.= '</tr>';
+			$messag.= '</table>';
+			$messag.= "<a href='".$base."index.php/welcome/index>Click Here for Login</a>";	
+			$messag.= '</body></html>';
+			$messag.= 'Thank You';
+
+
+
+				$this->email->message($messag);
+
+                                
+
+                $this->email->set_mailtype('html');
+				$this->email->send();
+				echo $this->email->print_debugger();
 
 
 	}
@@ -416,7 +458,7 @@ $o_number="";
 				$this->email->subject('Order Confirmation');
 				$this->email->message($messag);
 
-                                $this->email->set_mailtype('html');
+                                
 
                 $this->email->set_mailtype('html');
 
@@ -440,7 +482,7 @@ $gen_date="";
 
                          }
 
-                        $messag = '<html><body>';
+            $messag = '<html><body>';
 			$messag.= '<img src="http://thevoice24.com/invoice/assets/images/logo.png" alt="logo" />';
 			$messag.= '<p>Dear '.$f_name.',</p>';
 			$messag.= '<p>This is the billing notice that your invoice no.'.$bill_id.' which was generated on '.$gen_date.' is now overdue. Failure to make payment will result in account suspension.</p>';

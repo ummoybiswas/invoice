@@ -49,7 +49,23 @@ class Client extends CI_Controller {
 		$this->parser->parse('client/dashboard',$data);
 	}
 
+	public function new_ticket()
+	{
+		$user_name= $this->session->userdata('username');
+		$data['user_info']=$this->client_model->account_information($user_name);
+		$this->parser->parse('client/view_new_ticket',$data);
+		//$this->load->view('client/view_new_ticket');
+	}
 
+
+
+	public function previous_ticket()
+	{
+		$user_name= $this->session->userdata('username');
+		$data['user_info']=$this->client_model->account_information($user_name);
+		$this->parser->parse('client/view_previous_ticket',$data);
+		//$this->load->view('client/view_new_ticket');
+	}
 	public function view_bill_final()
 	{
 		$bill_id =$this->input->post('bill_id');

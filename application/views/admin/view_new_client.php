@@ -39,58 +39,60 @@
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div class="x_content ">
-                                    <div class="col-md-6">
+                               
+                                   
                                     
                                     <!-- start form for validation -->
-                            <form novalidate="" action="<?php echo site_url('admin/insert_new_client_data');?>" method="post" id="demo-form" data-parsley-validate="">
-                                        <label for="first_name">First Name :</label>
-                                        <input  id="first_name"  class="form-control" name="first_name"  required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+                            <form  action="<?php echo site_url('admin/insert_new_client_data');?>" method="post" id="demo-form" data-parsley-validate="">
+                                    <div class="x_content ">  
+                                     <div class="col-md-6">
+                                       <label for="first_name">First Name :</label>
+                                        <input  id="first_name"  class="form-control" name="first_name"  required type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
                                         
                                          <label for="last_name">Last Name :</label>
-                                        <input  id="last_name"  class="form-control" name="last_name" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+                                        <input  id="last_name"  class="form-control" name="last_name" required type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
                                         
                                         
                                          <label for="company_name">Company Name :</label>
-                                        <input  id="company_name"  class="form-control" name="company_name"  required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+                                        <input  id="company_name"  class="form-control" name="company_name"  required type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
                                         
                                         <label for="email">Email Address :</label>
                                         <input  id="email" onblur="email_check(this.value)" class="form-control" name="email" data-parsley-trigger="change"  required="" type="email">
                                         <p id="email_msg" style="color:red"></p><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
 
                                         <label for="address">Address :</label>
-                                        <input  id="address"   class="form-control" name="address" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+                                        <input  id="address"   class="form-control" name="address" required type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
                                        
                                         <label for="address2">Address 2 :</label>
                                         <input  id="address2"   class="form-control" name="address2" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
 
                                    
-                                    <!-- end form for validations -->
+                                   
                                     </div>
                                     
                                     <div class="col-md-6">
                                         <!-- start form for validation -->   
                                         <label for="city">City :</label>
-                                        <input  id="city"  class="form-control" name="city" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
+                                        <input  id="city"  class="form-control" name="city" required type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
                                         
                                         <label for="state">State/Region :</label>
-                                        <input  id="state"   class="form-control" name="state" data-parsley-trigger="change" required="" type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
+                                        <input  id="state"   class="form-control" name="state" data-parsley-trigger="change"  type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
 
                                        <label for="zip">Zip Code :</label>
-                                        <input  id="zip"   class="form-control" name="zip" data-parsley-trigger="change" required="" type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
+                                        <input  id="zip"   class="form-control" name="zip" data-parsley-trigger="change"  type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
                                         
                                         <label for="country">Country :</label>
-                                        <input  id="country"   class="form-control" name="country" data-parsley-trigger="change" required="" type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
+                                        <input  id="country"   class="form-control" name="country" data-parsley-trigger="change" required type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
 
                                         <label for="phone">Phone No :</label>
-                                        <input  id="phone"  class="form-control" name="phone" data-parsley-trigger="change" required="" type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
+                                        <input  id="phone"  class="form-control" name="phone" data-parsley-trigger="change" required type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
 
                                         <div class="clearfix"></div>
                                         
-                                    <!-- end form for validations -->
+                               
                                     </div>
                                  </div>
-                                <div class="x_content ">
+                            <div class="x_content ">
                                     <div class="x_title">
 
                                         <h2><i class="fa fa-sign-in"></i> Login Information </h2>
@@ -100,14 +102,14 @@
                                 
                                     <div class="col-md-6">
                                         <label for="uname">User Name :</label>
-                                        <input  id="uname"  onblur="uname_check(this.value)" class="form-control" name="uname" required="" type="text">
+                                        <input  id="uname"  onblur="uname_check(this.value)" class="form-control" name="uname" required type="text">
                                          <p id="uname_msg" style="color:red"></p>
                                         <ul id="parsley-id-0979" class="parsley-errors-list"></ul>           
                                     </div>
                                 
                                     <div class="col-md-6">
                                         <label for="pass">Password :</label>
-                                        <input  id="pass"  class="form-control" name="pass" required="" type="password">
+                                        <input  id="pass"  class="form-control" name="pass" required type="password">
                                        
                                         <ul id="parsley-id-0979" class="parsley-errors-list"></ul>           
                                     </div>
@@ -115,13 +117,13 @@
                                 <br>
                                 <div class="x_content ">
                                  <div class="col-md-1 pull-right">
-                                    <button style="border:none;background:none"><span class="btn btn-primary ">Sign UP</span></button>
+                                    <input disabled="true" type="submit" class="btn btn-primary" value="Sign UP" id="submit"/>
                                 </div>
                                 </div>
-                            </form>
+                            
                                 
                             </div>
-                        
+                        </form>
                                
             <!-- page content -->
            
@@ -146,6 +148,8 @@
     <?php include 'template/footer_link.php';?>
 <!-- Footer Link End-->
 <script>
+var check_submit=0;
+
     function email_check(email){
      $.ajax({
         url: "<?php echo site_url('admin/check_email_is_unique'); ?>",
@@ -153,6 +157,17 @@
         data: {email:email},
         success: function(msg) {
            $('#email_msg').html(msg);
+           if(msg!='')
+           {
+            $("#submit").attr("disabled",true);
+            check_submit=1;
+            }
+            else
+            {
+               check_submit=0;
+                submit_btn_check();
+            
+            }
            //alert(""+msg);
         }
     });
@@ -164,10 +179,29 @@ function uname_check(uname){
         data: {uname:uname},
         success: function(msg) {
            $('#uname_msg').html(msg);
-           //alert(""+msg);
+          if(msg!='')
+           {
+            check_submit=1;
+            $("#submit").attr("disabled",true); 
+            u_name_check=1;
+            }
+            else
+            {
+                check_submit=0;
+              submit_btn_check();
+            }
 
         }
     });
+}
+
+function submit_btn_check()
+{
+    if(check_submit==0)
+    {  
+        $("#submit").removeAttr("disabled"); 
+    }
+    
 }
 
 </script>
