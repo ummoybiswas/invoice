@@ -1018,7 +1018,7 @@ function checkFormData()
 			success:function(result){
 				//alert('Successfully checkout. Thanks for shopping!');
 				//window.location.href = base_url;
-				alert(result);
+				//alert(result);
 			}
 	});
 	
@@ -1076,7 +1076,7 @@ function checkFormData()
 			success:function(result){
 				//alert('Successfully checkout. Thanks for shopping!');
 				//window.location.href = base_url;
-				alert(result);
+				//alert(result);
 			}
 	});
 	

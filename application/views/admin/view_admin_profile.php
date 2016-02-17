@@ -55,7 +55,7 @@
                                         <input  id="company_name" readonly="readonly" class="form-control" name="company_name" value="{company_name}" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
                                         
                                         <label for="email">Email Address :</label>
-                                        <input  id="email" readonly="readonly" class="form-control" name="email" data-parsley-trigger="change" value="{email}" required="" type="email"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
+                                        <input  id="email" readonly="readonly" class="form-control" name="email" data-parsley-trigger="change" value="{admin_email}" required="" type="email"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
 
                                         <label for="address">Address :</label>
                                         <input  id="address"  value="{address}" class="form-control" name="address" required="" type="text"><ul id="parsley-id-0979" class="parsley-errors-list"></ul>
@@ -86,7 +86,7 @@
 
                                         <label for="phone">Phone No :</label>
                                         <input  id="phone" value="{phone_no}" class="form-control" name="phone" data-parsley-trigger="change" required="" type="text"><ul id="parsley-id-5214" class="parsley-errors-list"></ul>
-
+										
                                         <br>
                                         <button style="border:none;background:none"><span class="btn btn-primary">Update Info</span></button>
 

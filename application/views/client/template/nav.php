@@ -17,6 +17,7 @@
                                         <li><a href="" data-toggle="modal" data-target="#myModal">Change Password</a></li>
                                     </ul>
                                 </li>
+								<li><a href="<?php echo site_url('client/client_transaction');?>" > <i class="fa fa-globe"></i>Transection History</a></li>
                                 <li><a href="<?php echo site_url('client/domain_list');?>"><i class="fa fa-globe"></i> Domains</a></li>
                                 <li><a href="<?php echo site_url('client/service_list');?>"><i class="fa fa-puzzle-piece"></i> Services</a> </li>
                 								<li><a href="<?php echo site_url('client/my_invoice');?>"><i class="fa fa-send"></i> My Invoices</a> </li>

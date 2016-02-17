@@ -28,88 +28,104 @@
             <div class="right_col" role="main">
 
                 <br />
-                <div class="">
-                   
-                        <div class="x_panel">
+				    <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
                                 <div class="x_title">
-
-                                    <h2><i class="fa fa-support"></i> All Tickets List</h2>
-                                    <ul class="nav navbar-right panel_toolbox ">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    <h2 style="text-align:center"><i class="fa fa-support"></i> All Tickets List</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a href="#"><i class="fa fa-chevron-up"></i></a>
                                         </li>
-                                 
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        
+                                        <li><a href="#"><i class="fa fa-close"></i></a>
                                         </li>
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
-
-                            <form id="demo-form" data-parsley-validate="">
-                                <div class="x_content ">
-                                <table class="table table-striped projects">
+                                <div class="x_content">
+                                    <table id="example" class="table table-striped responsive-utilities jambo_table">
                                         <thead>
-                                            <tr>
-                                                <th style="width: 1%">#</th>
-                                                <th style="width: 20%">Project Name</th>
-                                                <th>Team Members</th>
-                                                <th>Project Progress</th>
+                                            <tr class="headings">
+                                               
+                                                <th style="width:10%">Ticket No</th>
+                                                <th style="width:20%">Ticket Subject</th>
+                                                
+                                                <th>Ticket Created</th>
                                                 <th>Status</th>
-                                                <th style="width: 20%">#Edit</th>
+                                                <th >Action</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <?php 
+										foreach ($ticket_info as $value) 
+										{ ?>
                                             <tr>
-                                                <td>#</td>
+                                                <td><?=$value['ticket_id'];?></td>
                                                 <td>
-                                                    <a>Pesamakini Backend UI</a>
-                                                    <br />
-                                                    <small>Created 01.01.2015</small>
+                                                    <a><?=$value['subject'];?></a>
+                                                
                                                 </td>
-                                                <td>
-                                                    <ul class="list-inline">
-                                                        <li>
-                                                            <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar">
-                                                        </li>
-                                                        <li>
-                                                            <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar">
-                                                        </li>
-                                                        <li>
-                                                            <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar">
-                                                        </li>
-                                                        <li>
-                                                            <img src="http://localhost/personal/njoroge/assets3/img.jpg" class="avatar" alt="Avatar">
-                                                        </li>
-                                                    </ul>
-                                                </td>
+                                                
                                                 <td class="project_progress">
-                                                    <div class="progress progress_sm">
-                                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
+                                                    <!--<div class="progress progress_sm">
+                                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="11"></div>
                                                     </div>
-                                                    <small>57% Complete</small>
+                                                    <small>11% Complete</small>-->
+                                                    <?=$value['date_time'];?>
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-success btn-xs">Success</button>
+                                                    
+													
+													<?php 
+													
+													   if($value['status']==0){
+														   ?>
+														  <button type="button" class="btn btn-warning btn-xs">Not Answered
+													</button>
+													<?php
+													}
+													   else{ ?>
+													   <a class="btn btn-success"" >Answered </a>
+													
+													<?php
+													   }
+													?>
+													
                                                 </td>
-                                                <td>
-                                                    <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                                </td>
+												
+												<td>
+												<a href="<?php echo site_url('client/click_view/'.$value["ticket_id"].'');?>" class="btn btn-success">
+													   
+														    View/Reply</a>
+													
+														 
+												</td>
+												
                                             </tr>
-                                            </tbody>
-                                        </table>
-                                    
+										<?php } ?>
+                                  
+                                        </tbody>
+										
+                                    </table>
                                 </div>
-                            </form>
                             </div>
-                       
+                        </div>
+
+                        <br />
+                        <br />
+                        <br />
+
+                    </div>
+  
+
                 <!-- footer content -->
     <?php include 'template/footer.php';?>
-                <!-- /footer content -->
+	   <!--
+                /footer content -->
 
             </div>
             <!-- /page content -->
-
+        </div>
 
 
     </div>
@@ -121,12 +137,61 @@
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
 <!-- Footer Link-->
-    <?php include 'template/footer_link.php';?>
+   <?php include 'template/footer_link.php';?>
 <!-- Footer Link End-->
+           <!-- Datatables -->
+		   
+        <script src="<?php echo base_url();?>assets/js/datatables/js/jquery.dataTables.js"></script>
+        <script src="<?php echo base_url();?>assets/js/datatables/tools/js/dataTables.tableTools.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('input.tableflat').iCheck({
+                    checkboxClass: 'icheckbox_flat-green',
+                    radioClass: 'iradio_flat-green'
+                });
+            });
 
-    <!--  -->
+            var asInitVals = new Array();
+            $(document).ready(function () {
+                var oTable = $('#example').dataTable({
+                    "oLanguage": {
+                        "sSearch": "Search all columns:"
+                    },
+                    "aoColumnDefs": [
+                        {
+                            'bSortable': false,
+                            'aTargets': [0]
+                        } //disables sorting for column one
+            ],
+                    'iDisplayLength': 12,
+                    "sPaginationType": "full_numbers",
+                    "dom": 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
+                    }
+                });
+                $("tfoot input").keyup(function () {
+                    /* Filter on the column based on the index of this element's parent <th> */
+                    oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
+                });
+                $("tfoot input").each(function (i) {
+                    asInitVals[i] = this.value;
+                });
+                $("tfoot input").focus(function () {
+                    if (this.className == "search_init") {
+                        this.className = "";
+                        this.value = "";
+                    }
+                });
+                $("tfoot input").blur(function (i) {
+                    if (this.value == "") {
+                        this.className = "search_init";
+                        this.value = asInitVals[$("tfoot input").index(this)];
+                    }
+                });
+            });
+        </script>
     
-
 </body>
 
 </html>

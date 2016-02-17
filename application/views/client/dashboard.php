@@ -142,11 +142,24 @@
 
                                         <!-- Table row -->
                                         <div class="row">
-                                            <div class="col-xs-12 table">
-                                                <table class="table table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Invoice No</th>
+				    <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2 style="text-align:center"><i class="fa fa-support"></i>All Tickets Answerd</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a href="#"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        
+                                        <li><a href="#"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <table id="example" class="table table-striped responsive-utilities jambo_table">
+                                        <thead>
+                                            <tr class="headings">
+												 <th>Invoice No</th>
                                                             <th>Bill Date</th>
                                                             <th>Due Date</th>
                                                             <th>Tot. Amount</th>
@@ -154,15 +167,17 @@
                                                             <th>Bill to Pay</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
-                                                        </tr>
-                                                    </thead\>
-                                                        <?php ?>
+                                                         
+                                                
+                                            </tr>
+                                        </thead>
+										 <?php ?>
                                                     
                                                     <?php 
                                                     
                                                     ?>
-                                                    <tbody>
-                                                    <?php foreach ($invoice_info as $invoice) {?>
+                                        <tbody>
+                                       <?php foreach ($invoice_info as $invoice) {?>
                                                         <tr>
                                                             <td><?=$invoice['bill_id']?></td>
                                                             <td><?=$invoice['bill_date']?></td>
@@ -175,22 +190,29 @@
                                                             <td><?=$invoice['bill_due_amount']?></td>
                                                             <td>
                                                                 <?php 
-                                                            if($invoice['bill_status']=='0'){?>
-                                                            <span class="label label-danger">Pending</span>
+                                                            if($invoice['partial_status']=='1' && $invoice['bill_status']=='1'){?>
+                                                            <span class="label label-success">Paid</span>
+                                                            <?php }
+                                                             if($invoice['partial_status']=='1' && $invoice['bill_status']=='0'){?>
+                                                              <span class="label label-info">Partially Paid</span>
                                                             <?php }
                                                                 else {
                                                                     ?>
-                                                                    <span class="label label-success">Paid</span>
+                                                                    <span class="label label-danger">Pending</span>
                                                                     <?php }?>
                                                             </td>
                                                             <td><a href="<?php echo site_url('client/view_bill_details');?>/<?=$invoice['bill_id']?>"><button  type="button" class="btn-md btn-success" style="border:none;">View</button></a></td>
 
                                                         </tr> 
                                                        <?php } ?>
-                                                    </tbody>
-                                                  
-                                                </table>
-                                            </div>
+                                                    
+                                        </tbody>
+										
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
                                             <!-- /.col -->
                                         </div>
                                         <!-- /.row -->
@@ -278,6 +300,59 @@
     <?php include 'template/footer_link.php';?>
 <!-- Footer Link End-->
     <!-- flot -->
+	
+		   <script src="<?php echo base_url();?>assets/js/datatables/js/jquery.dataTables.js"></script>
+        <script src="<?php echo base_url();?>assets/js/datatables/tools/js/dataTables.tableTools.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('input.tableflat').iCheck({
+                    checkboxClass: 'icheckbox_flat-green',
+                    radioClass: 'iradio_flat-green'
+                });
+            });
+
+            var asInitVals = new Array();
+            $(document).ready(function () {
+                var oTable = $('#example').dataTable({
+                    "oLanguage": {
+                        "sSearch": "Search all columns:"
+                    },
+                    "aoColumnDefs": [
+                        {
+                            'bSortable': false,
+                            'aTargets': [0]
+                        } //disables sorting for column one
+            ],
+                    'iDisplayLength': 12,
+                    "sPaginationType": "full_numbers",
+                    "dom": 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
+                    }
+                });
+                $("tfoot input").keyup(function () {
+                    /* Filter on the column based on the index of this element's parent <th> */
+                    oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
+                });
+                $("tfoot input").each(function (i) {
+                    asInitVals[i] = this.value;
+                });
+                $("tfoot input").focus(function () {
+                    if (this.className == "search_init") {
+                        this.className = "";
+                        this.value = "";
+                    }
+                });
+                $("tfoot input").blur(function (i) {
+                    if (this.value == "") {
+                        this.className = "search_init";
+                        this.value = asInitVals[$("tfoot input").index(this)];
+                    }
+                });
+            });
+        </script>
+
+
     <script type="text/javascript">
         //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
         var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];

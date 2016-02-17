@@ -18,6 +18,13 @@ class Bill_model extends CI_Model
 		$this->db->update('bills', $data);
 	}
 
+
+	public function update_bill_service($data,$bill_id)
+	{
+		$this->db->where('bill_id', $bill_id);
+		$this->db->update('bill_service', $data);
+	}
+
 	public function bill_due_date($bill_id)
 	{
 		$this->db->select('*');

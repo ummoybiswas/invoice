@@ -28,7 +28,7 @@
 
                 <br />
                 <div class="">
-                               <div class="row">
+                    <div class="row">
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
@@ -51,6 +51,7 @@
                                                     <input type="checkbox" class="tableflat">
                                                 </th>-->
                                                 <!--<th>Invoice No</th>-->
+                                                 <th >Invoice No </th>
                                                 <th style="width:35%">Description </th>
                                                 <th>Service</th>
                                                 <th>Reg_Date </th>
@@ -72,6 +73,7 @@
                                                     <input type="checkbox" class="tableflat">
                                                 </td>
                                                 <td class=" "><?=$row->bill_id;?></td>-->
+                                                <td class=" "><?=$row->bill_id;?></td>
                                                 <td class=" "><?=$row->particulars;?></td>
                                                 <td class=" "><?=$row->services;?></td>         
                                                 <td class=" "><?=$row->reg_date;?><i class="success fa fa-long-arrow-up"></i>
@@ -88,13 +90,16 @@
                                                 <td class=" "><?php echo '$'.$row->price;?></td>
                                                 <td class="a-right a-right ">
                                                  <?php
-                                                 if($row->bill_status=='1'){ ?>
-                                                 <span class="label label-success">Paid</span>
-                                               <?php }
-                                                if($row->bill_status=='0'){ ?>
-                                                <span class="label label-danger">Pending</span>
-                                                <?php } ?>
-                                        
+                                                 if($row->partial_status==1 && $row->bill_status==1){ ?>
+                                                <span class="label label-success">Paid</span>
+                                                <?php }
+                                                 if($row->partial_status==1 && $row->bill_status==0){?>
+                                                  <span class="label label-warning">Partially Paid</span>
+                                                <?php }
+                                                    else {
+                                                        ?>
+                                                        <span class="label label-danger">Pending</span>
+                                                        <?php }?>
 
                                                 </td>
                                                 <!--<td class=" last"><a href="#">View</a>
@@ -120,7 +125,7 @@
 
                 <!-- footer content -->
     <?php include 'template/footer.php';?>
-                <!-- /footer content -->
+	   <!--/footer content -->
 
             </div>
             <!-- /page content -->

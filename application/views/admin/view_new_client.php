@@ -8,7 +8,7 @@
 
         <div class="main_container">
 
-            <div class="col-md-3 left_col">
+           <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
               
                     <!-- sidebar menu -->
@@ -21,6 +21,7 @@
             <!-- top navigation -->
                   <?php include 'template/header.php';?>
             <!-- /top navigation -->
+
             <div class="right_col" role="main">
 
                 <br />
@@ -28,7 +29,7 @@
                     
                         <div class="x_panel">
                                 <div class="x_title">
-
+                                    <h1><i class="fa fa-user"></i> Create New Client </h1>
                                     <h2><i class="fa fa-user"></i> Personal Details </h2>
                                     <ul class="nav navbar-right panel_toolbox ">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>

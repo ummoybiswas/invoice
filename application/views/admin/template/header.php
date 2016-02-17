@@ -1,4 +1,5 @@
             <div class="top_nav">
+			  <!--<li>  admin header   </li>-->
 
                 <div class="nav_menu">
                     <nav class="" role="navigation">
@@ -9,99 +10,66 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="<?php echo base_url();?>assets/images/img.jpg" alt="">Admin
+                                    <img src="<?php echo base_url();?>assets/profile_picture/<?php echo $get_pic[0]['profile_picture'];?>" alt="picture">
+                                    <?php  $user_name= $this->session->userdata('username');
+                                    echo $user_name;?>
+									
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
+								 
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="<?php echo site_url('admin/myprofile');?>"><i class="fa fa-user pull-right"></i>  Profile</a></li>
-
-                                     <li><a href="" data-toggle="modal" data-target="#myModal"> <i class="fa fa-cogs pull-right"></i>  Change Password</a></li>
-                                    <!--<li>
-                                        <a href="javascript:;">
-                                            <span class="badge bg-red pull-right">50%</span>
-                                            <span>Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Help</a>
-                                    </li>-->
+                                    <li><a href="<?php echo site_url('admin/myprofile');?>">  Profile</a></li>
+									<li><a data-toggle="modal" data-target="#myModal_img_change">Change Profile Picture</a></li>
                                     <li><a href="<?php echo site_url('logout/index');?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
 
-                            <!--<li role="presentation" class="dropdown">
+                            <li role="presentation" class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-envelope-o"></i>
-                                    <span class="badge bg-green">6</span>
+									
+                                    <span class="badge bg-green"><?=$roww; ?></span>
+									
                                 </a>
+								
                                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
+								
+								<?php if($roww==0){?> 
+									  <li><a href="#" No notification>No notification</a></li>
+									   <?php } ?>	
+								
+								{new_tickets}
                                     <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="<?php echo base_url();?>assets/images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>Admin</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
+									
+									             
+									
+										 											
+													
+													<a href="<?php echo site_url('admin/admin_click_notification/{ticket_id}');?>">  
+														<button style="width:100%" class="btn  btn-xs">
+															
+															<span class="image"> Created On :{date_time}<br></span>
+															<span class="image"> ticket_id :{ticket_id}<br></span>
+															 <span class="image">Depaetment: {dept_name}<br></span>
+															 <span class="image"> Subject : {subject}</span>
+														
+														</button>
+												  </a>
+													
+														 
+												  
+										
+                                      
+								{/new_tickets}
+								<?php if($roww==5){?> 
+									  <a href="<?php echo site_url('admin/all_admin_notetfication');?>">
+									  click to see more.... <?php } ?>									  
                                     </li>
-                                    <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="<?php echo base_url();?>assets/images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>John Smith</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="<?php echo base_url();?>assets/images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>John Smith</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="<?php echo base_url();?>assets/images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>John Smith</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="text-center">
-                                            <a>
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
+								
+                                   
                                 </ul>
-                            </li>-->
+                            </li>
 
                         </ul>
                     </nav>
@@ -113,7 +81,39 @@
 
 
 
+<div class="modal fade" id="myModal_img_change" role="dialog">
 
+				    <div class="modal-dialog">
+				    
+				      <!-- Modal content-->
+				      <div class="modal-content" style="padding:20px">
+				       
+				     <form role="form" method="post" enctype="multipart/form-data" action="<?php echo site_url('admin/change_profile_image');?>/<?=$get_pic[0]['profile_picture'];?>" style="padding:15px;margin-top:2%">
+	                   		       
+							 <input type="text" class="form-control"  name="name" style="display:none" value="<?php echo $get_pic[0]['profile_picture'];?>">
+						    <div class="form-group">
+						      <label for="pwd">Current Shop Image:</label>
+						       <span><img style="height:85px;width:100px>" src="<?php echo base_url();?>assets/profile_picture/<?php echo $get_pic[0]['profile_picture'];?>" style="height:100%"/></span>  
+						    	
+						    </div>
+                            <div class="form-group">
+						      <label for="sold">New Image:(max-width:1024,max-height:780,max-weight:2 MB)</label>
+						        <input id="input-21" type="file" name="userfile" required accept="image/*" class="file-loading btn btn-default">
+						    </div>
+
+                                                    
+						    <div class="">
+						    	<button type="submit" name="addShop" class="btn btn-success">Submit</button>
+					</form>
+                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                             </div>
+						
+				      </div>
+				      
+				    </div>
+
+				    
+</div>
 
 
 

@@ -50,7 +50,6 @@
                                                <!-- <th>
                                                     <input type="checkbox" class="tableflat">
                                                 </th>-->
-                                                <th>Invoice No</th>
                                                 <th style="width:40%">Description </th>
                                                 <th>Reg_Date </th>
                                                 <th>Status</th>
@@ -70,7 +69,6 @@
                                                 <!--<td class="a-center ">
                                                     <input type="checkbox" class="tableflat">
                                                 </td>-->
-                                                <td class=" "><?=$row->bill_id;?></td>
                                                 <td class=" "><?=$row->particulars;?></td>
                                                 <td class=" "><?=$row->reg_date;?><i class="success fa fa-long-arrow-up"></i>
                                                 </td>
@@ -87,12 +85,17 @@
                                                 <td class="a-right a-right ">
 
                                                <?php
-                                                 if($row->bill_status=='1'){ ?>
-                                                 <span class="label label-success">Paid</span>
-                                               <?php }
-                                                if($row->bill_status=='0'){ ?>
-                                                <span class="label label-danger">Pending</span>
-                                                <?php } ?>
+                                                
+                                                if($row->partial_status==1 && $row->bill_status==1){ ?>
+                                                <span class="label label-success">Paid</span>
+                                                <?php }
+                                                 if($row->partial_status==1 && $row->bill_status==0){?>
+                                                  <span class="label label-info">Partially Paid</span>
+                                                <?php }
+                                                    else {
+                                                        ?>
+                                                        <span class="label label-danger">Pending</span>
+                                                        <?php }?>
 
 
                                                 </td>

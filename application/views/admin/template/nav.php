@@ -27,6 +27,7 @@
                             
                             <ul class="nav side-menu">
                                 <li><a href="<?php echo site_url('admin/dashboard');?>"><i class="fa fa-home"></i> Dashboard</a></li>
+                                <li><a href="<?php echo site_url('admin/create_new_admin');?>"><i class="fa fa-user"></i>Create New Admin</a> </li>
                                 <li><a href="<?php echo site_url('admin/create_new_client');?>"><i class="fa fa-user"></i>Create New Client</a> </li>
                                 <li><a href="<?php echo site_url('admin/clients_list');?>"><i class="fa fa-users"></i>Clients List</a> </li>
                                 <li><a><i class="fa fa-send"></i> Invoice <span class="fa fa-chevron-down"></span></a>
@@ -35,9 +36,16 @@
                                         <li><a href="media_gallery.html">Edit Invoice</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="<?php echo site_url('admin/admin_transaction');?>" > <i class="fa fa-globe"></i>Transection History</a></li>
                                 <li><a><i class="fa fa-globe"></i> Domains</a></li>
                                 <li><a><i class="fa fa-puzzle-piece"></i> Services</a> </li>
-
+                                <li><a><i class="fa fa-send"></i> Ticket System <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a href="<?php echo site_url('admin/create_department');?>" >Create Department</a></li>
+                                        <li><a href="<?php echo site_url('admin/show_previous_ticket');?>" >Previous Ticket</a></li>
+                                        
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
             

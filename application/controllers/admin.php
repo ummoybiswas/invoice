@@ -15,9 +15,146 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model');
 	}
 	
+	
+	
+	
+	
+	
+	
+	public function admin_click_notification($ticket_id){
+		
+		$data2=array (
+		't_type'=>0
+		
+		);
+		$this->admin_model->update_to_old($data2,$ticket_id);
+		
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
 
-		public function dashboard()
+		
+		$data['t_info_client_single']=$this->admin_model->t_info_client_single($ticket_id);
+		$data['user_ticket_info']=$this->admin_model->user_ticket_info($ticket_id);
+		
+		
+	$email=$this->admin_model->get_user_email($ticket_id);
+		
+	
+		//print_r($data['user_email']);
+		$data['ticket_id']=$ticket_id;
+		$data['user_email']=$email;
+		
+
+
+		
+		$this->parser->parse('admin/answer_ticket_view',$data);
+	
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public function show_previous_ticket(){
+				$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
+		
+		//print_r($data['new_tickets']);
+		
+		
+		$data['ans_t_info']=$this->admin_model->answered_ticket_info();
+
+		$this->parser->parse('admin/admin_previous_ticket',$data);
+		
+		
+	}
+	
+	
+	
+	public function all_admin_notetfication(){
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
+		
+		
+		$data['all_new_t']=$this->admin_model->all_new_t();
+		$this->parser->parse('admin/all_admin_notification',$data);
+		
+	}
+	
+	public function click_previous_view($ticket_id){
+        
+	
+	    $data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
+        
+
+		
+      
+		
+		$data['details_single_p_t']=$this->admin_model-> details_single_p_t($ticket_id);
+		$data['user_ticket_info']=$this->admin_model-> user_ticket_info($ticket_id);
+		
+		$this->parser->parse('admin/previous_t_details',$data);
+		
+	}
+	public function create_new_admin()
 	{
+				$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
+		
+		
+		$data['dept']=$this->admin_model->get_all_dept();
+		
+		$this->parser->parse('admin/view_new_admin',$data);
+		
+	}
+	
+	
+	public function admin_transaction()
+	{
+				$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
+		
+		$data['all_transaction']=$this->admin_model->get_transactions();
+		
+		$this->parser->parse('admin/view_admin_transaction', $data);
+		
+	}
+	
+	
+	
+	
+	
+	
+
+	public function dashboard()
+	{
+		
+		$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
+		
+		
 		//// Dashboard Upper Part////
 		//$user_name= $this->session->userdata('username');
 		//$get_email=$this->client_model->get_email_id($user_name);
@@ -37,11 +174,110 @@ class Admin extends CI_Controller {
 		$data['total_invoice']=$this->admin_model->total_invoice();
 		$data['active_invoice']=$this->admin_model->active_invoice();
 		$data['inactive_invoice']=$this->admin_model->inactive_invoice();
+		
+		$data['t_info_client']=$this->admin_model->t_info_dashboard();
+		
+
+		$this->parser->parse('admin/home',$data);
+		
+		$this->db->select('*');
+		$this->db->from('ticket');
+		$result = $this->db->get();
+		return $result->result_array();
+		
+		
 
 
 		//// Dashboard Upper Part END////
+		
+		
+	}
+	
+	
+	public function answer_client($ticket_id)
+	{
+		$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
+		$row= $this->admin_model->get_row_byID($ticket_id);
+		
+		if($row==0)
+		{
+			redirect('admin/dashboard','refresh');
+			
+		}else
+		
+		{
+		
+		
+		
+		$data['t_info_client_single']=$this->admin_model->t_info_client_single($ticket_id);
+		$data['user_ticket_info']=$this->admin_model->user_ticket_info($ticket_id);
+		
+		$email=$this->admin_model->get_user_email($ticket_id);
+		
+	
+		//print_r($data['user_email']);
+		$data['ticket_id']=$ticket_id;
+		$data['user_email']=$email;
 
-		$this->parser->parse('admin/home',$data);
+		
+		
+		
+
+
+		
+		$this->parser->parse('admin/answer_ticket_view',$data);
+		
+		}
+		
+		
+		
+	}
+	
+	public function submit_answer(){
+		
+		$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
+		$ticket_id=$this->input->post('ticket_id');
+		$user_email=$this->input->post('user_email');
+		
+		
+		$ans_message=$this->input->post('admin_reply');
+		//echo $ticket_id;
+		//echo br(1);
+		//echo $user_email;
+		//echo $ans_message;
+		date_default_timezone_set('Asia/Dhaka');
+		
+		$date_time_ans=date("Y-m-d H:i");	
+	    $reply_type=1;
+		$seen_type=0;
+
+		$data=array (
+		'ticket_id'=>$ticket_id,
+		'user_email'=>$user_email,
+		'ans_message'=>$ans_message,
+		'date_time_ans'=>$date_time_ans,
+		'seen_type'=>$seen_type,
+		'reply_type'=>$reply_type
+		);
+		
+		$data2=array (
+		'status'=>1
+		
+		);
+		
+		
+		$this->admin_model->insert_admin_answer($data,$data2,$ticket_id);
+		
+		redirect('admin/dashboard','refresh');
+		
+		
+		
+		
 	}
 
 	
@@ -84,7 +320,8 @@ class Admin extends CI_Controller {
         }
 	public function myprofile()
 	{
-		
+				$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
 		$data["user_info"]=$this->admin_model->get_admin_info();
 		$this->parser->parse('admin/view_admin_profile',$data);
 
@@ -92,14 +329,171 @@ class Admin extends CI_Controller {
 
 	public function clients_list()
 	{
+		$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
 		$data["client_info"]=$this->admin_model->get_client_info();
 		$this->parser->parse('admin/view_client_list',$data);
 	}
 	public function create_new_client()
 	{
+				$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
 		
-		$this->load->view('admin/view_new_client');
+				
+		$this->load->view('admin/view_new_client',$data);
 	}
+	public function insert_new_admin(){
+		
+		$first_name=$this->input->post('first_name');
+		$last_name=$this->input->post('last_name');
+		$company_name=$this->input->post('company_name');
+		$admin_email=$this->input->post('email');
+
+		$address=$this->input->post('address');
+		$address2=$this->input->post('address2');
+		$city=$this->input->post('city');
+		$state=$this->input->post('state');
+		$zip=$this->input->post('zip');
+		$country=$this->input->post('country');
+		$phone=$this->input->post('phone');
+		$dept_name=$this->input->post('dept');
+		$is_admin=$this->input->post('is_admin');
+
+		$user_name=$this->input->post('uname');
+		$password=$this->input->post('pass');
+		
+		$img_name=$this->input->post('userfile');
+		if(empty($_FILES['userfile']['name'])){$img_path='profile-default.png';}
+		else 
+		{
+			$img_path=$this->upload_profile_img($img_name);
+		}
+		
+		$data1=array(
+		'user_name'=>$user_name,
+		'first_name'=>$first_name,
+		'last_name'=>$last_name,
+		'company_name'=>$company_name,
+		'admin_email'=>$admin_email,	
+		'address'=>$address,
+		'address2'=>$address2,
+		'city'=>$city,
+		'state'=>$state,
+		'post_code'=>$zip,
+		'country'=>$country,
+		'phone_no'=>$phone,
+		'dept_name'=>$dept_name,
+		'is_admin'=>$is_admin,
+		'profile_picture'=>$img_path
+		);
+
+		$data2=array(
+		'username'=>$user_name,
+		'email'=>$admin_email,
+		'password'=>$password,
+		'type'=>'1'
+		);
+		
+		$this->admin_model->insert_new_admin($data1,$data2);
+		redirect('admin/create_new_admin','refresh');
+
+		
+	}
+	
+	
+	
+	public function upload_profile_img($name)
+	{
+		
+		$url=base_url();
+		$image_name = uniqid().'_image.png';
+		$config = array();
+		$config['upload_path'] ='assets/profile_picture';
+        $config['file_name'] = $image_name;
+        $config['overwrite'] = TRUE;
+        $config["allowed_types"] = 'gif|jpg|png|jpeg';
+        $config["max_size"] = '2048';
+        $config["max_width"] = '1024';
+        $config["max_height"] = '780';
+        $this->load->library('upload', $config);
+          
+		$this->upload->data();
+		$this->upload->initialize($config);
+
+        if(!$this->upload->do_upload()) 
+        {               
+            $this->data['error'] = $this->upload->display_errors();
+            $error_msg=$this->upload->display_errors();
+            //$previous_img=$this->buyer_model->pre_store_img($reg_id);
+            $this->session->set_flashdata('error',$error_msg);
+          redirect('admin_buyer/show_error','refresh');
+			return 'shop-default.png';
+        }
+        else
+        {
+        	return $image_name;
+           // echo 'success';                          
+        }  
+	}
+	
+	
+	
+	
+	public function change_profile_image()
+	{
+		$pro_pic_id = $this->uri->segment(3);
+		//echo $store_id;
+		$name=$this->input->post('name');
+		$img_name=$this->input->post('userfile');
+		
+		$img_path=$this->update_store_img($img_name,$pro_pic_id);
+
+		$this->admin_model->change_profile_img($name,$img_path);
+		redirect('admin/dashboard','refresh');
+	}
+	
+	
+	public function update_store_img($name,$pro_pic_id)
+	{
+		$uname=$this->session->userdata('username');
+		$url=base_url();
+		$image_name = uniqid().'_image.png';
+		$config = array();
+		$config['upload_path'] ='assets/profile_picture';
+        $config['file_name'] = $image_name;
+        $config['overwrite'] = TRUE;
+        $config["allowed_types"] = 'gif|jpg|png';
+        $config["max_size"] = '2048';
+        $config["max_width"] = '1024';
+        $config["max_height"] = '780';
+        $this->load->library('upload', $config);
+          
+		$this->upload->data();
+		$this->upload->initialize($config);
+
+        if(!$this->upload->do_upload()) 
+        {               
+            $this->data['error'] = $this->upload->display_errors();
+            $error_msg=$this->upload->display_errors();
+            $previous_img=$this->buyer_model->pre_store_img($uname,$pro_pic_id);
+             $this->session->set_flashdata('error',$error_msg);
+          	redirect('admin_buyer/show_error','refresh');
+				return $previous_img;
+
+        }
+        else
+        {
+        	return $image_name;
+           // echo 'success';                          
+        }  
+	}
+
 
 	public function insert_new_client_data()
 	{
@@ -203,6 +597,59 @@ class Admin extends CI_Controller {
 
 
 	}
+	
+	
+	public function get_all_notification(){
+		
+		
+		$data['all_new_ticket']=$this->admin_model->all_new_ticket();
+		$this->parser->parse('admin/all_notification_view',$data);
+	}
+	
+	
+	
+	
+	// create department
+	
+	public function create_department()
+	{
+				$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
+		
+		if($this->session->userdata('dept_id')){
+		$data['dept_id'] = $this->session->userdata('dept_id');
+		}
+		
+		$this->parser->parse('admin/create_dept_view',$data);
+		
+	}
+	
+	public function insert_department()
+	{   	
+		
+		
+		$dept_name=$this->input->post('dept_name');
+		$dept_email=$this->input->post('dept_email');
+		
+		
+		$data=array (
+		'dept_name'=>$dept_name,
+		'dept_email'=>$dept_email
+		);
+		
+		$this->admin_model->insert_department_model($data);
+		$insert_id = $this->db->insert_id();
+		//echo $insert_id;
+		
+			
+		$this->session->set_userdata('dept_id',$insert_id);
+		redirect('admin/create_department','refresh');
+		
+		
+	}
 
 	public function check_email_is_unique()
 	{
@@ -248,19 +695,32 @@ class Admin extends CI_Controller {
 		);
 
 		$this->admin_model->update_admin_info($data1);
-		$this->myprofile();
+		redirect('admin/myprofile','refresh');
 
 	}
 
 	public function create_invoice()
 	{
+				$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
+		$data1=$this->admin_model->t_info_new();
+		$data['new_tickets']=$data1['new_tickets'];
+		$data['roww']=$data1['roww'];
+		
+		
+				
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
 		$this->load->model('invoice_gen_model');
 		$data["invoice_no"]=$this->invoice_gen_model->recent_invoice();
 		$this->parser->parse('admin/invoice',$data);
-		//print_r($data["invoice_no"]);
 
 	}
     
+	
+	
+	
+	
+	
 	public function bill_confirm()
 	{
 		$this->load->model('bill_model');
@@ -283,6 +743,9 @@ class Admin extends CI_Controller {
 		
 		$note_recipient=$this->input->post('note_recipient');
 		$term_condition=$this->input->post('term_condition');
+
+
+
 				
 		if($bill_allow_partial==1)
 		{
@@ -419,11 +882,11 @@ $o_number="";
 
 			$email_address = $client_email;	
 			$messag = '<html><body>';
-			$messag.= '<img src="http://www.geeksntechnology.com/img/slider/logo.png" alt="logo" />';
+			$messag.= '<img src="http://www.geeksntechnology.com/gnt_invoice/assets/img/logo.png" alt="logo" />';
 
 			$email_address = $client_email;	
 			$messag = '<html><body>';
-			$messag.= '<img src="http://thevoice24.com/invoice/assets/images/logo.png" alt="logo" />';
+			$messag.= '<img src="http://www.geeksntechnology.com/gnt_invoice/assets/img/logo.png" alt="logo" />';
 
 			$messag.= '<p>Dear '.$f_name.',</p>';
 			$messag.= '<p>We have already processed your order. The details of the order are given below:</p>';
@@ -463,8 +926,9 @@ $o_number="";
                 $this->email->set_mailtype('html');
 
 				$this->email->send();
-                                echo "<pre>";
-				print_r($services);
+                               // echo "<pre>";
+				//print_r($services);
+
 
 
 
@@ -529,7 +993,7 @@ $gen_date="";
 				$base=$this->config->base_url();
 				$this->email->subject('Invoice Details');
 				$this->email->message($messag);
-                                $this->email->set_mailtype('html');
+                $this->email->set_mailtype('html');
 				$this->email->send();
                               //  echo "<pre>";
 				//print_r($services);
@@ -569,7 +1033,9 @@ $gen_date="";
 			$next_due=date_format($date,"Y-m-d");
 		}		
 		
-	
+
+
+		
 		$data=array(
 		'bill_id'=>$bill_id,
 		'user_email'=>$user_email,
@@ -596,6 +1062,8 @@ $gen_date="";
 
 	public function view_bill()
 	{
+				$uname=$this->session->userdata('username');
+		$data['get_pic']=$this->admin_model->get_profile_pic($uname);
 		//$data['bills']=$this->bill_model->view_bill($bil_id);
 		$this->load->view('admin/view_bill');
 		//echo "<pre>";

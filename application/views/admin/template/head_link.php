@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GNT | Dashboard</title>
+    <title>Gentallela Alela! | </title>
 
     <!-- Bootstrap core CSS -->
 
@@ -36,3 +36,8 @@
         <![endif]-->
 
 </head>
+<style>
+.DTTT_container{
+	display:none !important;
+}
+</style>

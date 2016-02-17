@@ -107,12 +107,12 @@ p{
                                 </tr>
                             </thead>
                             <tbody>
-                            {bill_data_des}
+                            
                             <tr>
-                                <td>{particulars}-{additional_particulars}</td>
-                                <td class="text-right">{total}</td>
+                                {bill_data_des}<td>{particulars}-{additional_particulars}</td>{/bill_data_des}
+                               <td class="text-right">${bill_total_amount}</td>
                             </tr>
-                           {/bill_data_des}
+                         
                            
                             <tr class="active">
                                 <td>Sub Total</td>
@@ -121,11 +121,12 @@ p{
                             <tr class="active" id="charge">
                                 
                             </tr>
-                                                                      
+                                                              
                          <tr class="active">
                             <td>Credit</td>
-                            <td class="text-right">$0.00 USD</td>
+                           <td class="text-right">$<?=$credit_amount[0]['credit']; ?> USD</td>
                         </tr>
+                        
                         <tr>
                             <td><h4>Total</h4></td>
                             <td class="text-right"><h4>${bill_due_amount}</h4></td>
@@ -133,10 +134,13 @@ p{
 
                         <?php if($partial_true){?><tr>
                             <td><h4>Amount to Pay</h4></td>
-                            <?php $encode=base64_encode($bill_data[0]['partial_amount']);?>
+                            <?php $encode=base64_encode($bill_data[0]['partial_amount']); ?>
                             <input type="hidden" id="amt" value="<?=$encode?>">
                             <td class="text-right"><h4>$<span id="amount">{partial_amount}</span></h4></td>
-                        </tr><?php } else { ?><tr>
+                        </tr><?php } 
+
+                        else { ?>
+                        <tr>
                             <td><h4>Amount to Pay</h4></td>
                             <?php $encode=base64_encode($bill_data[0]['bill_due_amount']);?>
                             <input type="hidden" id="amt" value="<?=$encode?>">

@@ -1,0 +1,11 @@
+	
+		$data=array (
+		'user_email'=>$user_email,
+		'subject'=>$subject,
+		'dept_id'=>$dept_id,
+		'priority'=>$priority,
+		'message'=>$message,
+		'status'=>$status,
+		'date_time'=>$date_time,
+		'user_file'=>$user_file
+		);

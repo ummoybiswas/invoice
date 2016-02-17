@@ -50,7 +50,6 @@
                                                <!-- <th>
                                                     <input type="checkbox" class="tableflat">
                                                 </th>-->
-                                                <th>Invoice No</th>
                                                 <th style="width:35%">Description </th>
                                                 <th>Service</th>
                                                 <th>Reg_Date </th>
@@ -70,7 +69,6 @@
                                                 <!--<td class="a-center ">
                                                     <input type="checkbox" class="tableflat">
                                                 </td>-->
-                                                <td class=" "><?=$row->bill_id;?></td>
                                                 <td class=" "><?=$row->particulars;?></td>
                                                 <td class=" "><?=$row->services;?></td>         
                                                 <td class=" "><?=$row->reg_date;?><i class="success fa fa-long-arrow-up"></i>
